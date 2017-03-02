@@ -1,24 +1,31 @@
-TARGET := protopia
-CFILES := $(shell find * -name "*.c")
-OFILES := $(shell find * -name "*.o")
-OBJS   := $(patsubst %.c, %.o, $(CFILES))
-SRCS   := $(filter-out .git% doc% bin%, $(CFILES))
-DEPS   := $(shell find * -name "*.d")
+TARGET_EXEC ?= protopia.so
+ 
+BUILD_DIR ?= ./build
+SRC_DIRS ?= ./src
 
-CC       := gcc
-CFLAGS   := -O3 -MMD -MP -Wall -Wextra
-INCLUDES := -I./src/hdr
-LDFLAGS  :=
-
-all: $(TARGET)
-
+CC   := gcc 
+SRCS := $(shell find $(SRC_DIRS) -name *.c)
+OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
+DEPS := $(OBJS:.o=.d)
+ 
+INC_DIRS := ./hdr
+INC_FLAGS := $(addprefix -I,$(INC_DIRS))
+ 
+CFLAGS ?= $(INC_FLAGS) -MMD -MP
+ 
+$(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
+	$(CC) -shared -fPIC $(OBJS) -o $@ 
+ 
+# c source
+$(BUILD_DIR)/%.c.o: %.c
+	$(MKDIR_P) $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
+ 
+.PHONY: clean
+ 
+clean:
+	$(RM) -r $(BUILD_DIR)
+ 
 -include $(DEPS)
-
-$(TARGET): $(OBJS)
-	$(CC) -o $@ $^
-
-%.o: %.c
-	$(CC) $(CFLAGS) -o $@ -c $< $(INCLUDES) $(LDFLAGS)
-
-clean: 
-	@rm -rf $(TARGET) $(OFILES) $(DEPS)
+ 
+MKDIR_P ?= mkdir -p
