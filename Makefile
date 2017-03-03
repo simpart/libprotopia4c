@@ -1,4 +1,4 @@
-TARGET_EXEC ?= protopia.so
+TARGET_EXEC ?= libprotopia.so
  
 BUILD_DIR ?= ./build
 SRC_DIRS ?= ./src
@@ -11,10 +11,10 @@ DEPS := $(OBJS:.o=.d)
 INC_DIRS := ./hdr
 INC_FLAGS := $(addprefix -I,$(INC_DIRS))
  
-CFLAGS ?= $(INC_FLAGS) -MMD -MP
+CFLAGS ?= $(INC_FLAGS) -O3 -Wall -Wextra -MMD -MP -shared -fPIC
  
 $(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
-	$(CC) -shared -fPIC $(OBJS) -o $@ 
+	$(CC) $(CFLAGS) $(OBJS) -o $@ 
  
 # c source
 $(BUILD_DIR)/%.c.o: %.c
