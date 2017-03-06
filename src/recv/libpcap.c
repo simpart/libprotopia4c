@@ -9,7 +9,7 @@
 #include "pia/receive.h"
 
 piast_rcvconf_t  g_recv_conf;
-pcap_t          *g_pcapd = NULL;
+pcap_t   *g_pcapd = NULL;
 
 /**
  * initialize receive config
@@ -21,6 +21,7 @@ int pia_init_recv (piast_rcvconf_t conf) {
     char ebuf[PCAP_ERRBUF_SIZE];
     
     memset(&g_recv_conf, 0x00, sizeof(piast_rcvconf_t));
+    memset(&ebuf[0], 0x00, sizeof(ebuf));
     
     /* check interface name */
     if ('\0' == conf.ifname[0]) {
@@ -58,8 +59,8 @@ int pia_start_recv (void) {
     if( pcap_loop(
             g_pcapd ,
             -1      ,
-            (pcap_handler) g_recv_conf.cb_func ,
-            g_recv_conf.cb_prm) < 0 ) {
+            (pcap_handler) pia_cbwrap,
+            NULL) < 0 ) {
         return PIA_NG;
     }
     
@@ -67,4 +68,8 @@ int pia_start_recv (void) {
     return PIA_OK;
 }
 
+void pia_cbwrap (u_char *user, const struct pcap_pkthdr *h , const u_char *p ) {
+    user = user;
+    g_recv_conf.cb_func((pkt) p, (void *) h, g_recv_conf.cb_prm);
+}
 /* end of file */
