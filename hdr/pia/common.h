@@ -3,6 +3,7 @@
  * @brief protopia common defined
  * @author simpart
  */
+#include <stddef.h>
 #include <stdint.h>
 
 #ifndef __COMMON_H__
@@ -30,6 +31,7 @@ typedef unsigned char   uchar;
 /*** prototype ***/
 uint16_t htons(uint16_t);
 uint16_t ntohs(uint16_t);
+uint16_t checksum(uint16_t *buf, size_t size);
 
 #endif
 /* end of file */

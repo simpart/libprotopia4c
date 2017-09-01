@@ -8,7 +8,6 @@
 
 #include "pia/common.h"
 #include "pia/ether.h"
-#include "pia/receive.h"
 
 #endif
 /* end of file */

@@ -1,6 +1,6 @@
 TARGET_EXEC ?= libprotopia.so
  
-BUILD_DIR ?= ./build
+BUILD_DIR ?= ./bin
 SRC_DIRS ?= ./src
 
 CC   := gcc 

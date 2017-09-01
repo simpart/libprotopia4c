@@ -1,2 +1,0 @@
-http://ruffnex.oc.to/kenji/xrea/checksum.txt
-http://www.mew.org/~kazu/doc/bsdmag/cksum.html
