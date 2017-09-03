@@ -2,9 +2,9 @@
  * @file checksum.c
  * @author simpart
  */
-#include "pia/common.h"
+#include "pia/com.h"
 
-uint16_t checksum(uint16_t *buf, size_t size) {
+uint16_t pia_checksum(uint16_t *buf, size_t size) {
     unsigned long sum = 0;
     
     while(size > 1) {

@@ -4,10 +4,10 @@
  */
 #include <stdio.h>
 #include <string.h>
-#include "pia/ether.h"
+#include "pia/eth.h"
 
 /*** functoin ***/
-void pia_dmp_ether(piast_ether_hdr_t * eth_hdr) {
+void pia_dmp_ether(pia_ethhdr_t * eth_hdr) {
     uint16_t type = 0;
     
     if (NULL == eth_hdr) {
@@ -34,7 +34,7 @@ void pia_dmp_ether(piast_ether_hdr_t * eth_hdr) {
               eth_hdr->smac[5]
           );
     
-    memcpy(&type, &eth_hdr->type[0], sizeof(uint16_t));
+    memcpy(&type, &eth_hdr->type, sizeof(uint16_t));
     type = ntohs(type);
     printf("ether type : %u(0x%x)\n", type, type);
     printf("\n");

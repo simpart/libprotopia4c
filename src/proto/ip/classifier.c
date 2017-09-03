@@ -3,7 +3,7 @@
  * @author simpart
  */
 #include <stdio.h>
-#include "pia/ether.h"
+#include "pia/eth.h"
 #include "pia/ip.h"
 
 int pia_isip (pkt frm) {
@@ -13,7 +13,7 @@ int pia_isip (pkt frm) {
         return PIA_FALSE;
     }
     
-    pia_dmp_ether((piast_ether_hdr_t *) frm);
+    //pia_dmp_ether((piast_ether_hdr_t *) frm);
     
     return PIA_TRUE;
 }

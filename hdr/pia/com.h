@@ -29,9 +29,9 @@ typedef unsigned int    uint;
 typedef unsigned char   uchar;
 
 /*** prototype ***/
-uint16_t htons(uint16_t);
-uint16_t ntohs(uint16_t);
-uint16_t checksum(uint16_t *buf, size_t size);
+uint16_t pia_htons(uint16_t);
+uint16_t pia_ntohs(uint16_t);
+uint16_t pia_checksum(uint16_t *buf, size_t size);
 
 #endif
 /* end of file */
