@@ -9,7 +9,7 @@ extern pia_ethhdr_t g_ethhdr;
 extern pia_ethhdr_t g_ethhdr_ip;
 
 /*** function ***/
-int pia_eth_init () {
+int pia_eth_init (void) {
     g_ethhdr.type    = PIA_ETH_IP;
     g_ethhdr_ip.type = PIA_ETH_IP;
     return PIA_OK;

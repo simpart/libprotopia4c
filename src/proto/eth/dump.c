@@ -4,6 +4,7 @@
  */
 #include <stdio.h>
 #include <string.h>
+#include "pia/com.h"
 #include "pia/eth.h"
 
 /*** functoin ***/
@@ -35,7 +36,7 @@ void pia_dmp_ether(pia_ethhdr_t * eth_hdr) {
           );
     
     memcpy(&type, &eth_hdr->type, sizeof(uint16_t));
-    type = ntohs(type);
+    type = pia_ntohs(type);
     printf("ether type : %u(0x%x)\n", type, type);
     printf("\n");
 }

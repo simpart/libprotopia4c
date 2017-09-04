@@ -40,6 +40,7 @@ typedef struct pia_ipv4hdr {
 
 /* prototype */
 int      pia_isip (pkt);
+int      pia_ip_init (void);
 void     pia_ip_setip (uint8_t *, uint8_t *);
 int      pia_ip_getv4hdr (uint8_t *, size_t);
 int      pia_ip_getv4hdr_tcp (uint8_t *, size_t);

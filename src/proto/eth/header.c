@@ -27,7 +27,7 @@ int pia_eth_setmac (uint8_t *dmac, uint8_t *smac) {
 }
 
 int pia_eth_settype (uint16_t type) {
-    g_ethhdr.type = ntohs(type);
+    g_ethhdr.type = pia_ntohs(type);
     return PIA_OK;
 }
 

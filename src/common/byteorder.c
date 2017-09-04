@@ -5,6 +5,13 @@
  * found in the LICENSE file.
  */
 #include <stdint.h>
-uint16_t htons(uint16_t hostshort) {
-  return ((hostshort & 0xff) << 8) | (hostshort >> 8);
+#include "pia/com.h"
+
+uint16_t pia_htons(uint16_t hostshort) {
+    return ((hostshort & 0xff) << 8) | (hostshort >> 8);
 }
+
+uint16_t pia_ntohs(uint16_t netshort) {
+    return ((netshort & 0xff) << 8) | (netshort >> 8);
+}
+/* end of file */
