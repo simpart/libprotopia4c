@@ -6,8 +6,10 @@
 #ifndef __PROTOPIA_H__
 #define __PROTOPIA_H__
 
-#include "pia/common.h"
-#include "pia/ether.h"
+#include "pia/com.h"
+#include "pia/eth.h"
+#include "pia/ip.h"
+#include "pia/icmp.h"
 
 #endif
 /* end of file */

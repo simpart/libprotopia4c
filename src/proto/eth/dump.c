@@ -8,13 +8,15 @@
 #include "pia/eth.h"
 
 /*** functoin ***/
-void pia_dmp_ether(pia_ethhdr_t * eth_hdr) {
-    uint16_t type = 0;
+void pia_eth_dump(uint8_t *rcv) {
+    uint16_t     type = 0;
+    pia_ethhdr_t *eth_hdr;
     
-    if (NULL == eth_hdr) {
-        printf("ether header is null\n");
+    if (NULL == rcv) {
+        //printf("parameter is null\n");
         return;
     }
+    eth_hdr = (pia_ethhdr_t *) rcv;
     
     printf("Ether Header\n");
     printf("----------------------------------\n");

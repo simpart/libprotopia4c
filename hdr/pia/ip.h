@@ -8,10 +8,6 @@
 #ifndef __IP_H__
 #define __IP_H__
 
-/*** global ***/
-extern uint8_t  g_icmp_data[32];
-extern uint32_t g_seq;
-
 /*** define ***/
 #define PIA_IP_IPSIZE 4
 #define PIA_IP_ICMP 0x01
@@ -37,6 +33,11 @@ typedef struct pia_ipv4hdr {
     uint8_t  sip[PIA_IP_IPSIZE];
     uint8_t  dip[PIA_IP_IPSIZE];
 } pia_ipv4hdr_t;
+
+/*** global ***/
+extern pia_ipv4hdr_t g_pia_ipv4hdr;
+extern uint8_t  g_icmp_data[32];
+extern uint32_t g_seq;
 
 /* prototype */
 int      pia_isip (pkt);

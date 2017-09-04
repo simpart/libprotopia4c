@@ -6,7 +6,7 @@
 #include "pia/ip.h"
 
 /*** global ***/
-extern pia_ipv4hdr_t g_pia_ipv4hdr;
+pia_ipv4hdr_t g_pia_ipv4hdr;
 
 /*** function ***/
 int pia_ip_init (void) {
