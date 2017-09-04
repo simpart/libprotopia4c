@@ -31,6 +31,7 @@ typedef struct pia_ethfrm {
 void pia_eth_dump (uint8_t *);
 int  pia_eth_init (void);
 int  pia_eth_setmac (uint8_t *, uint8_t *);
+int pia_eth_settype (uint16_t);
 int  pia_eth_gethdr (uint8_t *, size_t);
 int  pia_eth_gethdr_ip (uint8_t *, size_t);
 #endif

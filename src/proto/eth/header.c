@@ -16,12 +16,12 @@ pia_ethhdr_t g_ethhdr_ip;
 
 int pia_eth_setmac (uint8_t *dmac, uint8_t *smac) {
     if (NULL != dmac) {
-        memcpy(&g_ethhdr.dmac, dmac, sizeof(g_ethhdr.dmac));
-        memcpy(&g_ethhdr_ip.dmac, dmac, sizeof(g_ethhdr_ip.dmac));
+        memcpy(&(g_ethhdr.dmac[0]), dmac, sizeof(g_ethhdr.dmac));
+        memcpy(&(g_ethhdr_ip.dmac[0]), dmac, sizeof(g_ethhdr_ip.dmac));
     }
     if (NULL != smac) {
-        memcpy(&g_ethhdr.smac, smac, sizeof(g_ethhdr.smac));
-        memcpy(&g_ethhdr_ip.smac, smac, sizeof(g_ethhdr_ip.smac));
+        memcpy(&(g_ethhdr.smac[0]), smac, sizeof(g_ethhdr.smac));
+        memcpy(&(g_ethhdr_ip.smac[0]), smac, sizeof(g_ethhdr_ip.smac));
     }
     return PIA_OK;
 }
@@ -32,7 +32,7 @@ int pia_eth_settype (uint16_t type) {
 }
 
 int pia_eth_gethdr (uint8_t *buf, size_t max) {
-    if ( (NULL == buf) || (max > sizeof(pia_ethhdr_t)) ) {
+    if ( (NULL == buf) || (max < sizeof(pia_ethhdr_t)) ) {
         return PIA_NG;
     }
     memcpy(buf, &g_ethhdr, sizeof(pia_ethhdr_t));
@@ -40,7 +40,7 @@ int pia_eth_gethdr (uint8_t *buf, size_t max) {
 }
 
 int pia_eth_gethdr_ip (uint8_t *buf, size_t max) {
-    if ( (NULL == buf) || (max > sizeof(pia_ethhdr_t)) ) {
+    if ( (NULL == buf) || (max < sizeof(pia_ethhdr_t)) ) {
         return PIA_NG;
     }
     memcpy(buf, &g_ethhdr_ip, sizeof(pia_ethhdr_t));
