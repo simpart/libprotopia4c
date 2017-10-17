@@ -6,15 +6,16 @@
 #include "pia/eth.h"
 #include "pia/ip.h"
 
-int pia_isip (pkt frm) {
-    //piast_ether_t *eth = NULL;
+int pia_ip_isip (uint8_t *pkt) {
+    pia_ethhdr_t *eth_hdr = NULL;
     
-    if (NULL == frm) {
-        return PIA_FALSE;
+    if (NULL == pkt) {
+        return PIA_NG;
     }
-    
-    //pia_dmp_ether((piast_ether_hdr_t *) frm);
-    
-    return PIA_TRUE;
+    eth_hdr = (pia_ethhdr_t *) pkt;
+    if (PIA_ETH_IP == pia_ntohs(eth_hdr->type)) {
+        return PIA_TRUE;
+    }
+    return PIA_FALSE;
 }
 /* end of file */

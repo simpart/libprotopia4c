@@ -40,7 +40,7 @@ extern uint8_t  g_icmp_data[32];
 extern uint32_t g_seq;
 
 /* prototype */
-int      pia_isip (pkt);
+int      pia_ip_isip (uint8_t *);
 int      pia_ip_init (void);
 void     pia_ip_setip (uint8_t *, uint8_t *);
 int      pia_ip_getv4hdr (uint8_t *, size_t);

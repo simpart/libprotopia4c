@@ -28,10 +28,12 @@ typedef struct pia_ethfrm {
 } pia_ethfrm_t;
 
 /*** prototype ***/
-void pia_eth_dump (uint8_t *);
-int  pia_eth_init (void);
-int  pia_eth_setmac (uint8_t *, uint8_t *);
-int pia_eth_settype (uint16_t);
-int  pia_eth_gethdr (uint8_t *, size_t);
+int  pia_eth_issrc (uint8_t *, uint8_t *);
+int  pia_eth_isdst (uint8_t *, uint8_t *);
+void pia_eth_dump  (uint8_t *);
+int  pia_eth_init  (void);
+int  pia_eth_setmac    (uint8_t *, uint8_t *);
+int  pia_eth_settype   (uint16_t);
+int  pia_eth_gethdr    (uint8_t *, size_t);
 int  pia_eth_gethdr_ip (uint8_t *, size_t);
 #endif
