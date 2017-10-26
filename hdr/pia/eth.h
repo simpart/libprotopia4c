@@ -30,6 +30,7 @@ typedef struct pia_ethfrm {
 /*** prototype ***/
 int  pia_eth_issrc (uint8_t *, uint8_t *);
 int  pia_eth_isdst (uint8_t *, uint8_t *);
+int  pia_eth_isprot (uint8_t *rcv, uint16_t prot);
 void pia_eth_dump  (uint8_t *);
 int  pia_eth_init  (void);
 int  pia_eth_setmac    (uint8_t *, uint8_t *);

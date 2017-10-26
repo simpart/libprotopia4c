@@ -34,6 +34,18 @@ int pia_eth_isdst (uint8_t *rcv, uint8_t *mac) {
     }
     return PIA_FALSE;
 }
+
+int pia_eth_isprot (uint8_t *rcv, uint16_t prot) {
+    pia_ethhdr_t *eth_hdr = NULL;
+
+    if (NULL == rcv) {
+        return PIA_NG;
+    }
+
+    eth_hdr = (pia_ethhdr_t *) rcv;
+    if (prot == pia_ntohs(eth_hdr->type)) {
+        return PIA_TRUE;
+    }
+    return PIA_FALSE;
+}
 /* end of file */
-
-
