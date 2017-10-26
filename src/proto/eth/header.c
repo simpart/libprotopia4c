@@ -46,4 +46,11 @@ int pia_eth_gethdr_ip (uint8_t *buf, size_t max) {
     memcpy(buf, &g_ethhdr_ip, sizeof(pia_ethhdr_t));
     return PIA_OK;
 }
+
+uint8_t * pia_eth_getconts (uint8_t *frm) {
+    if (NULL == frm) {
+        return PIA_NG;
+    }
+    return frm + sizeof(pia_ethhdr_t);
+}
 /* end of file */

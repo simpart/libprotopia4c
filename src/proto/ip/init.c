@@ -7,6 +7,8 @@
 
 /*** global ***/
 pia_ipv4hdr_t g_pia_ipv4hdr;
+pia_ipv4hdr_t g_pia_ipv4hdr_tcp;
+pia_ipv4hdr_t g_pia_ipv4hdr_icmp;
 
 /*** function ***/
 int pia_ip_init (void) {
