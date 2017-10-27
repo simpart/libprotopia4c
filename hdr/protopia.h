@@ -10,6 +10,7 @@
 #include "pia/eth.h"
 #include "pia/ip.h"
 #include "pia/icmp.h"
+#include "pia/arp.h"
 
 #endif
 /* end of file */
