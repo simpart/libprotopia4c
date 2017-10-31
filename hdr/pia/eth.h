@@ -32,11 +32,13 @@ int pia_eth_isprot (uint8_t *, uint16_t);
 /* dump */
 void pia_eth_dump   (uint8_t *);
 /* header */
-int  pia_eth_setmac    (uint8_t *, uint8_t *);
-int  pia_eth_settype   (uint16_t);
-int  pia_eth_gethdr    (uint8_t *, size_t);
+int  pia_eth_setdefmac (uint8_t *, uint8_t *);
+int  pia_eth_setdeftype (uint16_t);
+int  pia_eth_setmac (pia_ethhdr_t *, uint8_t *, uint8_t *);
+int  pia_eth_settype (pia_ethhdr_t *, uint16_t);
+int  pia_eth_gethdr (uint8_t *, size_t);
 int  pia_eth_gethdr_ip (uint8_t *, size_t);
-int pia_eth_gethdr_arp (uint8_t *, size_t);
+int  pia_eth_gethdr_arp (uint8_t *, size_t);
 uint8_t * pia_eth_getconts (uint8_t *);
 
 #endif

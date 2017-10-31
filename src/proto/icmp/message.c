@@ -7,41 +7,25 @@
 #include "pia/ip.h"
 #include "pia/icmp.h"
 
-int pia_icmp_getmsg_frame (uint8_t *frm) {
-//    int ret = 0;
- //   pia_iphdr_t *ip_hdr = NULL;
- //   
-//    /* check parameter */
-//    if (NULL == frm) {
-//        return PIA_NG;
-//    }
-///    /* check ether protocol */
- //   if (PIA_FALSE == pia_eth_isip(frm)) {
- //       return PIA_NG;
- //   }
- //   /* get ip header */
- //   ip_hdr = pia_eth_getconts(frm);
- //   if (NULL == ip_hdr) {
- //       return PIA_NG;
- //   }
-    /* check ip protocol */
+int pia_icmp_getfrm (uint8_t *buf, size_t max, int type) {
+    int ret = 0;
+    /* check parameter */
+    if (NULL == buf) {
+        return PIA_NG;
+    }
     
+    //pia_eth_gethdr
+    ret = pia_ip_getpacket(buf, max, PIA_IP_ICMP);
+    if (PIA_OK != ret) {
+        return ret;
+    }
     
-    /* get icmp message */
-    //pia_ip_getconts
     return PIA_OK;
 }
-//int pia_icmp_getfrm (uint8_t *buf, size_t max, uint8_t type) {
-//    
-//}
-//
-//int pia_icmp_getpkt (uint8_t *buf, size_t max, uint8_t type) {
-//    
-//}
-//
-//
-//int pia_icmp_gethdr (uint8_t *buf, size_t max, uint8_t type) {
-//    
-//}
+
+int pia_icmp_getpacket (uint8_t *buf, size_t max, int type) {
+    
+    return PIA_OK;
+}
 /* end of file */
 
