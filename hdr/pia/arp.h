@@ -11,8 +11,13 @@
 #define __ARP_H__
 
 /*** define ***/
+/* operation type */
 #define PIA_ARP_OP_REQ 1
 #define PIA_ARP_OP_REP 2
+
+/* hardware type */
+#define PIA_ARP_HTYPE_ETH 1  //! Ethernet
+
 #define __PIA_ARP_STYLE__ MAC_IPV4
 
 /*** struct ***/
@@ -32,6 +37,12 @@ typedef struct pia_arphdr {
 } pia_arphdr_t;
 
 /*** prototype ***/
+/* init */
+int pia_arp_init (void);
+/* header */
+int pia_arp_getfrm (uint8_t *, size_t, uint8_t);
+int pia_arp_getpkt (uint8_t *, size_t, uint8_t);
+int pia_arp_gethdr (uint8_t *, size_t, uint8_t);
 /* dump */
 void pia_arp_dump (uint8_t *);
 void pia_arp_dump_htype (pia_arphdr_t *);

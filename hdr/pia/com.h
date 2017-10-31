@@ -16,6 +16,11 @@
 #define PIA_NG -1  //! function is failed
 
 /**
+ * @brief error value
+ */
+#define PIA_ERR_NMCH  -10 //! not match
+
+/**
  * @brief common flag
  */
 #define PIA_TRUE  1  //! value of true

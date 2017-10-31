@@ -1,5 +1,5 @@
 /**
- * @file init.c
+ * @file icmp/init.c
  * @author simpart
  */
 #include "pia/icmp.h"
