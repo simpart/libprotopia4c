@@ -8,42 +8,65 @@
 #include "pia/eth.h"
 
 /*** functoin ***/
-void pia_eth_dump(uint8_t *rcv) {
-    uint16_t     type = 0;
-    pia_ethhdr_t *eth_hdr;
+int pia_eth_dump (pia_ethhdr_t * frm) {
     
-    if (NULL == rcv) {
-        //printf("parameter is null\n");
-        return;
+    if (NULL == frm) {
+        return PIA_NG;
     }
-    eth_hdr = (pia_ethhdr_t *) rcv;
+    printf("ether ");
+    printf("%02x-%02x-%02x-%02x-%02x-%02x",
+              frm->smac[0],
+              frm->smac[1],
+              frm->smac[2],
+              frm->smac[3],
+              frm->smac[4],
+              frm->smac[5]
+    );
+    printf(" >> ");
+    printf("%02x-%02x-%02x-%02x-%02x-%02x",
+              frm->dmac[0],
+              frm->dmac[1],
+              frm->dmac[2],
+              frm->dmac[3],
+              frm->dmac[4],
+              frm->dmac[5]
+    );
+    
+    printf("\n");
+    return PIA_OK;
+}
+
+int pia_eth_dump_detail (pia_ethhdr_t *frm) {
+    uint16_t     type = 0;
+    
+    if (NULL == frm) {
+        return PIA_NG;
+    }
     
     printf("Ether Header\n");
     printf("----------------------------------\n");
     printf("dest mac   : %02x-%02x-%02x-%02x-%02x-%02x\n",
-              eth_hdr->dmac[0],
-              eth_hdr->dmac[1],
-              eth_hdr->dmac[2],
-              eth_hdr->dmac[3],
-              eth_hdr->dmac[4],
-              eth_hdr->dmac[5]
+              frm->dmac[0],
+              frm->dmac[1],
+              frm->dmac[2],
+              frm->dmac[3],
+              frm->dmac[4],
+              frm->dmac[5]
           );
     printf("src mac    : %02x-%02x-%02x-%02x-%02x-%02x\n",
-              eth_hdr->smac[0],
-              eth_hdr->smac[1],
-              eth_hdr->smac[2],
-              eth_hdr->smac[3],
-              eth_hdr->smac[4],
-              eth_hdr->smac[5]
+              frm->smac[0],
+              frm->smac[1],
+              frm->smac[2],
+              frm->smac[3],
+              frm->smac[4],
+              frm->smac[5]
           );
     
-    memcpy(&type, &eth_hdr->type, sizeof(uint16_t));
+    memcpy(&type, &(frm->type), sizeof(uint16_t));
     type = pia_ntohs(type);
     printf("ether type : %u(0x%x)\n", type, type);
     printf("\n");
+    
+    return PIA_OK;
 }
-
-//void pia_eth_dump_mac (uint8_t * mac) {
-//    printf("%02x-%02x-%02x-%02x-%02x-%02x",
-//}
 /* end of file */

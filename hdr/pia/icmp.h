@@ -79,7 +79,7 @@ uint8_t pia_icmp_isrequest (pia_icmpmsg_com_t *);
 uint8_t pia_icmp_isreply (pia_icmpmsg_com_t *);
 uint8_t pia_icmp_istype (pia_icmpmsg_com_t *, uint8_t);
 /* message */
-int pia_icmp_getframe(uint8_t *, size_t, int);
+int pia_icmp_getfrm(uint8_t *, size_t, int);
 size_t pia_icmp_getecho  (uint8_t *, size_t, int);
 int    pia_icmp_getdata  (uint8_t *, size_t);
 int    pia_icmp_getseq   (void);

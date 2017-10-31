@@ -15,15 +15,15 @@ int pia_icmp_getfrm (uint8_t *buf, size_t max, int type) {
     }
     
     //pia_eth_gethdr
-    ret = pia_ip_getpacket(buf, max, PIA_IP_ICMP);
-    if (PIA_OK != ret) {
-        return ret;
-    }
+    //ret = pia_ip_getpkt(buf, max, PIA_IP_ICMP);
+    //if (PIA_OK != ret) {
+    //    return ret;
+    //}
     
     return PIA_OK;
 }
 
-int pia_icmp_getpacket (uint8_t *buf, size_t max, int type) {
+int pia_icmp_getpkt (uint8_t *buf, size_t max, int type) {
     
     return PIA_OK;
 }

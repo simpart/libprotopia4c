@@ -30,7 +30,8 @@ int pia_eth_isip (uint8_t *);
 int pia_eth_isarp (uint8_t *);
 int pia_eth_isprot (uint8_t *, uint16_t);
 /* dump */
-void pia_eth_dump   (uint8_t *);
+int pia_eth_dump (pia_ethhdr_t *);
+int pia_eth_dump_detail (pia_ethhdr_t *);
 /* header */
 int  pia_eth_setdefmac (uint8_t *, uint8_t *);
 int  pia_eth_setdeftype (uint16_t);
