@@ -78,6 +78,16 @@ int  pia_ip_dump_tosdscp (pia_ipv4hdr_t *);
 /* classifier */
 int pia_ip_isv4 (pia_ipv4hdr_t *);
 int pia_ip_isv6 (pia_ipv4hdr_t *);
+int pia_ip_istos (pia_ipv4hdr_t *, uint8_t);
+int pis_ip_issetopt (pia_ipv4hdr_t *);
+int pia_ip_isfragment (pia_ipv4hdr_t *);
+int pia_ip_isalived (pia_ipv4hdr_t *);
+int pia_ip_isicmp (pia_ipv4hdr_t *);
+int pia_ip_istcp (pia_ipv4hdr_t *);
+int pia_ip_isudp (pia_ipv4hdr_t *);
+int pia_ip_isprot (pia_ipv4hdr_t *, uint8_t);
+int pia_ip_issrc (pia_ipv4hdr_t *, uint8_t *);
+int pia_ip_isdst (pia_ipv4hdr_t *, uint8_t *);
 /* util */
 uint16_t pia_ip_getid (void);
 #endif
