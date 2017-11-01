@@ -1,28 +1,29 @@
 /**
- * @file header.c
+ * @file ip/header.c
+ * @brief header function for ip header
  * @author simpart
  */
+/***include  ***/
 #include <string.h>
 #include "pia/com.h"
 #include "pia/ip.h"
 #include "pia/eth.h"
-
 /*** global ***/
 extern pia_ipv4hdr_t g_pia_ipv4hdr;
 extern pia_ipv4hdr_t g_pia_ipv4hdr_tcp;
 extern pia_ipv4hdr_t g_pia_ipv4hdr_udp;
 extern pia_ipv4hdr_t g_pia_ipv4hdr_icmp;
 extern int g_pia_ip_setaddr;
-
 /*** function ***/
 /**
- * set src/dest address to ip header
+ * set default ip address,set to global area
  * 
  * @param sip : source ip address
  * @param dip : dest ip address
+ * @return PIA_OK proccessing success
  */
 int pia_ip_setdefipv4 (uint8_t *sip, uint8_t *dip) {
-    uint8_t cmp_mac[PIA_IP_IPSIZE] = {0};
+    uint8_t cmp_ip[PIA_IP_IPSIZE] = {0};
     /* set src ip */
     if (NULL != sip) {
         memcpy(g_pia_ipv4hdr.sip,      sip, PIA_IP_IPSIZE);
@@ -40,13 +41,22 @@ int pia_ip_setdefipv4 (uint8_t *sip, uint8_t *dip) {
     /* update init flag */
     if ((NULL != sip) && (NULL != dip)) {
         g_pia_ip_setaddr = PIA_TRUE;
-    } else if ( (0 != memcmp(&(g_pia_ipv4hdr.sip[0]), &cmp_mac[0], PIA_IP_IPSIZE)) &&
-                (0 != memcmp(&(g_pia_ipv4hdr.dip[0]), &cmp_mac[0], PIA_IP_IPSIZE))) {
+    } else if ( (0 != memcmp(&(g_pia_ipv4hdr.sip[0]), &cmp_ip[0], PIA_IP_IPSIZE)) &&
+                (0 != memcmp(&(g_pia_ipv4hdr.dip[0]), &cmp_ip[0], PIA_IP_IPSIZE))) {
         g_pia_ip_setaddr = PIA_TRUE;
     }
     return PIA_OK;
 }
 
+/**
+ * set ip address,set to parameter header
+ * 
+ * @param[in] ip_hdr : head pointer to ip header
+ * @param[in] sip : head pointer to source ip address
+ * @param[in] dip : head pointer to destination ip address
+ * @return PIA_OK : proccessing success
+ * @return PIA_NG : proccessing failed
+ */
 int pia_ip_setipv4 (pia_ipv4hdr_t *ip_hdr, uint8_t *sip, uint8_t *dip) {
     /* check parameter */
     if (NULL == ip_hdr) {
@@ -63,14 +73,24 @@ int pia_ip_setipv4 (pia_ipv4hdr_t *ip_hdr, uint8_t *sip, uint8_t *dip) {
     return PIA_OK;
 }
 
+/**
+ * get ether frame with ip header
+ * 
+ * @param[out] buf : frame buffer
+ * @param[in] max : buffer size
+ * @param[in] prot : protocol value (PIA_IP_XX or number)
+ * @return PIA_OK proccessing success
+ * @return PIA_NG proccessing failed
+ */
 int pia_ip_getfrm (uint8_t *buf, size_t max, int prot) {
     pia_ipv4hdr_t *ip_hdr = NULL;
+    /* check parameter */
     if ((NULL == buf) || (sizeof(pia_ethhdr_t)+sizeof(pia_ipv4hdr_t) > max)) {
         return PIA_NG;
     }
     /* get ether header */
     pia_eth_gethdr_ip(buf, max);
-    buf += (sizeof(pia_ethhdr_t));  // seek to top of ip header address
+    buf += (sizeof(pia_ethhdr_t));  // seek to head pointer to ip header
 
     /* get ip header */
     if (PIA_IP_ICMP == prot) {
@@ -105,7 +125,11 @@ int pia_ip_getfrm (uint8_t *buf, size_t max, int prot) {
 
 /**
  * get ipv4 header
- *
+ * 
+ * @param[in] buf : header buffer
+ * @param[in] max : buffer size
+ * @return PIA_OK proccessing success
+ * @return PIA_NG proccessing failed
  */
 int pia_ip_getv4hdr (pia_ipv4hdr_t *buf, size_t max) {
     if ( (NULL == buf) ||
@@ -124,11 +148,14 @@ int pia_ip_getv4hdr (pia_ipv4hdr_t *buf, size_t max) {
     return PIA_OK;
 }
 
-
-
 /**
- * get ip header for tcp
- *
+ * get ipv4 header
+ * 
+ * @param[in] buf : ip heaer buffer
+ * @param[in] max : buffer size
+ * @note protocol value is set PIA_IP_TCP (0x06)
+ * @return PIA_OK proccessing success
+ * @return PIA_NG proccessing failed
  */
 int pia_ip_getv4hdr_tcp (pia_ipv4hdr_t *buf, size_t max) {
     if ( (NULL == buf) ||
@@ -140,6 +167,15 @@ int pia_ip_getv4hdr_tcp (pia_ipv4hdr_t *buf, size_t max) {
     return PIA_OK;
 }
 
+/**
+ * get ipv4 header
+ * 
+ * @param[in] buf : ip heaer buffer
+ * @param[in] max : buffer size
+ * @note protocol value is set PIA_IP_UDP (0x17)
+ * @return PIA_OK proccessing success
+ * @return PIA_NG proccessing failed
+ */
 int pia_ip_getv4hdr_udp (pia_ipv4hdr_t *buf, size_t max) {
     if ( (NULL == buf) ||
          (sizeof(pia_ipv4hdr_t) > max) ||
@@ -151,8 +187,13 @@ int pia_ip_getv4hdr_udp (pia_ipv4hdr_t *buf, size_t max) {
 }
 
 /**
- * get ip header for icmp
- *
+ * get ipv4 header
+ * 
+ * @param[in] buf : ip heaer buffer
+ * @param[in] max : buffer size
+ * @note protocol value is set PIA_IP_ICMP (0x01)
+ * @return PIA_OK proccessing success
+ * @return PIA_NG proccessing failed
  */
 int pia_ip_getv4hdr_icmp (pia_ipv4hdr_t *buf, size_t max) {
     if ( (NULL == buf) ||
@@ -162,5 +203,15 @@ int pia_ip_getv4hdr_icmp (pia_ipv4hdr_t *buf, size_t max) {
     }
     memcpy(buf, &g_pia_ipv4hdr_icmp, sizeof(pia_ipv4hdr_t));
     return PIA_OK;
+}
+
+/**
+ * get ip payload from ip header
+ * 
+ * @note not supported
+ */
+uint8_t * pia_ip_getpld (pia_ipv4hdr_t * ip_hdr) {
+    /* not suppoerted */
+    return NULL;
 }
 /* end of file */

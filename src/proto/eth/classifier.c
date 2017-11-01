@@ -1,11 +1,14 @@
 /**
- * @file ether/dump.c
+ * @file ether/classifier.c
+ * @brief classifier function for ip header
  * @author simpart
  */
+/*** include ***/
 #include <string.h>
 #include "pia/com.h"
 #include "pia/eth.h"
 
+/*** function ***/
 /**
  * checking header src mac address whether it is same to the parameter
  *

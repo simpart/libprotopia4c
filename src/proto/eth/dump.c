@@ -1,5 +1,6 @@
 /**
  * @file ether/dump.c
+ * @brief dump fuction for ether header
  * @author simpart
  */
 /*** include ***/
@@ -7,7 +8,6 @@
 #include <string.h>
 #include "pia/com.h"
 #include "pia/eth.h"
-
 /*** functoin ***/
 /**
  * dump ether frame by a line
@@ -15,7 +15,8 @@
  * @param[in] eth_hdr : head pointer to frame
  * @return PIA_NG : dumping failed
  * @return PIA_OK : dumping success
- */int pia_eth_dump (pia_ethhdr_t * eth_hdr) {
+ */
+int pia_eth_dump (pia_ethhdr_t * eth_hdr) {
     
     if (NULL == eth_hdr) {
         return PIA_NG;

@@ -8,23 +8,23 @@
 
 #ifndef __COMMON_H__
 #define __COMMON_H__
-
 /**
  * @brief value of function return
  */
 #define PIA_OK  0  //! function is successful
 #define PIA_NG -1  //! function is failed
-
 /**
  * @brief error value
  */
 #define PIA_ERR_NMCH  -10 //! not match
-
 /**
  * @brief common flag
  */
 #define PIA_TRUE  1  //! value of true
 #define PIA_FALSE 0  //! value of false
+
+#define PIA_RANDOM_8   0x0F
+#define PIA_RANDOM_16  0xFF
 
 /**
  * @brief util data type for protopia
