@@ -1,32 +1,44 @@
 /**
- * @file ip/dump.c
+ * @file arp/dump.c
+ * @brief dump function for arp
  * @author simpart
  */
+/*** include ***/
 #include <stdio.h>
 #include "pia/com.h"
 #include "pia/arp.h"
 
 /*** function ***/
-
-void pia_arp_dump (uint8_t *pkt) {
-    pia_arphdr_t * arp_hdr;
-    
-    if (NULL == pkt) {
-        return;
+/**
+ * dump arp header by a line
+ * 
+ * @param[in] arp_hdr : head pointer to arp header
+ * @return PIA_NG : dumping failed
+ * @return PIA_OK : dumping success
+ * @note not supported
+ */
+int pia_arp_dump (pia_arphdr_t * arp_hdr) {
+   return 0;
+}
+/**
+ * dump arp header detail
+ * 
+ * @param[in] arp_hdr : head pointer to arp header
+ * @return PIA_NG : dumping failed
+ * @return PIA_OK : dumping success
+ */
+int pia_arp_dump_detail (pia_arphdr_t * arp_hdr) {
+    /* check parameter */
+    if (NULL == arp_hdr) {
+        return PIA_NG;
     }
-    
-    arp_hdr = (pia_arphdr_t *) pkt;
-    
     printf("ARP Header\n");
     printf("===========================\n");
     pia_arp_dump_htype(arp_hdr);
-    
     pia_arp_dump_ptype(arp_hdr);
     
     printf("hardware address length : %02dbyte\n", arp_hdr->hlen);
-    
     printf("protocol address length : %02dbyte\n", arp_hdr->plen);
-    
     printf("operation code : ");
     if (PIA_TRUE == pia_arp_isrequest(pkt)) {
         printf("Request\n");
@@ -75,9 +87,17 @@ void pia_arp_dump (uint8_t *pkt) {
         arp_hdr->dpaddr[2],
         arp_hdr->dpaddr[3]
     );
+    
+    return PIA_OK;
 }
-
-void pia_arp_dump_htype(pia_arphdr_t *arp_hdr) {
+/**
+ * dump hardware type
+ * 
+ * @param[in] arp_hdr : head pointer to arp header
+ * @return PIA_NG : dumping failed
+ * @return PIA_OK : dumping success
+ */
+int pia_arp_dump_htype(pia_arphdr_t *arp_hdr) {
     char * type_lst[] = {
                   "Reserved"                  ,
                   "Ethernet"                  ,
@@ -118,7 +138,12 @@ void pia_arp_dump_htype(pia_arphdr_t *arp_hdr) {
                   "HW_EXP1"                   ,
                   "HFI"
               };
-    uint16_t type = pia_htons(arp_hdr->htype);
+    uint16_t type = 0;
+    
+    if (NULL == arp_hdr) {
+        return PIA_NG;
+    }
+    type = pia_htons(arp_hdr->htype);
     printf("hardware type : ");
     
     if ((0 < type) && (38 > type)) {
@@ -139,10 +164,22 @@ void pia_arp_dump_htype(pia_arphdr_t *arp_hdr) {
     
     printf(" (0x0%x)", type);
     printf("\n");
+    
+    return PIA_OK;
 }
-
+/**
+ * dump protocol type
+ * 
+ * @param[in] arp_hdr : head pointer to arp header
+ * @return PIA_NG : dumping failed
+ * @return PIA_OK : dumping success
+ */
 void pia_arp_dump_ptype(pia_arphdr_t *arp_hdr) {
+    if (NULL == arp_hdr) {
+        return PIA_NG;
+    }
     printf("protocol type : ");
     printf(" (0x04%x)\n", pia_htons(arp_hdr->htype));
+    return PIA_OK;
 }
 /* end of file */

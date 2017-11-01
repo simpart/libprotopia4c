@@ -1,7 +1,9 @@
 /**
  * @file arp/init.c
+ * @brief initialize function for arp
  * @author simpart
  */
+/*** include ***/
 #include <string.h>
 #include "pia/arp.h"
 
@@ -9,6 +11,11 @@
 pia_arphdr_t g_arphdr;
 
 /*** function ***/
+/**
+ * initialize arp function
+ * 
+ * @return PIA_OK : proccessing success
+ */
 int pia_arp_init (void) {
     
     /* initialize global value */
