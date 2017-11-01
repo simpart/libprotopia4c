@@ -15,7 +15,13 @@ extern pia_ethhdr_t g_pia_ethhdr_ip;
 extern pia_ethhdr_t g_pia_ethhdr_arp;
 extern int g_pia_eth_setaddr;
 /*** function ***/
-
+/**
+ * set default mac address,set to global area
+ * 
+ * @param[in] dmac : head pointer to dest mac address
+ * @param[in] smac : head pointer to src mac address
+ * @return PIA_OK : proccessing success
+ */
 int pia_eth_setdefmac (uint8_t *dmac, uint8_t *smac) {
     if (NULL != dmac) {
         memcpy(&(g_pia_ethhdr.dmac[0]),     dmac, PIA_ETH_MACSIZE);
@@ -37,10 +43,21 @@ int pia_eth_setdefmac (uint8_t *dmac, uint8_t *smac) {
     return PIA_OK;
 }
 
-int pia_eth_setmac (pia_ethhdr_t *hdr, uint8_t *dmac, uint8_t *smac) {
-    if (NULL == hdr) {
+/**
+ * set mac address,set to parameter header
+ * 
+ * @param[in] eth_hdr : head pointer to ether frame
+ * @param[in] dmac : head pointer to dest mac address
+ * @param[in] smac : head pointer to src mac address
+ * @return PIA_NG : proccessing failed
+ * @return PIA_OK : proccessing success
+ */
+int pia_eth_setmac (pia_ethhdr_t *eth_hdr, uint8_t *dmac, uint8_t *smac) {
+    /* check paramter */
+    if (NULL == eth_hdr) {
         return PIA_NG;
     }
+    /* set mac address to header if paramter is set */
     if (NULL != dmac) {
         memcpy(&(hdr->dmac[0]), dmac, PIA_ETH_MACSIZE);
     }
@@ -50,28 +67,61 @@ int pia_eth_setmac (pia_ethhdr_t *hdr, uint8_t *dmac, uint8_t *smac) {
     return PIA_OK;
 }
 
+/**
+ * set default ether type,set to global area
+ * 
+ * @param[in] type : ether type value
+ * @return PIA_OK : proccessing success
+ */
 int pia_eth_setdeftype (uint16_t type) {
     g_pia_ethhdr.type = pia_ntohs(type);
     return PIA_OK;
 }
 
-int pia_eth_settype (pia_ethhdr_t *hdr, uint16_t type) {
-    if (NULL ==hdr) {
+/**
+ * set ether type,set to parameter header
+ * 
+ * @param[in] eth_hdr : head pointer to ether frame
+ * @return PIA_NG : proccessing failed
+ * @return PIA_OK : proccessing success
+ */
+int pia_eth_settype (pia_ethhdr_t *eth_hdr, uint16_t type) {
+    /* check paramter */
+    if (NULL ==eth_hdr) {
         return PIA_NG;
     }
+    /* set ether type */
     hdr->type = pia_ntohs(type);
     return PIA_OK;
 }
 
-int pia_eth_gethdr (uint8_t *buf, size_t max) {
-    if ( (NULL == buf) || (max < sizeof(pia_ethhdr_t)) ) {
+/**
+ * get default header,copy from global area
+ * 
+ * @param[out] buf : frame buffer
+ * @param[in] max : buffer max size
+ * @return PIA_NG : proccessing failed
+ * @return PIA_OK : proccessing success
+ */
+int pia_eth_gethdr (pia_ethhdr_t *buf, size_t max) {
+    /* check parameter */
+    if ((NULL == buf) || (max < sizeof(pia_ethhdr_t))) {
         return PIA_NG;
     }
     memcpy(buf, &g_pia_ethhdr, sizeof(pia_ethhdr_t));
     return PIA_OK;
 }
 
-int pia_eth_gethdr_ip (uint8_t *buf, size_t max) {
+/**
+ * get default header,copy from global area
+ * 
+ * @param[out] buf : frame buffer
+ * @param[in] max : buffer max size
+ * @return PIA_NG : proccessing failed
+ * @return PIA_OK : proccessing success
+ * @note ether type is set PIA_ETH_IP(0x800)
+ */
+int pia_eth_gethdr_ip (pia_ethhdr_t *buf, size_t max) {
     if ( (NULL == buf) || (max < sizeof(pia_ethhdr_t)) ) {
         return PIA_NG;
     }
@@ -79,7 +129,16 @@ int pia_eth_gethdr_ip (uint8_t *buf, size_t max) {
     return PIA_OK;
 }
 
-int pia_eth_gethdr_arp (uint8_t *buf, size_t max) {
+/**
+ * get default header,copy from global area
+ * 
+ * @param[out] buf : frame buffer
+ * @param[in] max : buffer max size
+ * @return PIA_NG : proccessing failed
+ * @return PIA_OK : proccessing success
+ * @note ether type is set PIA_ETH_ARP(0x806)
+ */
+int pia_eth_gethdr_arp (pia_ethhdr_t *buf, size_t max) {
     if ( (NULL == buf) || (max < sizeof(pia_ethhdr_t)) ) {
         return PIA_NG;
     }
@@ -87,10 +146,17 @@ int pia_eth_gethdr_arp (uint8_t *buf, size_t max) {
     return PIA_OK;
 }
 
-uint8_t * pia_eth_getconts (uint8_t *frm) {
-    if (NULL == frm) {
+/**
+ * get payload from header
+ *
+ * @param[in] eth_hdr : head pointer to ether frame
+ * @return pointer to payload
+ * @return NULL : get payload is failed
+ */
+uint8_t * pia_eth_getpayload (pia_ethhdr_t *eth_hdr) {
+    if (NULL == eth_hdr) {
         return NULL;
     }
-    return frm + sizeof(pia_ethhdr_t);
+    return eth_hdr + sizeof(pia_ethhdr_t);
 }
 /* end of file */
