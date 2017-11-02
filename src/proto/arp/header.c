@@ -22,6 +22,7 @@ extern pia_arphdr_t g_arphdr;
  * @note not supported yet
  */
 int pia_arp_setreq (uint8_t * rip) {
+    rip = rip;
     return 0;
 }
 
@@ -44,7 +45,7 @@ int pia_arp_getfrm (uint8_t *buf, size_t max, uint8_t type) {
     }
     
     /* get ether header */
-    ret = pia_eth_gethdr_arp(buf, max);
+    ret = pia_eth_gethdr_arp((pia_ethhdr_t *)buf, max);
     if (PIA_NG == ret) {
         return ret;
     }
@@ -55,8 +56,9 @@ int pia_arp_getfrm (uint8_t *buf, size_t max, uint8_t type) {
     }
     
     /* get arp header */
+    buf += sizeof(pia_ethhdr_t);  // seek to head of arp header
     pia_arp_gethdr(
-        buf + sizeof(pia_ethhdr_t),
+        (pia_arphdr_t *) buf,
         max - sizeof(pia_ethhdr_t),
         type
     );

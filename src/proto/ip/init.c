@@ -6,6 +6,7 @@
 /*** include ***/
 #include <sys/time.h>
 #include <string.h>
+#include "pia/com.h"
 #include "pia/ip.h"
 /*** global ***/
 pia_ipv4hdr_t g_pia_ipv4hdr = {0};

@@ -12,7 +12,7 @@
  * @param[in] rng : mask value(specify bit range)
  * @return random value
  */
-uint16_t pia_random (int rng) {
+uint32_t pia_random (uint32_t rng) {
     struct timeval tv;
     gettimeofday(&tv, NULL);
     return rng & (tv.tv_usec << 2);

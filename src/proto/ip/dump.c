@@ -18,7 +18,7 @@
  * @note not supported
  */
 int pia_ip_dump (pia_ipv4hdr_t * ip_hdr) {
-    
+    ip_hdr = ip_hdr;
     return 0;
 }
 /**

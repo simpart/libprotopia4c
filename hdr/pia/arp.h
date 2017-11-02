@@ -43,10 +43,10 @@ int pia_arp_init (void);
 int pia_arp_getfrm (uint8_t *, size_t, uint8_t);
 int pia_arp_gethdr (pia_arphdr_t *, size_t, uint8_t);
 /* dump */
-void pia_arp_dump (pia_arphdr_t *);
-void pia_arp_dump_detail (pia_arphdr_t *);
-void pia_arp_dump_htype (pia_arphdr_t *);
-void pia_arp_dump_ptype (pia_arphdr_t *);
+int pia_arp_dump (pia_arphdr_t *);
+int pia_arp_dump_detail (pia_arphdr_t *);
+int pia_arp_dump_htype (pia_arphdr_t *);
+int pia_arp_dump_ptype (pia_arphdr_t *);
 /* classifier */
 int pia_arp_isrequest (pia_arphdr_t *);
 int pia_arp_isreply (pia_arphdr_t *);

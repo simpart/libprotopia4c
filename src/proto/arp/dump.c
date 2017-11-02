@@ -18,6 +18,7 @@
  * @note not supported
  */
 int pia_arp_dump (pia_arphdr_t * arp_hdr) {
+   arp_hdr = arp_hdr;
    return 0;
 }
 /**
@@ -40,9 +41,9 @@ int pia_arp_dump_detail (pia_arphdr_t * arp_hdr) {
     printf("hardware address length : %02dbyte\n", arp_hdr->hlen);
     printf("protocol address length : %02dbyte\n", arp_hdr->plen);
     printf("operation code : ");
-    if (PIA_TRUE == pia_arp_isrequest(pkt)) {
+    if (PIA_TRUE == pia_arp_isrequest(arp_hdr)) {
         printf("Request\n");
-    } else if (PIA_TRUE == pia_arp_isreply(pkt)) {
+    } else if (PIA_TRUE == pia_arp_isreply(arp_hdr)) {
         printf("Reply\n");
     } else {
         printf("Unknown\n");
@@ -174,7 +175,7 @@ int pia_arp_dump_htype(pia_arphdr_t *arp_hdr) {
  * @return PIA_NG : dumping failed
  * @return PIA_OK : dumping success
  */
-void pia_arp_dump_ptype(pia_arphdr_t *arp_hdr) {
+int pia_arp_dump_ptype(pia_arphdr_t *arp_hdr) {
     if (NULL == arp_hdr) {
         return PIA_NG;
     }

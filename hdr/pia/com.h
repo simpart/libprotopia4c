@@ -34,9 +34,9 @@ typedef unsigned int    uint;
 typedef unsigned char   uchar;
 
 /*** prototype ***/
-uint16_t pia_htons(uint16_t);
-uint16_t pia_ntohs(uint16_t);
-uint16_t pia_checksum(uint16_t *buf, size_t size);
-
+uint16_t pia_htons (uint16_t);
+uint16_t pia_ntohs (uint16_t);
+uint16_t pia_checksum (uint16_t *, size_t);
+uint32_t pia_random (uint32_t);
 #endif
 /* end of file */

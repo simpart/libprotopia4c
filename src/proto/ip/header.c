@@ -89,7 +89,7 @@ int pia_ip_getfrm (uint8_t *buf, size_t max, int prot) {
         return PIA_NG;
     }
     /* get ether header */
-    pia_eth_gethdr_ip(buf, max);
+    pia_eth_gethdr_ip((pia_ethhdr_t *)buf, max);
     buf += (sizeof(pia_ethhdr_t));  // seek to head pointer to ip header
 
     /* get ip header */
@@ -211,7 +211,7 @@ int pia_ip_getv4hdr_icmp (pia_ipv4hdr_t *buf, size_t max) {
  * @note not supported
  */
 uint8_t * pia_ip_getpld (pia_ipv4hdr_t * ip_hdr) {
-    /* not suppoerted */
+    ip_hdr = ip_hdr;
     return NULL;
 }
 /* end of file */
