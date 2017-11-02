@@ -24,8 +24,8 @@ int pia_icmp_init(void) {
     pia_icmp_setdef_type(PIA_ICMP_ECHOREQ);
     
     /* init echo data */
-    g_pia_icmpecho.id  = (uint16_t) getpid();
-    g_pia_icmpecho.seq = 1;
+    g_pia_icmpecho.id  = pia_ntohs((uint16_t) getpid());
+    g_pia_icmpecho.seq = pia_ntohs(1);
     
     /* set default data area */
     g_pia_icmpdat.size = PIA_ICMP_DATDEFSIZ;

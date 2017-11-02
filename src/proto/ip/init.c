@@ -8,6 +8,8 @@
 #include <string.h>
 #include "pia/com.h"
 #include "pia/ip.h"
+#include "pia/icmp.h"
+
 /*** global ***/
 pia_ipv4hdr_t g_pia_ipv4hdr = {0};
 pia_ipv4hdr_t g_pia_ipv4hdr_tcp = {0};
@@ -40,13 +42,13 @@ int pia_ip_init (void) {
     g_pia_ipv4hdr_tcp.id   = pia_random(0xFFFF);
     g_pia_ipv4hdr_tcp.prot = PIA_IP_TCP;
     
-    memcpy(&g_pia_ipv4hdr_tcp, &g_pia_ipv4hdr, sizeof(pia_ipv4hdr_t));
-    g_pia_ipv4hdr_tcp.id   = pia_random(0xFFFF);
-    g_pia_ipv4hdr_tcp.prot = PIA_IP_TCP;
+    memcpy(&g_pia_ipv4hdr_udp, &g_pia_ipv4hdr, sizeof(pia_ipv4hdr_t));
+    g_pia_ipv4hdr_udp.id   = pia_random(0xFFFF);
+    g_pia_ipv4hdr_udp.prot = PIA_IP_UDP;
     
-    memcpy(&g_pia_ipv4hdr_tcp, &g_pia_ipv4hdr, sizeof(pia_ipv4hdr_t));
-    g_pia_ipv4hdr_tcp.id   = pia_random(0xFFFF);
-    g_pia_ipv4hdr_tcp.prot = PIA_IP_TCP;
+    memcpy(&g_pia_ipv4hdr_icmp, &g_pia_ipv4hdr, sizeof(pia_ipv4hdr_t));
+    g_pia_ipv4hdr_icmp.id    = pia_random(0xFFFF);
+    g_pia_ipv4hdr_icmp.prot  = PIA_IP_ICMP;
     
     return PIA_OK;
 }

@@ -18,6 +18,7 @@ uint8_t pia_icmp_dump (pia_icmphdr_t * msg) {
         return PIA_NG;
     }
     
+    
     /* check type */
     if (PIA_TRUE == pia_icmp_isrequest(msg)) {
         printf("icmp request ");
@@ -48,22 +49,22 @@ uint8_t pia_icmp_dump_detail (pia_icmphdr_t * msg) {
 
 void pia_icmp_dump_type (pia_icmphdr_t * msg) {
     char * tp_lst[] = {
-        "Echo Reply"   ,             // 0x00
-        "Unknown"      ,             // 0x01
-        "Unknown"      ,             // 0x02
-        "Destination Unreachable",   // 0x03
-        "Unknown"      ,             // 0x04
-        "Redirect"     ,             // 0x05
-        "Unknown"      ,             // 0x06
-        "Unknown"      ,             // 0x07
-        "Echo Request" ,             // 0x08
-        "Unknown"      ,             // 0x09
-        "Unknown"      ,             // 0x0a
-        "Time Exceeded"              // 0x0b
+        "echo reply"   ,             // 0x00
+        "unknown"      ,             // 0x01
+        "unknown"      ,             // 0x02
+        "destination unreachable",   // 0x03
+        "unknown"      ,             // 0x04
+        "redirect"     ,             // 0x05
+        "unknown"      ,             // 0x06
+        "unknown"      ,             // 0x07
+        "echo Request" ,             // 0x08
+        "unknown"      ,             // 0x09
+        "unknown"      ,             // 0x0a
+        "time Exceeded"              // 0x0b
     };
     
     if (0x0b < msg->type) {
-        printf("type : Unknown(0x%x)\n",msg->type);
+        printf("type : unknown(0x%x)\n",msg->type);
     } else {
         printf("type : %s(0x%x)\n",tp_lst[msg->type], msg->type);
     }

@@ -59,7 +59,7 @@ int pia_eth_dump_detail (pia_ethhdr_t *eth_hdr) {
     }
     
     printf("Ether Header\n");
-    printf("----------------------------------\n");
+    printf("==============================\n");
     printf("dest mac   : %02x-%02x-%02x-%02x-%02x-%02x\n",
               eth_hdr->dmac[0],
               eth_hdr->dmac[1],

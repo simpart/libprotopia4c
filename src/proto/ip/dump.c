@@ -63,15 +63,15 @@ int pia_ip_dump_detail (pia_ipv4hdr_t * ip_hdr) {
     printf("IP Header");
     if (PIA_TRUE == pia_ip_isv4(ip_hdr)) {
         printf("(v4)\n");
-        printf("=======================\n");
+        printf("===========================\n");
         pia_ip_dumpv4(ip_hdr);
     } else if (PIA_TRUE == pia_ip_isv6(ip_hdr)) {
         printf("(v6)\n");
-        printf("=======================\n");
+        printf("===========================\n");
         pia_ip_dumpv6(ip_hdr);
     } else {
         printf("(unknown version)\n");
-        printf("=======================\n");
+        printf("===========================\n");
         pia_ip_dumpv4(ip_hdr);
     }
     return PIA_OK;

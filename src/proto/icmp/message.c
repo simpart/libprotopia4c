@@ -41,6 +41,8 @@ int pia_icmp_setdef_code (uint8_t code) {
 
 int pia_icmp_getfrm (uint8_t *buf, size_t max) {
     int ret = 0;
+    uint8_t * seek = NULL;
+    
     /* check parameter */
     if ( (NULL == buf) ||
          ( sizeof(pia_ethhdr_t)   + \
@@ -54,13 +56,19 @@ int pia_icmp_getfrm (uint8_t *buf, size_t max) {
     if (PIA_OK != ret) {
         return ret;
     }
+
+    seek = buf;
+    seek += sizeof(pia_ethhdr_t);
+    //pia_ip_dump_detail((pia_ipv4hdr_t *) seek);
     
     /* get icmp message */
-    buf += sizeof(pia_ethhdr_t);
-    ret = pia_icmp_getmsg((pia_icmphdr_t *)buf, max - sizeof(pia_ethhdr_t));
+    buf += sizeof(pia_ethhdr_t) + sizeof(pia_ipv4hdr_t);
+    ret = pia_icmp_getmsg((pia_icmphdr_t *)buf, max - (sizeof(pia_ethhdr_t) + sizeof(pia_ipv4hdr_t)));
     if (PIA_OK != ret) {
         return ret;
     }
+    
+    //pia_ip_dump_detail((pia_ipv4hdr_t *) seek);
     
     return PIA_OK;
 }
@@ -108,6 +116,13 @@ int pia_icmp_getmsg (pia_icmphdr_t * buf, size_t max) {
         g_pia_icmpecho.seq++; // increment sequence
         seek += sizeof(pia_icmpecho_t);
         memcpy(seek, &(g_pia_icmpdat.data[0]), g_pia_icmpdat.size);
+        
+        seek -= (sizeof(pia_icmphdr_t) + sizeof(pia_icmpecho_t) + sizeof(pia_ipv4hdr_t));
+        pia_ip_pldsize(
+            (pia_ipv4hdr_t *) seek,
+            sizeof(pia_icmphdr_t)+sizeof(pia_icmpecho_t)+PIA_ICMP_DATDEFSIZ
+        );
+        
     }
     
     return PIA_OK;
