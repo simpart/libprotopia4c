@@ -18,7 +18,33 @@
  * @note not supported
  */
 int pia_ip_dump (pia_ipv4hdr_t * ip_hdr) {
-    ip_hdr = ip_hdr;
+    /* check parameter */
+    if (NULL == ip_hdr) {
+        return PIA_NG;
+    }
+    
+    printf("ip ");
+    
+    printf(
+        "%u.%u.%u.%u",
+        ip_hdr->sip[0],
+        ip_hdr->sip[1],
+        ip_hdr->sip[2],
+        ip_hdr->sip[3]
+    );
+     
+    printf(" >> ");
+    
+    printf(
+        "%u.%u.%u.%u",
+        ip_hdr->dip[0],
+        ip_hdr->dip[1],
+        ip_hdr->dip[2],
+        ip_hdr->dip[3]
+    );
+    
+    printf("\n");
+    
     return 0;
 }
 /**
