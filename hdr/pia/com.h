@@ -34,6 +34,7 @@ typedef unsigned int    uint;
 typedef unsigned char   uchar;
 
 /*** prototype ***/
+int pia_init(void);
 uint16_t pia_htons (uint16_t);
 uint16_t pia_ntohs (uint16_t);
 uint16_t pia_checksum (uint16_t *, size_t);

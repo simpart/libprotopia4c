@@ -1,5 +1,6 @@
 /**
  * @file icmp/dump.c
+ * @brief dump function for icmp
  * @author simpart
  */
 /*** include ***/
@@ -7,7 +8,33 @@
 #include "pia/com.h"
 #include "pia/icmp.h"
 
-uint8_t pia_icmp_dump (pia_icmpmsg_com_t * msg) {
+/*** function ***/
+uint8_t pia_icmp_dump (pia_icmphdr_t * msg) {
+    uint8_t *seek = NULL;
+    pia_icmpecho_t * chk_echo = NULL;
+    
+    /* check parameter */
+    if (NULL == msg) {
+        return PIA_NG;
+    }
+    
+    /* check type */
+    if (PIA_TRUE == pia_icmp_isrequest(msg)) {
+        printf("icmp request ");
+    } else if (PIA_TRUE == pia_icmp_isreply(msg)) {
+        printf("icmp reply ");
+    }
+    
+    seek = (uint8_t *) msg;
+    seek += sizeof(pia_icmphdr_t);
+    chk_echo = (pia_icmpecho_t *) seek;
+    
+    printf("id=%u seq=%u", chk_echo->id, chk_echo->seq);
+    printf("\n");
+    return PIA_OK;
+}
+
+uint8_t pia_icmp_dump_detail (pia_icmphdr_t * msg) {
     if (NULL == msg) {
         return PIA_NG;
     }
@@ -19,7 +46,7 @@ uint8_t pia_icmp_dump (pia_icmpmsg_com_t * msg) {
     return PIA_OK;
 }
 
-void pia_icmp_dump_type (pia_icmpmsg_com_t * msg) {
+void pia_icmp_dump_type (pia_icmphdr_t * msg) {
     char * tp_lst[] = {
         "Echo Reply"   ,             // 0x00
         "Unknown"      ,             // 0x01

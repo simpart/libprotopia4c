@@ -9,6 +9,8 @@
 #define __ICMP_H__
 
 /*** define ***/
+#define PIA_ICMP_MAXDAT 36
+#define PIA_ICMP_DATDEFSIZ 32
 /**
  * icmp type defined
  */
@@ -53,37 +55,38 @@
 #define PIA_ICMP_TMEX_FGR 0x1 //! fragment reassembly time exceeded
 
 /*** struct ***/
-typedef struct pia_icmpmsg_com {
+typedef struct pia_icmphdr {
     uint8_t  type;
     uint8_t  code;
     uint16_t chksum;
-} pia_icmpmsg_com_t;
+} pia_icmphdr_t;
 
-typedef struct pia_icmpdat_echo {
-    pia_icmpmsg_com_t com_msg;
+typedef struct pia_icmpecho {
     uint16_t id;
     uint16_t seq;
-    uint16_t chksum;
-} pia_icmphdr_echo_t;
+} pia_icmpecho_t;
 
-//typeof struct pia_icmpmsg {
-//    
-//}
+typedef struct pia_icmpdat {
+    uint8_t data[PIA_ICMP_MAXDAT];
+    uint8_t size;
+} pia_icmpdat_t;
 
 /*** prototype ***/
+/* init */
+int pia_icmp_init(void);
 /* dump */
-uint8_t pia_icmp_dump (pia_icmpmsg_com_t *);
-void pia_icmp_dump_type (pia_icmpmsg_com_t *);
+uint8_t pia_icmp_dump (pia_icmphdr_t *);
+uint8_t pia_icmp_dump_detail (pia_icmphdr_t *);
+void pia_icmp_dump_type (pia_icmphdr_t *);
 /* classifier */
-uint8_t pia_icmp_isrequest (pia_icmpmsg_com_t *);
-uint8_t pia_icmp_isreply (pia_icmpmsg_com_t *);
-uint8_t pia_icmp_istype (pia_icmpmsg_com_t *, uint8_t);
+uint8_t pia_icmp_isrequest (pia_icmphdr_t *);
+uint8_t pia_icmp_isreply (pia_icmphdr_t *);
+uint8_t pia_icmp_istype (pia_icmphdr_t *, uint8_t);
 /* message */
-int pia_icmp_getfrm(uint8_t *, size_t, int);
-size_t pia_icmp_getecho  (uint8_t *, size_t, int);
-int    pia_icmp_getdata  (uint8_t *, size_t);
-int    pia_icmp_getseq   (void);
-void   pia_icmp_resetseq (void);
-
+int pia_icmp_setdef_type (uint8_t);
+int pia_icmp_setdef_code (uint8_t); 
+int pia_icmp_getfrm (uint8_t *, size_t);
+int pia_icmp_getpkt (uint8_t *, size_t);
+int pia_icmp_getmsg (pia_icmphdr_t *, size_t);
 #endif
 /* end of file */

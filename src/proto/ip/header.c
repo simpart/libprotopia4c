@@ -8,12 +8,14 @@
 #include "pia/com.h"
 #include "pia/ip.h"
 #include "pia/eth.h"
+
 /*** global ***/
 extern pia_ipv4hdr_t g_pia_ipv4hdr;
 extern pia_ipv4hdr_t g_pia_ipv4hdr_tcp;
 extern pia_ipv4hdr_t g_pia_ipv4hdr_udp;
 extern pia_ipv4hdr_t g_pia_ipv4hdr_icmp;
 extern int g_pia_ip_setaddr;
+
 /*** function ***/
 /**
  * set default ip address,set to global area
