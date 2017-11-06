@@ -76,6 +76,17 @@ int pia_ip_setipv4 (pia_ipv4hdr_t *ip_hdr, uint8_t *sip, uint8_t *dip) {
     return PIA_OK;
 }
 
+int pia_ip_getpldsize (pia_ipv4hdr_t * ip_hdr) {
+    uint16_t total = 0;
+    
+    /* check parameter */
+    if (NULL == ip_hdr) {
+        return PIA_NG;
+    }
+    total = pia_ntohs(ip_hdr->total);
+    return total - (ip_hdr->hlen*4);
+}
+
 int pia_ip_pldsize (pia_ipv4hdr_t * ip_hdr, size_t size) {
     /* check parameter */
     if (NULL == ip_hdr) {

@@ -71,6 +71,7 @@ int  pia_ip_setdefipv4 (uint8_t *, uint8_t *);
 int  pia_ip_getfrm (uint8_t *, size_t, int);
 void pia_ip_setdefip (uint8_t *, uint8_t *);
 void pia_ip_setip (pia_ipv4hdr_t *, uint8_t *, uint8_t *);
+int  pia_ip_getpldsize (pia_ipv4hdr_t *);
 int  pia_ip_pldsize (pia_ipv4hdr_t *, size_t);
 int  pia_ip_updchksum (pia_ipv4hdr_t *);
 int  pia_ip_getv4hdr (pia_ipv4hdr_t *, size_t);

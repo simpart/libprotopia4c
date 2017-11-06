@@ -4,6 +4,7 @@
  * @author simpart
  */
 #include "pia/com.h"
+#include "pia/ip.h"
 
 #ifndef __ICMP_H__
 #define __ICMP_H__
@@ -78,10 +79,13 @@ typedef struct pia_icmpdat {
 int pia_icmp_init(void);
 /* dump */
 uint8_t pia_icmp_dump (pia_icmphdr_t *);
-uint8_t pia_icmp_dump_detail (pia_icmphdr_t *);
+uint8_t pia_icmp_dump_detail (pia_ipv4hdr_t *);
 char * pia_icmp_gettype_str (pia_icmphdr_t *);
 char * pia_icmp_getcode_str (pia_icmphdr_t *);
 uint8_t pia_icmp_dump_type (pia_icmphdr_t *);
+uint8_t pia_icmp_dump_id(pia_icmphdr_t *);
+uint8_t pia_icmp_dump_seq(pia_icmphdr_t *);
+uint8_t pia_icmp_dump_dat(pia_icmphdr_t *, size_t);
 /* classifier */
 uint8_t pia_icmp_isecho (pia_icmphdr_t *);
 uint8_t pia_icmp_isrequest (pia_icmphdr_t *);
