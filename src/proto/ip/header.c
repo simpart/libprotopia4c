@@ -231,10 +231,12 @@ int pia_ip_getv4hdr_icmp (pia_ipv4hdr_t *buf, size_t max) {
 /**
  * get ip payload from ip header
  * 
- * @note not supported
+ * @param[in] ip_hdr : head pointer to ip header
  */
 uint8_t * pia_ip_getpld (pia_ipv4hdr_t * ip_hdr) {
-    ip_hdr = ip_hdr;
-    return NULL;
+    if (NULL == ip_hdr) {
+        return NULL;
+    }
+    return ((uint8_t *) ip_hdr) + (ip_hdr->hlen*4);
 }
 /* end of file */

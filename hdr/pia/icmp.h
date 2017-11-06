@@ -77,8 +77,11 @@ int pia_icmp_init(void);
 /* dump */
 uint8_t pia_icmp_dump (pia_icmphdr_t *);
 uint8_t pia_icmp_dump_detail (pia_icmphdr_t *);
-void pia_icmp_dump_type (pia_icmphdr_t *);
+char * pia_icmp_gettype_str (pia_icmphdr_t *);
+char * pia_icmp_getcode_str (pia_icmphdr_t *);
+uint8_t pia_icmp_dump_type (pia_icmphdr_t *);
 /* classifier */
+uint8_t pia_icmp_isecho (pia_icmphdr_t *);
 uint8_t pia_icmp_isrequest (pia_icmphdr_t *);
 uint8_t pia_icmp_isreply (pia_icmphdr_t *);
 uint8_t pia_icmp_istype (pia_icmphdr_t *, uint8_t);
@@ -88,5 +91,7 @@ int pia_icmp_setdef_code (uint8_t);
 int pia_icmp_getfrm (uint8_t *, size_t);
 int pia_icmp_getpkt (uint8_t *, size_t);
 int pia_icmp_getmsg (pia_icmphdr_t *, size_t);
+uint16_t pia_icmp_getseq (pia_icmpecho_t *);
+uint8_t *pia_icmp_getecho (pia_icmphdr_t *);
 #endif
 /* end of file */

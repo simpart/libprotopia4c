@@ -127,4 +127,22 @@ int pia_icmp_getmsg (pia_icmphdr_t * buf, size_t max) {
     
     return PIA_OK;
 }
+
+uint16_t pia_icmp_getseq (pia_icmpecho_t * ech) {
+    if (NULL == ech) {
+        return PIA_NG;
+    }
+    return pia_htons(ech->seq);
+}
+
+uint8_t *pia_icmp_getecho (pia_icmphdr_t * msg) {
+    if (NULL == msg) {
+        return NULL;
+    }
+    
+    if (PIA_TRUE == pia_icmp_isecho(msg)) {
+        return (uint8_t *) msg + sizeof(pia_icmphdr_t);
+    }
+    return NULL;
+}
 /* end of file */

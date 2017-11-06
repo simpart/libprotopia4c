@@ -29,11 +29,7 @@ int pia_icmp_getdata (uint8_t *buf, size_t siz) {
     return PIA_OK;
 }
 
-void pia_icmp_resetseq (void) {
-    g_seq = 0;
-}
-
-int pia_icmp_getseq (void) {
+int pia_icmp_getdefseq (void) {
     return g_seq++;
 }
 /* end of file */

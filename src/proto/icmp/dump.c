@@ -10,27 +10,31 @@
 
 /*** function ***/
 uint8_t pia_icmp_dump (pia_icmphdr_t * msg) {
-    uint8_t *seek = NULL;
+    char    *str_buf = NULL;
     pia_icmpecho_t * chk_echo = NULL;
     
-    /* check parameter */
-    if (NULL == msg) {
+    /* dump type */
+    str_buf = pia_icmp_gettype_str(msg);
+    if (NULL == str_buf) {
         return PIA_NG;
     }
-    
+    printf("icmp %s ", str_buf);
     
     /* check type */
-    if (PIA_TRUE == pia_icmp_isrequest(msg)) {
-        printf("icmp request ");
-    } else if (PIA_TRUE == pia_icmp_isreply(msg)) {
-        printf("icmp reply ");
+    if (PIA_TRUE == pia_icmp_isecho(msg)) {
+        /* this is echo message */
+        chk_echo = (pia_icmpecho_t *) pia_icmp_getecho(msg);
+        if (NULL != chk_echo) {
+            printf("id=%u seq=%u", chk_echo->id, pia_icmp_getseq(chk_echo));
+        }
+    } else {
+        /* dumo code */
+        str_buf = pia_icmp_getcode_str(msg);
+        if (NULL == str_buf) {
+            return PIA_NG;
+        }
+        printf("code='%s' (0x%x)", str_buf, msg->code);
     }
-    
-    seek = (uint8_t *) msg;
-    seek += sizeof(pia_icmphdr_t);
-    chk_echo = (pia_icmpecho_t *) seek;
-    
-    printf("id=%u seq=%u", chk_echo->id, chk_echo->seq);
     printf("\n");
     return PIA_OK;
 }
@@ -47,7 +51,8 @@ uint8_t pia_icmp_dump_detail (pia_icmphdr_t * msg) {
     return PIA_OK;
 }
 
-void pia_icmp_dump_type (pia_icmphdr_t * msg) {
+
+char * pia_icmp_gettype_str (pia_icmphdr_t * msg) {
     char * tp_lst[] = {
         "echo reply"   ,             // 0x00
         "unknown"      ,             // 0x01
@@ -57,17 +62,87 @@ void pia_icmp_dump_type (pia_icmphdr_t * msg) {
         "redirect"     ,             // 0x05
         "unknown"      ,             // 0x06
         "unknown"      ,             // 0x07
-        "echo Request" ,             // 0x08
+        "echo request" ,             // 0x08
         "unknown"      ,             // 0x09
         "unknown"      ,             // 0x0a
-        "time Exceeded"              // 0x0b
+        "time exceeded"              // 0x0b
     };
-    
-    if (0x0b < msg->type) {
-        printf("type : unknown(0x%x)\n",msg->type);
-    } else {
-        printf("type : %s(0x%x)\n",tp_lst[msg->type], msg->type);
+    if (NULL == msg) {
+        return NULL;
     }
+    if (PIA_ICMP_TMEXCD  >= msg->type) {
+        return tp_lst[msg->type];
+    }
+    return NULL;
 }
 
+char * pia_icmp_getcode_str (pia_icmphdr_t * msg) {
+    uint8_t code     = 0;
+    char *  unrch_lst[] = {
+        "net unreachable"                ,
+        "host unreachable"               ,
+        "protocol unreachable"           ,
+        "port unreachable"               ,
+        "fragment needed and df was set" ,
+        "source route failed"            ,
+        "destination network unknown"    ,
+        "destination host unknown"       ,
+        "source host isolated"           ,
+        "communication with destination network is administratively prohibited" ,
+        "communication with destinaltion host is administratively prohibited"   ,
+        "destination network unreachable for tos"  ,
+        "destination host unreachable for tos"     ,
+        "communication administratively prohibited",
+        "host precedence violation"                ,
+        "precedence cutoff in effect"
+    };
+    char * rdct_lst[] = {
+        "redirect datagram for the network"         ,
+        "redirect datagram for the host"            ,
+        "redirect datagram for the tos and network" ,
+        "redirect datagram for the tos and host"
+    };
+    char * tmex_lst[] = {
+        "time to live exceeded in transit",
+        "fragment reassembly time exceeded"
+    };
+    
+    if (NULL == msg) {
+        return NULL;
+    }
+    
+    if (PIA_TRUE == pia_icmp_isecho(msg)) {
+        return NULL;
+    }
+    
+    code = msg->code;
+    switch (code) {
+        case PIA_ICMP_DSTUNRCH:
+            if (PIA_ICMP_DUNR_PRCDCF >= code) {
+                return unrch_lst[code];
+            }
+            break;
+        case PIA_ICMP_REDIRECT:
+            if (PIA_ICMP_RDCT_DGTH >= code) {
+                return rdct_lst[code];
+            }
+            break;
+        case PIA_ICMP_TMEXCD:
+            if ( (PIA_ICMP_TMEX_TTL == code) || (PIA_ICMP_TMEX_FGR == code) ) {
+                return tmex_lst[code];
+            }
+            break;
+    }
+    return NULL;
+}
+
+uint8_t pia_icmp_dump_type (pia_icmphdr_t * msg) {
+    char * type_str = pia_icmp_gettype_str(msg);
+    if (NULL == type_str) {
+        return PIA_NG;
+    }
+    printf("type  : %s\n", type_str);
+    
+    return PIA_OK;
+}
 /* end of file */
