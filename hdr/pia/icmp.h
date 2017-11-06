@@ -10,8 +10,8 @@
 #define __ICMP_H__
 
 /*** define ***/
-#define PIA_ICMP_MAXDAT 36
-#define PIA_ICMP_DATDEFSIZ 32
+#define PIA_ICMP_MAXDAT 64
+#define PIA_ICMP_DATDEFSIZ 56 // 32
 #define PIA_ICMP_ECHREQ_DEFSIZE sizeof(pia_icmphdr_t) + sizeof(pia_icmpecho_t) + g_pia_icmpdat.size
 
 /**

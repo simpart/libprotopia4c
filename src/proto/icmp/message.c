@@ -144,6 +144,14 @@ int pia_icmp_getmsg (pia_icmphdr_t * buf, size_t max) {
         /* copy echo default data */
         seek = pia_icmp_seekecho_dat((pia_icmpecho_t *) seek);
         memcpy(seek, &(g_pia_icmpdat.data[0]), g_pia_icmpdat.size);
+        
+        /* set check sum */
+        buf->chksum = pia_checksum(
+                          (uint16_t *)buf,
+                          sizeof(pia_icmphdr_t) + sizeof(pia_icmpecho_t) + g_pia_icmpdat.size
+                      );
+    } else {
+        buf->chksum = pia_checksum((uint16_t *)buf, sizeof(pia_icmphdr_t));
     }
     
     return PIA_OK;
