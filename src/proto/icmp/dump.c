@@ -10,37 +10,45 @@
 
 /*** function ***/
 uint8_t pia_icmp_dump (pia_icmphdr_t * msg) {
-    char    *str_buf = NULL;
+    char * str_buf = NULL;
     pia_icmpecho_t * chk_echo = NULL;
+    
+    /* check parameter */
+    if (NULL == msg) {
+        PIA_ERROR("paramter is NULL");
+        return PIA_NG;
+    }
     
     /* dump type */
     str_buf = pia_icmp_gettype_str(msg);
-    if (NULL == str_buf) {
-        return PIA_NG;
-    }
     printf("icmp %s ", str_buf);
     
     /* check type */
     if (PIA_TRUE == pia_icmp_isecho(msg)) {
         /* this is echo message */
-        chk_echo = (pia_icmpecho_t *) pia_icmp_getecho(msg);
-        if (NULL != chk_echo) {
-            printf("id=%u seq=%u", chk_echo->id, pia_icmp_getseq(chk_echo));
+        chk_echo = (pia_icmpecho_t *) pia_icmp_seekecho(msg);
+        if (NULL == chk_echo) {
+            PIA_ERROR("return is NULL");
+            return PIA_NG;
         }
+        printf("id=%u seq=%u", pia_icmp_getid(chk_echo), pia_icmp_getseq(chk_echo));
     } else {
         /* dumo code */
         str_buf = pia_icmp_getcode_str(msg);
         if (NULL == str_buf) {
+            PIA_ERROR("return is NULL");
             return PIA_NG;
         }
         printf("code='%s' (0x%x)", str_buf, msg->code);
     }
     printf("\n");
+    
     return PIA_OK;
 }
 
 uint8_t pia_icmp_dump_detail (pia_icmphdr_t * msg) {
     if (NULL == msg) {
+        PIA_ERROR("paramter is NULL");
         return PIA_NG;
     }
     printf("ICMP message\n");
@@ -68,6 +76,7 @@ char * pia_icmp_gettype_str (pia_icmphdr_t * msg) {
         "time exceeded"              // 0x0b
     };
     if (NULL == msg) {
+        PIA_ERROR("paramter is NULL");
         return NULL;
     }
     if (PIA_ICMP_TMEXCD  >= msg->type) {

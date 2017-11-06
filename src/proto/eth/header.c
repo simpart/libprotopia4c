@@ -147,13 +147,13 @@ int pia_eth_gethdr_arp (pia_ethhdr_t *buf, size_t max) {
 }
 
 /**
- * get payload from header
+ * seek to payload
  *
  * @param[in] eth_hdr : head pointer to ether frame
  * @return pointer to payload
  * @return NULL : get payload is failed
  */
-uint8_t * pia_eth_getpld (pia_ethhdr_t *eth_hdr) {
+uint8_t * pia_eth_seekpld (pia_ethhdr_t *eth_hdr) {
     uint8_t * seek = NULL;
     if (NULL == eth_hdr) {
         return NULL;

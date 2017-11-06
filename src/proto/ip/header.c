@@ -82,7 +82,7 @@ int pia_ip_pldsize (pia_ipv4hdr_t * ip_hdr, size_t size) {
         return PIA_NG;
     }
     ip_hdr->total = pia_htons((ip_hdr->hlen*4) + size);
-
+    pia_ip_updchksum(ip_hdr);
     return PIA_OK;
 }
 
@@ -229,11 +229,11 @@ int pia_ip_getv4hdr_icmp (pia_ipv4hdr_t *buf, size_t max) {
 }
 
 /**
- * get ip payload from ip header
+ * seek to payload
  * 
  * @param[in] ip_hdr : head pointer to ip header
  */
-uint8_t * pia_ip_getpld (pia_ipv4hdr_t * ip_hdr) {
+uint8_t * pia_ip_seekpld (pia_ipv4hdr_t * ip_hdr) {
     if (NULL == ip_hdr) {
         return NULL;
     }

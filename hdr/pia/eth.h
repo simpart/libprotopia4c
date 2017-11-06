@@ -40,5 +40,5 @@ int  pia_eth_settype (pia_ethhdr_t *, uint16_t);
 int  pia_eth_gethdr (pia_ethhdr_t *, size_t);
 int  pia_eth_gethdr_ip (pia_ethhdr_t *, size_t);
 int  pia_eth_gethdr_arp (pia_ethhdr_t *, size_t);
-uint8_t * pia_eth_getpld (pia_ethhdr_t *);
+uint8_t * pia_eth_seekpld (pia_ethhdr_t *);
 #endif

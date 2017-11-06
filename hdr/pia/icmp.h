@@ -11,6 +11,8 @@
 /*** define ***/
 #define PIA_ICMP_MAXDAT 36
 #define PIA_ICMP_DATDEFSIZ 32
+#define PIA_ICMP_ECHREQ_DEFSIZE sizeof(pia_icmphdr_t) + sizeof(pia_icmpecho_t) + g_pia_icmpdat.size
+
 /**
  * icmp type defined
  */
@@ -88,10 +90,13 @@ uint8_t pia_icmp_istype (pia_icmphdr_t *, uint8_t);
 /* message */
 int pia_icmp_setdef_type (uint8_t);
 int pia_icmp_setdef_code (uint8_t); 
+void pia_icmp_incdef_seq (void);
 int pia_icmp_getfrm (uint8_t *, size_t);
 int pia_icmp_getpkt (uint8_t *, size_t);
 int pia_icmp_getmsg (pia_icmphdr_t *, size_t);
+uint16_t pia_icmp_getid (pia_icmpecho_t *);
 uint16_t pia_icmp_getseq (pia_icmpecho_t *);
-uint8_t *pia_icmp_getecho (pia_icmphdr_t *);
+uint8_t * pia_icmp_seekecho (pia_icmphdr_t *);
+uint8_t * pia_icmp_seekecho_dat (pia_icmpecho_t *);
 #endif
 /* end of file */

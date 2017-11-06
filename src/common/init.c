@@ -10,6 +10,7 @@
 
 int pia_init(void) {
     
+    pia_err_init();
     pia_eth_init();
     pia_ip_init();
     pia_arp_init();
