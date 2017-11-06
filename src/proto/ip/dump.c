@@ -105,7 +105,7 @@ int pia_ip_dumpv4(pia_ipv4hdr_t *ip_hdr) {
     /* protocol */
     pia_ip_dump_prot(ip_hdr);
     /* check sum */
-    printf("check sum     : 0x%x\n", pia_ntohs(ip_hdr->chksum));
+    printf("check sum     : 0x%x\n", ip_hdr->chksum);
     /* ip address */
     pia_ip_dump_ipv4(ip_hdr);
     return PIA_OK;
