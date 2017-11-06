@@ -64,6 +64,8 @@ uint8_t pia_icmp_dump_detail (pia_ipv4hdr_t * ip_hdr) {
     
     if (PIA_TRUE == pia_icmp_isecho(msg)) {
         /* this is echo message */
+        printf("code     : 0x%02x\n", msg->code);
+        printf("checksum : 0x%04x\n", msg->chksum);
         pia_icmp_dump_id(msg);
         pia_icmp_dump_seq(msg);
         
@@ -83,6 +85,7 @@ uint8_t pia_icmp_dump_detail (pia_ipv4hdr_t * ip_hdr) {
             return PIA_NG;
         }
         printf("code     : '%s' (0x%x)", str_buf, msg->code);
+        printf("checksum : 0x%04x\n", msg->chksum);
     }
     
     return PIA_OK;
