@@ -172,13 +172,12 @@ int pia_ip_getv4hdr (pia_ipv4hdr_t *buf, size_t max) {
         return PIA_NG;
     }
     
-    g_pia_ipv4hdr.id++; 
     g_pia_ipv4hdr.chksum = pia_checksum(
                            (uint16_t *) &g_pia_ipv4hdr,
                            sizeof(pia_ipv4hdr_t)
                        );
     memcpy(buf, &g_pia_ipv4hdr, sizeof(pia_ipv4hdr_t));
-    
+    pia_ip_incid(&g_pia_ipv4hdr);
     return PIA_OK;
 }
 
@@ -198,6 +197,7 @@ int pia_ip_getv4hdr_tcp (pia_ipv4hdr_t *buf, size_t max) {
         return PIA_NG;
     }
     memcpy(buf, &g_pia_ipv4hdr_tcp, sizeof(pia_ipv4hdr_t));
+    pia_ip_incid(&g_pia_ipv4hdr_tcp);
     return PIA_OK;
 }
 
@@ -217,6 +217,7 @@ int pia_ip_getv4hdr_udp (pia_ipv4hdr_t *buf, size_t max) {
         return PIA_NG;
     }
     memcpy(buf, &g_pia_ipv4hdr_udp, sizeof(pia_ipv4hdr_t));
+    pia_ip_incid(&g_pia_ipv4hdr_udp);
     return PIA_OK;
 }
 
@@ -236,6 +237,19 @@ int pia_ip_getv4hdr_icmp (pia_ipv4hdr_t *buf, size_t max) {
         return PIA_NG;
     }
     memcpy(buf, &g_pia_ipv4hdr_icmp, sizeof(pia_ipv4hdr_t));
+    pia_ip_incid(&g_pia_ipv4hdr_icmp);
+    return PIA_OK;
+}
+
+int pia_ip_incid (pia_ipv4hdr_t * ip_hdr) {
+    uint16_t id = 0;
+    
+    if (NULL == ip_hdr) {
+        return PIA_NG;
+    }
+    id = pia_ntohs(ip_hdr->id);
+    id++;
+    ip_hdr->id = pia_htons(id);
     return PIA_OK;
 }
 

@@ -78,6 +78,7 @@ int  pia_ip_getv4hdr (pia_ipv4hdr_t *, size_t);
 int  pia_ip_getv4hdr_tcp (pia_ipv4hdr_t *, size_t);
 int  pia_ip_getv4hdr_udp (pia_ipv4hdr_t *, size_t);
 int  pia_ip_getv4hdr_icmp (pia_ipv4hdr_t *, size_t);
+int pia_ip_incid (pia_ipv4hdr_t *);
 uint8_t * pia_ip_seekpld (pia_ipv4hdr_t *);
 /* classifier */
 int pia_ip_isv4 (pia_ipv4hdr_t *);
