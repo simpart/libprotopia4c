@@ -61,6 +61,7 @@ int pia_ip_dump_ver (pia_ipv4hdr_t *);
 int pia_ip_dump_hlen (pia_ipv4hdr_t *);
 int pia_ip_dumptos (pia_ipv4hdr_t *, int);
 int pia_ip_dump_fragoff (pia_ipv4hdr_t *);
+char * pia_ip_dump_protstr (pia_ipv4hdr_t *);
 int pia_ip_dump_prot (pia_ipv4hdr_t *);
 int pia_ip_dump_ipv4 (pia_ipv4hdr_t *);
 int pia_ip_dump_tos (pia_ipv4hdr_t *, int);
