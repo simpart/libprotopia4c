@@ -313,8 +313,8 @@ int pia_ip_dump_fragoff (pia_ipv4hdr_t *ip_hdr) {
  * @return protocol string
  * @return NULL : getting string is failed
  */
-char * pia_ip_dump_protstr (pia_ipv4hdr_t *ip_hdr) {
-    char * prt_str[] = {
+const char * pia_ip_dump_protstr (pia_ipv4hdr_t *ip_hdr) {
+    const char * prt_str[] = {
         "hopopt"       ,  // 0
         "icmp"         ,  // 1
 	"igmp"         ,  // 2
@@ -471,7 +471,7 @@ char * pia_ip_dump_protstr (pia_ipv4hdr_t *ip_hdr) {
 
 
 int pia_ip_dump_prot (pia_ipv4hdr_t *ip_hdr) {
-    char *prt_str = NULL;
+    const char * prt_str = NULL;
     
     if (NULL == ip_hdr) {
         return PIA_NG;

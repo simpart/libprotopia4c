@@ -39,7 +39,7 @@ typedef struct pia_errinf {
 /*** prototype ***/
 int pia_init(void);
 int pia_err_init(void);
-void pia_error(char *, int, char *);
+void pia_error(const char *, int, const char *);
 void pia_dump_err (void);
 uint16_t pia_htons (uint16_t);
 uint16_t pia_ntohs (uint16_t);

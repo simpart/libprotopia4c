@@ -11,7 +11,7 @@
 
 /*** function ***/
 uint8_t pia_icmp_dump (pia_icmphdr_t * msg) {
-    char * str_buf = NULL;
+    const char * str_buf = NULL;
     pia_icmpecho_t * chk_echo = NULL;
     
     /* check parameter */
@@ -48,8 +48,8 @@ uint8_t pia_icmp_dump (pia_icmphdr_t * msg) {
 }
 
 uint8_t pia_icmp_dump_detail (pia_ipv4hdr_t * ip_hdr) {
-    char *   str_buf = NULL;
-    int      msg_siz = 0;
+    const char * str_buf = NULL;
+    int msg_siz = 0;
     pia_icmphdr_t * msg = NULL;
     
     if (NULL == ip_hdr) {
@@ -92,8 +92,8 @@ uint8_t pia_icmp_dump_detail (pia_ipv4hdr_t * ip_hdr) {
 }
 
 
-char * pia_icmp_gettype_str (pia_icmphdr_t * msg) {
-    char * tp_lst[] = {
+const char * pia_icmp_gettype_str (pia_icmphdr_t * msg) {
+    const char * tp_lst[] = {
         "echo reply"   ,             // 0x00
         "unknown"      ,             // 0x01
         "unknown"      ,             // 0x02
@@ -117,9 +117,9 @@ char * pia_icmp_gettype_str (pia_icmphdr_t * msg) {
     return NULL;
 }
 
-char * pia_icmp_getcode_str (pia_icmphdr_t * msg) {
+const char * pia_icmp_getcode_str (pia_icmphdr_t * msg) {
     uint8_t code     = 0;
-    char *  unrch_lst[] = {
+    const char *  unrch_lst[] = {
         "net unreachable"                ,
         "host unreachable"               ,
         "protocol unreachable"           ,
@@ -137,13 +137,13 @@ char * pia_icmp_getcode_str (pia_icmphdr_t * msg) {
         "host precedence violation"                ,
         "precedence cutoff in effect"
     };
-    char * rdct_lst[] = {
+    const char * rdct_lst[] = {
         "redirect datagram for the network"         ,
         "redirect datagram for the host"            ,
         "redirect datagram for the tos and network" ,
         "redirect datagram for the tos and host"
     };
-    char * tmex_lst[] = {
+    const char * tmex_lst[] = {
         "time to live exceeded in transit",
         "fragment reassembly time exceeded"
     };
@@ -178,7 +178,7 @@ char * pia_icmp_getcode_str (pia_icmphdr_t * msg) {
 }
 
 uint8_t pia_icmp_dump_type (pia_icmphdr_t * msg) {
-    char * type_str = pia_icmp_gettype_str(msg);
+    const char * type_str = pia_icmp_gettype_str(msg);
     if (NULL == type_str) {
         return PIA_NG;
     }

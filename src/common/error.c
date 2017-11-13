@@ -24,7 +24,7 @@ int pia_err_init(void) {
  * @param[in] line : line number
  * @param[in] dtl : error detail
  */
-void pia_error (char *file, int line, char * dtl) {
+void pia_error (const char *file, int line, const char * dtl) {
     if ((NULL == file) || (NULL == dtl)) {
         return;
     }

@@ -80,8 +80,8 @@ int pia_icmp_init(void);
 /* dump */
 uint8_t pia_icmp_dump (pia_icmphdr_t *);
 uint8_t pia_icmp_dump_detail (pia_ipv4hdr_t *);
-char * pia_icmp_gettype_str (pia_icmphdr_t *);
-char * pia_icmp_getcode_str (pia_icmphdr_t *);
+const char * pia_icmp_gettype_str (pia_icmphdr_t *);
+const char * pia_icmp_getcode_str (pia_icmphdr_t *);
 uint8_t pia_icmp_dump_type (pia_icmphdr_t *);
 uint8_t pia_icmp_dump_id(pia_icmphdr_t *);
 uint8_t pia_icmp_dump_seq(pia_icmphdr_t *);
