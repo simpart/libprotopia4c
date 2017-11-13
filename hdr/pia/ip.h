@@ -3,7 +3,6 @@
  * @brief defined ip proto
  * @author simpart
  */
-#include <netinet/ip.h>
 #include "pia/com.h"
 
 #ifndef __IP_H__
@@ -24,9 +23,13 @@
 #define PIA_IP_PREC  0x10   //! ip precedence
 #define PIA_IP_DSCP  0x11   //! dscp
 
+#define PIA_BYOR_LITED  10
+#define PIA_BYOR_BIGED  20
+#define PIA_BYTEORDER__ PIA_BYOR_LITED
+
 /*** struct ***/
 typedef struct pia_ipv4hdr {
-#if __BYTE_ORDER == __BIG_ENDIAN
+#if PIA_BYTEORDER__ == PIA_BYOR_LITED
     uint8_t ver:4;
     uint8_t hlen:4;
 #else

@@ -6,7 +6,6 @@
 /*** include ***/
 #include <stdio.h>
 #include <string.h>
-#include <netinet/ip.h>
 #include "pia/ip.h"
 /*** function ***/
 /**
@@ -186,37 +185,37 @@ int pia_ip_dump_tosprec (pia_ipv4hdr_t *ip_hdr) {
     if (NULL == ip_hdr) {
         return PIA_NG;
     }
-    printf( "ip precedence : " );
-    if( 0 == (ip_hdr->tos & (0xFF & ~IPTOS_CLASS_MASK)) ) {
-        switch(IPTOS_PREC( ip_hdr->tos )) {
-            case IPTOS_PREC_ROUTINE:
-                printf("routine\n");
-                break;
-            case IPTOS_PREC_PRIORITY:
-                printf("priority\n");
-                break;
-            case IPTOS_PREC_IMMEDIATE:
-                printf("immediate\n");
-                break;
-            case IPTOS_PREC_FLASH:
-                printf("flash\n");
-                break;
-            case IPTOS_PREC_FLASHOVERRIDE:
-                printf("flash-override\n");
-                break;
-            case IPTOS_PREC_CRITIC_ECP:
-                printf("critical\n");
-                break;
-            case IPTOS_PREC_INTERNETCONTROL:
-                printf("internet\n");
-                break;
-            case IPTOS_PREC_NETCONTROL:
-                printf("network\n");
-                break;
-        }
-    } else {
-        printf("not deteced\n");
-    }
+//    printf( "ip precedence : " );
+//    if( 0 == (ip_hdr->tos & (0xFF & ~IPTOS_CLASS_MASK)) ) {
+//        switch(IPTOS_PREC( ip_hdr->tos )) {
+//            case IPTOS_PREC_ROUTINE:
+//                printf("routine\n");
+//                break;
+//            case IPTOS_PREC_PRIORITY:
+//                printf("priority\n");
+//                break;
+//            case IPTOS_PREC_IMMEDIATE:
+//                printf("immediate\n");
+//                break;
+//            case IPTOS_PREC_FLASH:
+//                printf("flash\n");
+//                break;
+//            case IPTOS_PREC_FLASHOVERRIDE:
+//                printf("flash-override\n");
+//                break;
+//            case IPTOS_PREC_CRITIC_ECP:
+//                printf("critical\n");
+//                break;
+//            case IPTOS_PREC_INTERNETCONTROL:
+//                printf("internet\n");
+//                break;
+//            case IPTOS_PREC_NETCONTROL:
+//                printf("network\n");
+//                break;
+//        }
+//    } else {
+//        printf("not deteced\n");
+//    }
     return PIA_OK;
 }
 /**
@@ -227,60 +226,61 @@ int pia_ip_dump_tosprec (pia_ipv4hdr_t *ip_hdr) {
  * @return PIA_OK : dumping success
  */
 int pia_ip_dump_tosdscp (pia_ipv4hdr_t *ip_hdr) {
-    int dscp = IPTOS_DSCP(ip_hdr->tos);
-    /* check parameter */
-    if (NULL == ip_hdr) {
-        return PIA_NG;
-    }
-    /* dump dscp value */
-    if(0 == dscp) {
-        printf("not detected\n");
-    } else if(IPTOS_DSCP_EF == dscp) {
-        printf("expedited forwarding\n");
-    } else {
-        printf("assured forwarding");
-        switch(dscp) {
-            case IPTOS_DSCP_AF11:
-                printf("(af11)\n");
-                break;
-            case IPTOS_DSCP_AF12:
-                printf("(af12)\n");
-                break;
-            case IPTOS_DSCP_AF13:
-                printf("(af13)\n");
-                break;
-            case IPTOS_DSCP_AF21:
-                printf("(af21)\n");
-                break;
-            case IPTOS_DSCP_AF22:
-                printf("(af22)\n");
-                break;
-            case IPTOS_DSCP_AF23:
-                printf("(af23)\n");
-                break;
-            case IPTOS_DSCP_AF31:
-                printf("(af31)\n");
-                break;
-            case IPTOS_DSCP_AF32:
-                printf("(af32)\n");
-                break;
-            case IPTOS_DSCP_AF33:
-                printf("(af33)\n");
-                break;
-            case IPTOS_DSCP_AF41:
-                printf("(af41)\n");
-                break;
-            case IPTOS_DSCP_AF42:
-                printf("(af42)\n");
-                break;
-            case IPTOS_DSCP_AF43:
-                printf("(af43)\n");
-                break;
-            default:
-                printf("(unknown)\n");
-                break;
-        }
-    }
+ip_hdr = ip_hdr;
+//    int dscp = IPTOS_DSCP(ip_hdr->tos);
+//    /* check parameter */
+//    if (NULL == ip_hdr) {
+//        return PIA_NG;
+//    }
+//    /* dump dscp value */
+//    if(0 == dscp) {
+//        printf("not detected\n");
+//    } else if(IPTOS_DSCP_EF == dscp) {
+//        printf("expedited forwarding\n");
+//    } else {
+//        printf("assured forwarding");
+//        switch(dscp) {
+//            case IPTOS_DSCP_AF11:
+//                printf("(af11)\n");
+//                break;
+//            case IPTOS_DSCP_AF12:
+//                printf("(af12)\n");
+//                break;
+//            case IPTOS_DSCP_AF13:
+//                printf("(af13)\n");
+//                break;
+//            case IPTOS_DSCP_AF21:
+//                printf("(af21)\n");
+//                break;
+//            case IPTOS_DSCP_AF22:
+//                printf("(af22)\n");
+//                break;
+//            case IPTOS_DSCP_AF23:
+//                printf("(af23)\n");
+//                break;
+//            case IPTOS_DSCP_AF31:
+//                printf("(af31)\n");
+//                break;
+//            case IPTOS_DSCP_AF32:
+//                printf("(af32)\n");
+//                break;
+//            case IPTOS_DSCP_AF33:
+//                printf("(af33)\n");
+//                break;
+//            case IPTOS_DSCP_AF41:
+//                printf("(af41)\n");
+//                break;
+//            case IPTOS_DSCP_AF42:
+//                printf("(af42)\n");
+//                break;
+//            case IPTOS_DSCP_AF43:
+//                printf("(af43)\n");
+//                break;
+//            default:
+//                printf("(unknown)\n");
+//                break;
+//        }
+//    }
     return PIA_OK;
 }
 /**
@@ -296,13 +296,14 @@ int pia_ip_dump_fragoff (pia_ipv4hdr_t *ip_hdr) {
         return PIA_NG;
     }
     printf("fragment      : ");
-    if(IP_DF == ip_hdr->frag_off) {
-        printf("don't fragment\n");
-    } else if(IP_MF == ip_hdr->frag_off) {
-        printf("more fragment(offset : %u byte)\n", (IP_OFFMASK & (pia_ntohs(ip_hdr->frag_off)))*8);
-    } else {
-        printf("finish fragment\n");
-    }
+//    if(IP_DF == ip_hdr->frag_off) {
+//        printf("don't fragment\n");
+//    } else if(IP_MF == ip_hdr->frag_off) {
+//        printf("more fragment(offset : %u byte)\n", (IP_OFFMASK & (pia_ntohs(ip_hdr->frag_off)))*8);
+//          printf("more fragment");
+//    } else {
+//        printf("finish fragment\n");
+//    }
     return PIA_OK;
 }
 /**
