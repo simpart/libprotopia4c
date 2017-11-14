@@ -1,5 +1,5 @@
 /**
- * @file piacom.h
+ * @file pia/com.h
  * @brief protopia common defined
  * @author simpart
  */
@@ -7,8 +7,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#ifndef __COMMON_H__
-#define __COMMON_H__
+#ifndef __PIA_COM_H__
+#define __PIA_COM_H__
 
 /*** define ***/
 /**

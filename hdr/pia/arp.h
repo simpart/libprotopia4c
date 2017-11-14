@@ -7,8 +7,8 @@
 #include "pia/eth.h"
 #include "pia/ip.h"
 
-#ifndef __ARP_H__
-#define __ARP_H__
+#ifndef __PIA_ARP_H__
+#define __PIA_ARP_H__
 
 /*** define ***/
 /* operation type */

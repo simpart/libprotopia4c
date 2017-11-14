@@ -5,8 +5,8 @@
  */
 #include "pia/com.h"
 
-#ifndef __ETHER_H__
-#define __ETHER_H__
+#ifndef __PIA_ETH_H__
+#define __PIA_ETH_H__
 
 /*** define ***/
 #define PIA_ETH_IP  0x800

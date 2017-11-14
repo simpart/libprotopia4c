@@ -6,8 +6,8 @@
 #include "pia/com.h"
 #include "pia/ip.h"
 
-#ifndef __ICMP_H__
-#define __ICMP_H__
+#ifndef __PIA_ICMP_H__
+#define __PIA_ICMP_H__
 
 /*** define ***/
 #define PIA_ICMP_MAXDAT 64

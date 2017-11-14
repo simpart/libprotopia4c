@@ -5,8 +5,8 @@
  */
 #include "pia/com.h"
 
-#ifndef __IP_H__
-#define __IP_H__
+#ifndef __PIA_IP_H__
+#define __PIA_IP_H__
 
 /*** define ***/
 #define PIA_IP_IPSIZE 4  //! address size (version4)
