@@ -26,6 +26,7 @@ int  pia_eth_init   (void);
 /* classifier */
 int pia_eth_issrc  (pia_ethhdr_t *, uint8_t *);
 int pia_eth_isdst  (pia_ethhdr_t *, uint8_t *);
+int pia_eth_isbroadcast (pia_ethhdr_t *);
 int pia_eth_isip (pia_ethhdr_t *);
 int pia_eth_isarp (pia_ethhdr_t *);
 int pia_eth_isprot (pia_ethhdr_t *, uint16_t);

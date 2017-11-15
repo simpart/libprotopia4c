@@ -52,6 +52,19 @@ int pia_eth_isdst (pia_ethhdr_t *eth_hdr, uint8_t *mac) {
 }
 
 /**
+ * checking header dest mac address whether it is broadcast
+ * 
+ * @param[in] eth_hdr : head pointer to frame
+ * @return PIA_NG : checking failed
+ * @return PIA_TRUE : dest mac is broadcast
+ * @return PIA_FALSE : dest mac is not broadcast
+ */
+int pia_eth_isbroadcast (pia_ethhdr_t *eth_hdr) {
+    uint8_t chk_dst[] = {0xFF,0xFF,0xFF,0xFF,0xFF,0xFF};
+    return pia_eth_isdst(eth_hdr, chk_dst);
+}
+
+/**
  * checking header ether type whether it is ip packet
  *
  * @param[in] eth_hdr : head pointer to frame
