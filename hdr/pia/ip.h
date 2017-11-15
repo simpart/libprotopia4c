@@ -23,9 +23,9 @@
 #define PIA_IP_PREC  0x10   //! ip precedence
 #define PIA_IP_DSCP  0x11   //! dscp
 
-#define PIA_BYOR_LITED  10
-#define PIA_BYOR_BIGED  20
-#define PIA_BYTEORDER__ PIA_BYOR_LITED
+#define PIA_IP_CHKSUM_MANU 0x100
+#define PIA_IP_CHKSUM_AUTO 0x101
+#define PIA_IP_CHKSUM_MODE PIA_IP_CHKSUM_AUTO
 
 /*** struct ***/
 typedef struct pia_ipv4hdr {
@@ -72,20 +72,28 @@ int pia_ip_dump_tosprec (pia_ipv4hdr_t *);
 int pia_ip_dump_tosdscp (pia_ipv4hdr_t *);
 /* header */
 int  pia_ip_setdefipv4 (uint8_t *, uint8_t *);
+int  pia_ip_setipv4 (pia_ipv4hdr_t *, uint8_t *, uint8_t *);
 int  pia_ip_getfrm (uint8_t *, size_t, int);
 void pia_ip_setdefip (uint8_t *, uint8_t *);
 void pia_ip_setip (pia_ipv4hdr_t *, uint8_t *, uint8_t *);
 int  pia_ip_sethdrlen (pia_ipv4hdr_t *, size_t);
 int  pia_ip_gethdrlen (pia_ipv4hdr_t *);
+uint16_t pia_ip_gettotal (pia_ipv4hdr_t *);
+int  pia_ip_settotal (pia_ipv4hdr_t *, uint16_t);
+uint16_t pia_ip_getid (pia_ipv4hdr_t *);
+int  pia_ip_updid (pia_ipv4hdr_t *);
+int  pia_ip_setprot (pia_ipv4hdr_t *, int8_t);
+uint8_t pia_ip_getprot (pia_ipv4hdr_t *);
 int  pia_ip_addopt (pia_ipv4hdr_t *, uint8_t *, size_t);
 int  pia_ip_getpldsize (pia_ipv4hdr_t *);
 int  pia_ip_setpldsize (pia_ipv4hdr_t *, size_t);
 int  pia_ip_updchksum (pia_ipv4hdr_t *);
+int  pia_ip_capsule (pia_ipv4hdr_t *, uint8_t *, size_t);
 int  pia_ip_getv4hdr (pia_ipv4hdr_t *, size_t);
 int  pia_ip_getv4hdr_tcp (pia_ipv4hdr_t *, size_t);
 int  pia_ip_getv4hdr_udp (pia_ipv4hdr_t *, size_t);
 int  pia_ip_getv4hdr_icmp (pia_ipv4hdr_t *, size_t);
-int pia_ip_incid (pia_ipv4hdr_t *);
+int  pia_ip_incid (pia_ipv4hdr_t *);
 uint8_t * pia_ip_seekpld (pia_ipv4hdr_t *);
 /* classifier */
 int pia_ip_isv4 (pia_ipv4hdr_t *);
@@ -101,6 +109,5 @@ int pia_ip_isprot (pia_ipv4hdr_t *, uint8_t);
 int pia_ip_issrc (pia_ipv4hdr_t *, uint8_t *);
 int pia_ip_isdst (pia_ipv4hdr_t *, uint8_t *);
 /* util */
-uint16_t pia_ip_getid (void);
 #endif
 /* end of file */

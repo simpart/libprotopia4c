@@ -26,8 +26,12 @@
 #define PIA_TRUE  1  //! value of true
 #define PIA_FALSE 0  //! value of false
 
-#define PIA_RANDOM_8   0x0F
-#define PIA_RANDOM_16  0xFF
+#define PIA_RANDOM_8   0xFF
+#define PIA_RANDOM_16  0xFFFF
+
+#define PIA_BYOR_LITED  0x100
+#define PIA_BYOR_BIGED  0x101
+#define PIA_BYTEORDER__ PIA_BYOR_LITED
 
 /*** struct ***/
 typedef struct pia_errinf {
