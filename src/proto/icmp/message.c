@@ -85,7 +85,7 @@ int pia_icmp_getfrm (uint8_t *buf, size_t max) {
     }
     
     /* update ip payload size */
-    ret = pia_ip_pldsize((pia_ipv4hdr_t *) p_ip, PIA_ICMP_ECHREQ_DEFSIZE);
+    ret = pia_ip_setpldsize((pia_ipv4hdr_t *) p_ip, PIA_ICMP_ECHREQ_DEFSIZE);
     if (PIA_NG == ret) {
         return ret;
     }

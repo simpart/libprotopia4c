@@ -58,8 +58,8 @@ int pia_ip_setdefipv4 (uint8_t *sip, uint8_t *dip) {
  * @param[in] ip_hdr : head pointer to ip header
  * @param[in] sip : head pointer to source ip address
  * @param[in] dip : head pointer to destination ip address
- * @return PIA_OK : proccessing success
- * @return PIA_NG : proccessing failed
+ * @return PIA_OK : set ipaddress is success
+ * @return PIA_NG : set ipaddress failed
  */
 int pia_ip_setipv4 (pia_ipv4hdr_t *ip_hdr, uint8_t *sip, uint8_t *dip) {
     /* check parameter */
@@ -78,22 +78,32 @@ int pia_ip_setipv4 (pia_ipv4hdr_t *ip_hdr, uint8_t *sip, uint8_t *dip) {
 }
 
 /**
- * update header length
+ * set header length
  * 
- * 
+ * @param[in] ip_hdr : head pointer to ip header
+ * @param[in] byte : new header length
+ * @return PIA_OK : success
+ * @return PIA_NG : failed
+ * @note total length and checksum is recalculated
  */
 int pia_ip_sethdrlen (pia_ipv4hdr_t * ip_hdr, size_t byte) {
     /* check parameter */
     if ((NULL == ip_hdr) || (0 != (byte%4)) ) {
         return PIA_NG;
     }
-    
     ip_hdr->hlen  =  (byte/4);
     ip_hdr->total += (byte - pia_ip_gethdrlen(ip_hdr));
     pia_ip_updchksum(ip_hdr);
     return PIA_OK;
 }
 
+/**
+ * get header length
+ * 
+ * @param[in] ip_hdr : head pointer to ip header
+ * @return header length (byte)
+ * @return PIA_NG : failed
+ */
 int pia_ip_gethdrlen (pia_ipv4hdr_t * ip_hdr) {
     if (NULL == ip_hdr) {
         return PIA_NG;
@@ -145,6 +155,13 @@ int pia_ip_addopt (pia_ipv4hdr_t * ip_hdr, uint8_t *opt, size_t opt_siz) {
     return PIA_OK;
 }
 
+/**
+ * get payload size
+ *
+ * @param[in] ip_hdr : head pointer to ip header
+ * @return total length (byte)
+ * @return PIA_NG : failed
+ */
 int pia_ip_getpldsize (pia_ipv4hdr_t * ip_hdr) {
     uint16_t total = 0;
     
@@ -156,7 +173,7 @@ int pia_ip_getpldsize (pia_ipv4hdr_t * ip_hdr) {
     return total - (ip_hdr->hlen*4);
 }
 
-int pia_ip_pldsize (pia_ipv4hdr_t * ip_hdr, size_t size) {
+int pia_ip_setpldsize (pia_ipv4hdr_t * ip_hdr, size_t size) {
     /* check parameter */
     if (NULL == ip_hdr) {
         return PIA_NG;

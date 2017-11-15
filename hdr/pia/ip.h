@@ -79,7 +79,7 @@ int  pia_ip_sethdrlen (pia_ipv4hdr_t *, size_t);
 int  pia_ip_gethdrlen (pia_ipv4hdr_t *);
 int  pia_ip_addopt (pia_ipv4hdr_t *, uint8_t *, size_t);
 int  pia_ip_getpldsize (pia_ipv4hdr_t *);
-int  pia_ip_pldsize (pia_ipv4hdr_t *, size_t);
+int  pia_ip_setpldsize (pia_ipv4hdr_t *, size_t);
 int  pia_ip_updchksum (pia_ipv4hdr_t *);
 int  pia_ip_getv4hdr (pia_ipv4hdr_t *, size_t);
 int  pia_ip_getv4hdr_tcp (pia_ipv4hdr_t *, size_t);
