@@ -31,7 +31,7 @@
 
 #define PIA_BYOR_LITED  0x100
 #define PIA_BYOR_BIGED  0x101
-#define PIA_BYTEORDER__ PIA_BYOR_LITED
+#define PIA_BYTEORDER__ PIA_BYOR_BIGED //PIA_BYOR_LITED
 
 /*** struct ***/
 typedef struct pia_errinf {

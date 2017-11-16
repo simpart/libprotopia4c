@@ -97,12 +97,16 @@ int pia_ip_setipv4 (pia_ipv4hdr_t *ip_hdr, uint8_t *sip, uint8_t *dip) {
  * @note total length and checksum is recalculated
  */
 int pia_ip_sethdrlen (pia_ipv4hdr_t * ip_hdr, size_t byte) {
+    int diff = 0;
+    
     /* check parameter */
     if ((NULL == ip_hdr) || (0 != (byte%4)) ) {
         return PIA_NG;
     }
+    
+    diff = byte - pia_ip_gethdrlen(ip_hdr);
     ip_hdr->hlen  =  (byte/4);
-    ip_hdr->total += (byte - pia_ip_gethdrlen(ip_hdr));
+    ip_hdr->total = pia_htons(pia_ntohs(ip_hdr->total) + diff);
     pia_ip_updchksum(ip_hdr);
     return PIA_OK;
 }
@@ -195,21 +199,22 @@ int pia_ip_addopt (pia_ipv4hdr_t * ip_hdr, uint8_t *opt, size_t opt_siz) {
         return PIA_NG;
     }
     memcpy(pld_buf, seek, pld_siz);
-    
+
     /* add option */
     memset(seek, 0x00, pld_siz);
     memcpy(seek, opt, opt_siz);
-    
+
     /* update header value */
     pia_ip_sethdrlen (
         ip_hdr,
         pia_ip_gethdrlen(ip_hdr) + opt_siz
     );
+
     seek = pia_ip_seekpld(ip_hdr);
     
     /* link payload */
     memcpy(seek, pld_buf, pld_siz);
-    
+
     free(pld_buf);
     return PIA_OK;
 }
