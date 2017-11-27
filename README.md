@@ -1,5 +1,5 @@
 # protopia4c
-This is common C library for network programming.<br>
+This is common C library for packet analyzing or generating.<br>
 This library makes it easier to develop packet processing.
 
 ## functions
