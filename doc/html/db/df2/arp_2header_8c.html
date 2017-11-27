@@ -39,6 +39,7 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="../../index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="../../annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="../../files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -69,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -95,9 +96,9 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 <p>header function for arp  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;string.h&gt;</code><br/>
-<code>#include &quot;pia/eth.h&quot;</code><br/>
-<code>#include &quot;pia/com.h&quot;</code><br/>
-<code>#include &quot;pia/arp.h&quot;</code><br/>
+<code>#include &quot;<a class="el" href="../../d1/dd9/eth_8h_source.html">pia/eth.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="../../df/db4/com_8h_source.html">pia/com.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="../../d7/ddc/arp_8h_source.html">pia/arp.h</a>&quot;</code><br/>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -107,13 +108,13 @@ Functions</h2></td></tr>
 <tr class="memitem:aa639f70274212530c82e2dfafaa0a367"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df2/arp_2header_8c.html#aa639f70274212530c82e2dfafaa0a367">pia_arp_getfrm</a> (uint8_t *buf, size_t max, uint8_t type)</td></tr>
 <tr class="memdesc:aa639f70274212530c82e2dfafaa0a367"><td class="mdescLeft">&#160;</td><td class="mdescRight">get ether frame with arp header  <a href="#aa639f70274212530c82e2dfafaa0a367">More...</a><br/></td></tr>
 <tr class="separator:aa639f70274212530c82e2dfafaa0a367"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af601e596af154e9959315c66d8ddac79"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df2/arp_2header_8c.html#af601e596af154e9959315c66d8ddac79">pia_arp_gethdr</a> (pia_arphdr_t *buf, size_t max, uint8_t type)</td></tr>
+<tr class="memitem:af601e596af154e9959315c66d8ddac79"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df2/arp_2header_8c.html#af601e596af154e9959315c66d8ddac79">pia_arp_gethdr</a> (<a class="el" href="../../d7/ddc/arp_8h.html#a074b1f0eb417290d5d898928737f8add">pia_arphdr_t</a> *buf, size_t max, uint8_t type)</td></tr>
 <tr class="memdesc:af601e596af154e9959315c66d8ddac79"><td class="mdescLeft">&#160;</td><td class="mdescRight">get arp header  <a href="#af601e596af154e9959315c66d8ddac79">More...</a><br/></td></tr>
 <tr class="separator:af601e596af154e9959315c66d8ddac79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a63506594c8ea021358f431556b25acbd"><td class="memItemLeft" align="right" valign="top">pia_arphdr_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df2/arp_2header_8c.html#a63506594c8ea021358f431556b25acbd">g_arphdr</a></td></tr>
+<tr class="memitem:a63506594c8ea021358f431556b25acbd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/ddc/arp_8h.html#a074b1f0eb417290d5d898928737f8add">pia_arphdr_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df2/arp_2header_8c.html#a63506594c8ea021358f431556b25acbd">g_arphdr</a></td></tr>
 <tr class="separator:a63506594c8ea021358f431556b25acbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -173,7 +174,7 @@ PIA_NG : proccessing failed </dd></dl>
         <tr>
           <td class="memname">int pia_arp_gethdr </td>
           <td>(</td>
-          <td class="paramtype">pia_arphdr_t *&#160;</td>
+          <td class="paramtype"><a class="el" href="../../d7/ddc/arp_8h.html#a074b1f0eb417290d5d898928737f8add">pia_arphdr_t</a> *&#160;</td>
           <td class="paramname"><em>buf</em>, </td>
         </tr>
         <tr>
@@ -247,7 +248,7 @@ PIA_NG : proccessing failed </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">pia_arphdr_t g_arphdr</td>
+          <td class="memname"><a class="el" href="../../d7/ddc/arp_8h.html#a074b1f0eb417290d5d898928737f8add">pia_arphdr_t</a> g_arphdr</td>
         </tr>
       </table>
 </div><div class="memdoc">

@@ -39,6 +39,7 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="../../index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="../../annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="../../files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -69,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -90,18 +91,18 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 <div class="title">classifier.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;pia/com.h&quot;</code><br/>
-<code>#include &quot;pia/icmp.h&quot;</code><br/>
+<div class="textblock"><code>#include &quot;<a class="el" href="../../df/db4/com_8h_source.html">pia/com.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="../../d0/d49/icmp_8h_source.html">pia/icmp.h</a>&quot;</code><br/>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a783c722584b7b01d642a3dfdfb9f1bee"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d8b/icmp_2classifier_8c.html#a783c722584b7b01d642a3dfdfb9f1bee">pia_icmp_isecho</a> (pia_icmphdr_t *msg)</td></tr>
+<tr class="memitem:a783c722584b7b01d642a3dfdfb9f1bee"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d8b/icmp_2classifier_8c.html#a783c722584b7b01d642a3dfdfb9f1bee">pia_icmp_isecho</a> (<a class="el" href="../../d0/d49/icmp_8h.html#af38cde8c428df2998414837f99e03150">pia_icmphdr_t</a> *msg)</td></tr>
 <tr class="separator:a783c722584b7b01d642a3dfdfb9f1bee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32577bcc23ba0919c5a795f3278aa077"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d8b/icmp_2classifier_8c.html#a32577bcc23ba0919c5a795f3278aa077">pia_icmp_isrequest</a> (pia_icmphdr_t *msg)</td></tr>
+<tr class="memitem:a32577bcc23ba0919c5a795f3278aa077"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d8b/icmp_2classifier_8c.html#a32577bcc23ba0919c5a795f3278aa077">pia_icmp_isrequest</a> (<a class="el" href="../../d0/d49/icmp_8h.html#af38cde8c428df2998414837f99e03150">pia_icmphdr_t</a> *msg)</td></tr>
 <tr class="separator:a32577bcc23ba0919c5a795f3278aa077"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12b83df2c02534ebe2e42f67b58ad3bb"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d8b/icmp_2classifier_8c.html#a12b83df2c02534ebe2e42f67b58ad3bb">pia_icmp_isreply</a> (pia_icmphdr_t *msg)</td></tr>
+<tr class="memitem:a12b83df2c02534ebe2e42f67b58ad3bb"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d8b/icmp_2classifier_8c.html#a12b83df2c02534ebe2e42f67b58ad3bb">pia_icmp_isreply</a> (<a class="el" href="../../d0/d49/icmp_8h.html#af38cde8c428df2998414837f99e03150">pia_icmphdr_t</a> *msg)</td></tr>
 <tr class="separator:a12b83df2c02534ebe2e42f67b58ad3bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93c48426b65a1e91f669ee44e36a86fe"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d8b/icmp_2classifier_8c.html#a93c48426b65a1e91f669ee44e36a86fe">pia_icmp_istype</a> (pia_icmphdr_t *msg, uint8_t tp)</td></tr>
+<tr class="memitem:a93c48426b65a1e91f669ee44e36a86fe"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d8b/icmp_2classifier_8c.html#a93c48426b65a1e91f669ee44e36a86fe">pia_icmp_istype</a> (<a class="el" href="../../d0/d49/icmp_8h.html#af38cde8c428df2998414837f99e03150">pia_icmphdr_t</a> *msg, uint8_t tp)</td></tr>
 <tr class="separator:a93c48426b65a1e91f669ee44e36a86fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -114,7 +115,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">uint8_t pia_icmp_isecho </td>
           <td>(</td>
-          <td class="paramtype">pia_icmphdr_t *&#160;</td>
+          <td class="paramtype"><a class="el" href="../../d0/d49/icmp_8h.html#af38cde8c428df2998414837f99e03150">pia_icmphdr_t</a> *&#160;</td>
           <td class="paramname"><em>msg</em></td><td>)</td>
           <td></td>
         </tr>
@@ -130,7 +131,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">uint8_t pia_icmp_isreply </td>
           <td>(</td>
-          <td class="paramtype">pia_icmphdr_t *&#160;</td>
+          <td class="paramtype"><a class="el" href="../../d0/d49/icmp_8h.html#af38cde8c428df2998414837f99e03150">pia_icmphdr_t</a> *&#160;</td>
           <td class="paramname"><em>msg</em></td><td>)</td>
           <td></td>
         </tr>
@@ -146,7 +147,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">uint8_t pia_icmp_isrequest </td>
           <td>(</td>
-          <td class="paramtype">pia_icmphdr_t *&#160;</td>
+          <td class="paramtype"><a class="el" href="../../d0/d49/icmp_8h.html#af38cde8c428df2998414837f99e03150">pia_icmphdr_t</a> *&#160;</td>
           <td class="paramname"><em>msg</em></td><td>)</td>
           <td></td>
         </tr>
@@ -162,7 +163,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">uint8_t pia_icmp_istype </td>
           <td>(</td>
-          <td class="paramtype">pia_icmphdr_t *&#160;</td>
+          <td class="paramtype"><a class="el" href="../../d0/d49/icmp_8h.html#af38cde8c428df2998414837f99e03150">pia_icmphdr_t</a> *&#160;</td>
           <td class="paramname"><em>msg</em>, </td>
         </tr>
         <tr>
