@@ -1,8 +1,8 @@
-# protopia4c
+# Protopia4c
 This is common C library for packet analyzing or generating.<br>
 This library makes it easier to develop packet processing.
 
-## functions
+## Functions
 This list is functions of protopia.<br>
 The following functions are implemented for each supported protocol.
 
@@ -12,11 +12,14 @@ The following functions are implemented for each supported protocol.
 | Header     | defined functions for changing header contents or getting header contents. |
 | Classifier | defined functions for check header contents whether it is same value parameter. |
 
-## supported protocol
+## Supported protocol
 - Ethernet
 - IP
 - ARP
 - ICMP
+- (TCP)
+- (UDP)
+- (DHCP)
 
 ## Quick start
 ```
