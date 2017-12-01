@@ -31,7 +31,7 @@
 
 #define PIA_BYOR_LITED  0x100
 #define PIA_BYOR_BIGED  0x101
-#define PIA_BYTEORDER__ PIA_BYOR_BIGED //PIA_BYOR_LITED
+#define __PIA_BYTEORDER__ PIA_BYOR_LITED
 
 /*** struct ***/
 typedef struct pia_errinf {
@@ -47,6 +47,8 @@ void pia_error(const char *, int, const char *);
 void pia_dump_err (void);
 uint16_t pia_htons (uint16_t);
 uint16_t pia_ntohs (uint16_t);
+uint16_t pia_byteord16 (uint16_t);
+uint16_t pia_byteord32 (uint32_t);
 uint16_t pia_checksum (uint16_t *, size_t);
 uint32_t pia_random (uint32_t);
 
