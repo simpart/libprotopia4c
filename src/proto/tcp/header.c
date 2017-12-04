@@ -1,6 +1,6 @@
 /**
  * @file tcp/header.c
- * @brief header function for ip header
+ * @brief header function for tcp header
  * @author simpart
  */
 /*** include ***/
@@ -35,5 +35,26 @@ uint32_t pia_tcp_getchkack (pia_tcphdr_t * tcp_hdr) {
     }
 
     return pia_byteodr32(tcp_hdr->chkack);
+}
+
+uint8_t pia_tcp_getoffset(pia_tcphdr_t * tcp_hdr) {
+    if (NULL == tcp_hdr) {
+        return PIA_NG;
+    }
+    return tcp_hdr->offset * 4;
+}
+
+uint16_t pia_tcp_getwinsiz (pia_tcphdr_t * tcp_hdr) {
+    if (NULL == tcp_hdr) {
+        return PIA_NG;
+    }
+    return pia_byteodr16(tcp_hdr->winsiz);
+}
+
+uint16_t pia_tcp_geturgptr (pia_tcphdr_t * tcp_hdr) {
+    if (NULL == tcp_hdr) {
+        return PIA_NG;
+    }
+    return pia_byteodr16(tcp_hdr->urgptr);
 }
 /* end of file */

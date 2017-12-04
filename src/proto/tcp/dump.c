@@ -39,8 +39,6 @@ int pia_tcp_dump (pia_tcphdr_t * tcp_hdr) {
  * @return PIA_OK : dumping success
  */
 int pia_tcp_dump_detail (pia_tcphdr_t * tcp_hdr) {
-    uint8_t * dbg = NULL;
-
     /* check parameter */
     if (NULL == tcp_hdr) {
         return PIA_NG;
@@ -49,13 +47,18 @@ int pia_tcp_dump_detail (pia_tcphdr_t * tcp_hdr) {
     printf("TCP Header\n");
     printf("=========================\n");
     pia_tcp_dump_port(tcp_hdr);
-    pia_tcp_dump_seq(tcp_hdr);
-    pia_tcp_dump_chkack(tcp_hdr);
-    
-    
-
-
-    printf("%u\n", tcp_hdr->ctlflg);
+    printf("sequence    : %u\n",     pia_tcp_getseq(tcp_hdr));
+    printf("check ack   : %u\n",     pia_tcp_getchkack(tcp_hdr));
+    printf("offset      : %ubyte\n", pia_tcp_getoffset(tcp_hdr));
+    pia_tcp_dump_cflag(tcp_hdr);
+    printf("window size : %u\n",     pia_tcp_getwinsiz(tcp_hdr));
+    printf("check sum   : 0x%x\n",   tcp_hdr->chksum);
+    if (PIA_TRUE == pia_tcp_isurg(tcp_hdr)) {
+        printf("urg pointer : %u\n", pia_tcp_geturgptr(tcp_hdr));
+    }
+    if (PIA_TRUE == pia_tcp_existsopt(tcp_hdr)) {
+        pia_tcp_dump_opt(tcp_hdr);
+    }
     
     return PIA_OK;
 }
@@ -66,26 +69,55 @@ int pia_tcp_dump_port (pia_tcphdr_t * tcp_hdr) {
     if (NULL == tcp_hdr) {
         return PIA_NG;
     }
-    printf("src  port : %u\n", pia_tcp_getport(tcp_hdr, PIA_TCP_SPORT));
-    printf("dest port : %u\n", pia_tcp_getport(tcp_hdr, PIA_TCP_DPORT));
+    printf("src  port   : %u\n", pia_tcp_getport(tcp_hdr, PIA_TCP_SPORT));
+    printf("dest port   : %u\n", pia_tcp_getport(tcp_hdr, PIA_TCP_DPORT));
     return PIA_OK;
 }
 
-int pia_tcp_dump_seq (pia_tcphdr_t * tcp_hdr) {
+int pia_tcp_dump_cflag (pia_tcphdr_t * tcp_hdr) {
+    uint32_t loop = 0;
+    int      flg  = PIA_FALSE;
+    uint8_t  flglst[] = { PIA_TCP_FINFLG,
+                          PIA_TCP_SYNFLG,
+                          PIA_TCP_RSTFLG,
+                          PIA_TCP_PSHFLG,
+                          PIA_TCP_ACKFLG,
+                          PIA_TCP_URGFLG };
+    char * flgnm[]   = { "FIN","SYN","RST","PSH","ACK","URG" };
+    
     /* check parameter */
     if (NULL == tcp_hdr) {
         return PIA_NG;
     }
-    printf("sequence  : %u\n", pia_tcp_getseq(tcp_hdr));
+
+    printf("ctrl flag   : ");
+    for (loop=0;loop < sizeof(flglst) ;loop++) {
+        if (0 != (flglst[loop] & tcp_hdr->ctlflg)) {
+            if (PIA_TRUE == flg) {
+                printf(",");
+            }
+            printf("%s", flgnm[loop]);
+            flg = PIA_TRUE;
+        }
+    }
+    if (PIA_FALSE == flg) {
+        printf("(no flag)");
+    }
+    
+    printf("\n");
+    
     return PIA_OK;
 }
 
-int pia_tcp_dump_chkack (pia_tcphdr_t * tcp_hdr) {
+int pia_tcp_dump_opt(pia_tcphdr_t * tcp_hdr) {
     /* check parameter */
     if (NULL == tcp_hdr) {
         return PIA_NG;
     }
-    printf("check ack : %u\n", pia_tcp_getchkack(tcp_hdr));
+    
+    printf("option      : ");
+    
+    printf("\n");
     return PIA_OK;
 }
 /* end of file */
