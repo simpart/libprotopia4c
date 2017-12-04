@@ -4,6 +4,7 @@
  * Use of this source code is governed by a BSD-style license that can be
  * found in the LICENSE file.
  */
+#include <stdio.h>
 #include <stdint.h>
 #include "pia/com.h"
 
@@ -35,7 +36,10 @@ uint16_t pia_byteodr16 (uint16_t val) {
 
 uint16_t pia_byteodr32 (uint32_t val) {
 #if __PIA_BYTEORDER__ == PIA_BYOR_LITED
-    return (pia_byteodr16((val & 0xFFFF0000) >> 16) & (pia_byteodr16(val  & 0x0000FFFF) << 16));
+    
+    //printf("[dbg] %u\n", );
+    
+    return ( (pia_byteodr16((val & 0xFFFF0000) >> 16)) | ((pia_byteodr16(val & 0x0000FFFF) << 16)) );
 #else
     return val;
 #endif

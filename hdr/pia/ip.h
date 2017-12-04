@@ -30,11 +30,11 @@
 /*** struct ***/
 typedef struct pia_ipv4hdr {
 #if __PIA_BYTEORDER__ == PIA_BYOR_LITED
-    uint8_t ver:4;
     uint8_t hlen:4;
+    uint8_t ver:4;
 #else
-    uint8_t hlen:4;
     uint8_t ver:4;
+    uint8_t hlen:4;
 #endif
     uint8_t  tos;
     uint16_t total;

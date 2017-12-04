@@ -42,8 +42,10 @@ typedef struct pia_tcphdr {
 int pia_tcp_dump (pia_tcphdr_t *);
 int pia_tcp_dump_detail (pia_tcphdr_t *);
 int pia_tcp_dump_port (pia_tcphdr_t *);
+int pia_tcp_dump_seq (pia_tcphdr_t *);
 /* header */
 uint16_t pia_tcp_getport (pia_tcphdr_t *, int);
+uint32_t pia_tcp_getseq (pia_tcphdr_t *);
 /* classifier */
 #endif
 /* end of file */

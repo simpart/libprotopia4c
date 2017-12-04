@@ -21,4 +21,11 @@ uint16_t pia_tcp_getport (pia_tcphdr_t * tcp_hdr, int type) {
     return PIA_NG;
 }
 
+uint32_t pia_tcp_getseq (pia_tcphdr_t * tcp_hdr) {
+    if (NULL == tcp_hdr) {
+        return PIA_NG;
+    }
+
+    return pia_byteodr32(tcp_hdr->seq);
+}
 /* end of file */

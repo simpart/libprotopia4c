@@ -6,6 +6,7 @@
 /*** include ***/
 #include <stdio.h>
 #include <string.h>
+#include "pia/com.h"
 #include "pia/tcp.h"
 /*** function ***/
 /**
@@ -46,6 +47,7 @@ int pia_tcp_dump_detail (pia_tcphdr_t * tcp_hdr) {
     printf("TCP Header\n");
     printf("=========================\n");
     pia_tcp_dump_port(tcp_hdr);
+    pia_tcp_dump_seq(tcp_hdr);
     
     return PIA_OK;
 }
@@ -66,7 +68,7 @@ int pia_tcp_dump_seq (pia_tcphdr_t * tcp_hdr) {
     if (NULL == tcp_hdr) {
         return PIA_NG;
     }
-    //printf("sequence  : %u\n", pia_tcp_getport(tcp_hdr, PIA_TCP_SPORT));
+    printf("sequence  : %u\n", pia_tcp_getseq(tcp_hdr));
     return PIA_OK;
 }
 /* end of file */
