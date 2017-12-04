@@ -47,14 +47,14 @@ int pia_tcp_dump_detail (pia_tcphdr_t * tcp_hdr) {
     printf("TCP Header\n");
     printf("=========================\n");
     pia_tcp_dump_port(tcp_hdr);
-    printf("sequence    : %u\n",     pia_tcp_getseq(tcp_hdr));
-    printf("check ack   : %u\n",     pia_tcp_getchkack(tcp_hdr));
-    printf("offset      : %ubyte\n", pia_tcp_getoffset(tcp_hdr));
+    printf("sequence    : %u\n",      pia_tcp_getseq(tcp_hdr));
+    printf("check ack   : %u\n",      pia_tcp_getchkack(tcp_hdr));
+    printf("offset      : %u byte\n", pia_tcp_getoffset(tcp_hdr));
     pia_tcp_dump_cflag(tcp_hdr);
-    printf("window size : %u\n",     pia_tcp_getwinsiz(tcp_hdr));
-    printf("check sum   : 0x%x\n",   tcp_hdr->chksum);
+    printf("window size : %u\n",      pia_tcp_getwinsiz(tcp_hdr));
+    printf("check sum   : 0x%x\n",    tcp_hdr->chksum);
     if (PIA_TRUE == pia_tcp_isurg(tcp_hdr)) {
-        printf("urg pointer : %u\n", pia_tcp_geturgptr(tcp_hdr));
+        printf("urg pointer : %u\n",  pia_tcp_geturgptr(tcp_hdr));
     }
     if (PIA_TRUE == pia_tcp_existsopt(tcp_hdr)) {
         pia_tcp_dump_opt(tcp_hdr);
@@ -110,12 +110,25 @@ int pia_tcp_dump_cflag (pia_tcphdr_t * tcp_hdr) {
 }
 
 int pia_tcp_dump_opt(pia_tcphdr_t * tcp_hdr) {
+    uint8_t *tcp_opt = NULL;
+    int     opt_siz  = 0;
+    char    *opt_idx = "option      : ";
+    
     /* check parameter */
     if (NULL == tcp_hdr) {
         return PIA_NG;
     }
     
-    printf("option      : ");
+    tcp_opt  = (uint8_t *) &(tcp_hdr->urgptr);
+    tcp_opt += sizeof(tcp_hdr->urgptr);
+    
+    opt_siz = pia_tcp_getoffset(tcp_hdr) - PIA_TCP_NOPTSIZ;
+    if (0 > opt_siz) {
+        return PIA_NG;
+    }
+    
+    printf("%s", opt_idx);
+    pia_dump_opt(tcp_opt, opt_siz , strnlen(opt_idx, 14));
     
     printf("\n");
     return PIA_OK;
