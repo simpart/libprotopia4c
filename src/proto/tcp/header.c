@@ -28,4 +28,12 @@ uint32_t pia_tcp_getseq (pia_tcphdr_t * tcp_hdr) {
 
     return pia_byteodr32(tcp_hdr->seq);
 }
+
+uint32_t pia_tcp_getchkack (pia_tcphdr_t * tcp_hdr) {
+    if (NULL == tcp_hdr) {
+        return PIA_NG;
+    }
+
+    return pia_byteodr32(tcp_hdr->chkack);
+}
 /* end of file */

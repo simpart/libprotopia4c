@@ -39,6 +39,8 @@ int pia_tcp_dump (pia_tcphdr_t * tcp_hdr) {
  * @return PIA_OK : dumping success
  */
 int pia_tcp_dump_detail (pia_tcphdr_t * tcp_hdr) {
+    uint8_t * dbg = NULL;
+
     /* check parameter */
     if (NULL == tcp_hdr) {
         return PIA_NG;
@@ -48,6 +50,12 @@ int pia_tcp_dump_detail (pia_tcphdr_t * tcp_hdr) {
     printf("=========================\n");
     pia_tcp_dump_port(tcp_hdr);
     pia_tcp_dump_seq(tcp_hdr);
+    pia_tcp_dump_chkack(tcp_hdr);
+    
+    
+
+
+    printf("%u\n", tcp_hdr->ctlflg);
     
     return PIA_OK;
 }
@@ -69,6 +77,15 @@ int pia_tcp_dump_seq (pia_tcphdr_t * tcp_hdr) {
         return PIA_NG;
     }
     printf("sequence  : %u\n", pia_tcp_getseq(tcp_hdr));
+    return PIA_OK;
+}
+
+int pia_tcp_dump_chkack (pia_tcphdr_t * tcp_hdr) {
+    /* check parameter */
+    if (NULL == tcp_hdr) {
+        return PIA_NG;
+    }
+    printf("check ack : %u\n", pia_tcp_getchkack(tcp_hdr));
     return PIA_OK;
 }
 /* end of file */

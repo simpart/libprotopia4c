@@ -19,15 +19,15 @@ typedef struct pia_tcphdr {
     uint32_t seq;
     uint32_t chkack;
 #if PIA_BYTEORDER__ == PIA_BYOR_LITED
-    uint8_t offset:4;
-    uint8_t rsrv_1:4;
-    uint8_t rsrv_2:2;
-    uint8_t ctlflg:6;
-#else
     uint8_t ctlflg:6;
     uint8_t rsrv_1:2;
     uint8_t rsrv_2:2;
     uint8_t offset:4;
+#else
+    uint8_t offset:4;
+    uint8_t rsrv_1:4;
+    uint8_t rsrv_2:2;
+    uint8_t ctlflg:6;
 #endif
     uint16_t winsiz;
     uint16_t chksum;
@@ -43,9 +43,11 @@ int pia_tcp_dump (pia_tcphdr_t *);
 int pia_tcp_dump_detail (pia_tcphdr_t *);
 int pia_tcp_dump_port (pia_tcphdr_t *);
 int pia_tcp_dump_seq (pia_tcphdr_t *);
+int pia_tcp_dump_chkack (pia_tcphdr_t *);
 /* header */
 uint16_t pia_tcp_getport (pia_tcphdr_t *, int);
 uint32_t pia_tcp_getseq (pia_tcphdr_t *);
+uint32_t pia_tcp_getchkack (pia_tcphdr_t *);
 /* classifier */
 #endif
 /* end of file */
