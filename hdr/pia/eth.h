@@ -12,6 +12,7 @@
 #define PIA_ETH_IP  0x800
 #define PIA_ETH_ARP 0x806
 #define PIA_ETH_MACSIZE 6
+#define PIA_ETH_MAXFRM_SIZ 1518  // ethernet frame max size (byte)
 
 /*** struct ***/
 typedef struct pia_ethhdr {
