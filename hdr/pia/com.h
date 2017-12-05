@@ -48,7 +48,7 @@ void pia_dump_err (void);
 uint16_t pia_htons (uint16_t);
 uint16_t pia_ntohs (uint16_t);
 uint16_t pia_byteodr16 (uint16_t);
-uint16_t pia_byteodr32 (uint32_t);
+uint32_t pia_byteodr32 (uint32_t);
 uint16_t pia_checksum (uint16_t *, size_t);
 uint32_t pia_random (uint32_t);
 int pia_dump_opt (uint8_t *, size_t, int);

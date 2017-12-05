@@ -110,27 +110,90 @@ int pia_tcp_dump_cflag (pia_tcphdr_t * tcp_hdr) {
 }
 
 int pia_tcp_dump_opt(pia_tcphdr_t * tcp_hdr) {
-    uint8_t *tcp_opt = NULL;
-    int     opt_siz  = 0;
-    char    *opt_idx = "option      : ";
+//    uint8_t *dbg_opt = (uint8_t *) (&(tcp_hdr->urgptr) + sizeof(tcp_hdr->urgptr));
+    int ret = 0;
+    int idx = 0;
+    char *tp_str[] = {
+        "end of option list"   , //! 0x00
+        "no operation"         , //! 0x01
+        "maximum segment size" , //! 0x02
+        "window scale"         , //! 0x03
+        "sack permitted"       , //! 0x04
+        "sack"                 , //! 0x05
+        "(unknown type)"       ,
+        "(unknown type)"       ,
+        "time stamp"             //! 0x08
+    };
+    pia_tcpopt_t opt = {0};
     
+
     /* check parameter */
     if (NULL == tcp_hdr) {
         return PIA_NG;
     }
+    memset(&opt, 0x00, sizeof(pia_tcpopt_t));
+    printf("option      : ");
     
-    tcp_opt  = (uint8_t *) &(tcp_hdr->urgptr);
-    tcp_opt += sizeof(tcp_hdr->urgptr);
+    while (1) {
+        /* get option element */
+        ret = pia_tcp_getopt(tcp_hdr, &opt, idx);
+        idx++;
+        if (PIA_NG == ret) {
+            return PIA_NG;
+        } else if (PIA_TCP_OPTOVR == ret) {
+            break;
+        }
+        /*** dump option element ***/
+        if (1 != idx) {
+            printf("              ");
+        }
+        /* type */
+        if (PIA_TRUE != pia_tcp_isvalidopt(&opt)) { 
+            printf("(unknown type)\n");
+            continue;
+        } else {
+            printf("%s(0x%02x)", tp_str[opt.type], opt.type);
+        }
+        /* length */
+        if (0 == opt.len) {
+            printf("\n");
+            continue;
+        }
+        printf(",%u byte,", opt.len);
+        /* value */
+        if (PIA_TCP_OPTTMSP == opt.type) {
+            pia_tcp_dump_opttmsp(&opt);
+        }
+        
+        printf("\n");
+    }
     
-    opt_siz = pia_tcp_getoffset(tcp_hdr) - PIA_TCP_NOPTSIZ;
-    if (0 > opt_siz) {
+    printf("\n");
+    
+//    printf("dbg option  : ");
+//    pia_dump_opt(
+//        dbg_opt,
+//        pia_tcp_getoffset(tcp_hdr) - PIA_TCP_NOPTSIZ,
+//        14
+//    );
+    
+    return PIA_OK;
+}
+
+int pia_tcp_dump_opttmsp(pia_tcpopt_t * tcp_opt) {
+    uint32_t ts  = 0;
+    uint32_t rep = 0;
+    
+    if (NULL == tcp_opt) {
         return PIA_NG;
     }
     
-    printf("%s", opt_idx);
-    pia_dump_opt(tcp_opt, opt_siz , strnlen(opt_idx, 14));
+    memcpy(&ts,  tcp_opt->val, sizeof(uint32_t));
+    memcpy(&rep, (tcp_opt->val+sizeof(uint32_t)), sizeof(uint32_t));
     
-    printf("\n");
+    printf("ts(%u),",      pia_byteodr32(ts));
+    printf("echo rep(%u)", pia_byteodr32(rep));
+    
     return PIA_OK;
 }
 /* end of file */

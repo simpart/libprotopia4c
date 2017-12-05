@@ -34,7 +34,7 @@ uint16_t pia_byteodr16 (uint16_t val) {
 #endif
 }
 
-uint16_t pia_byteodr32 (uint32_t val) {
+uint32_t pia_byteodr32 (uint32_t val) {
 #if __PIA_BYTEORDER__ == PIA_BYOR_LITED
     
     //printf("[dbg] %u\n", );

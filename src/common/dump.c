@@ -20,7 +20,7 @@ int pia_dump_opt (uint8_t *buf, size_t size, int off) {
                  printf(" ");
              }
          }
-         printf("%02x ", *(buf+loop));
+         printf("%02x ", (uint8_t) *(buf+loop));
          if ( (0 != loop) && (0 == ((loop+1) % 4)) ) {
              printf("\n");
          }

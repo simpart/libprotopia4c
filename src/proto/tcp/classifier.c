@@ -61,4 +61,16 @@ int pia_tcp_existsopt(pia_tcphdr_t * tcp_hdr) {
     }
     return PIA_FALSE;
 }
+
+int pia_tcp_isvalidopt (pia_tcpopt_t *opt) {
+    if (NULL == opt) {
+        return PIA_NG;
+    }
+    if (PIA_TCP_OPTTMSP < opt->type) {
+        return PIA_FALSE;
+    } else if ((0x06 == opt->type) || (opt->type == 0x07)) {
+        return PIA_FALSE;
+    }
+    return PIA_TRUE;
+}
 /* end of file */
