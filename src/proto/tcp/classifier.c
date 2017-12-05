@@ -15,6 +15,12 @@ int pia_tcp_issyn (pia_tcphdr_t * tcp_hdr) {
            );
 }
 
+int pia_tcp_isack (pia_tcphdr_t * tcp_hdr) {
+    return pia_tcp_isctlflg(
+               tcp_hdr,
+               PIA_TCP_ACKFLG
+           );
+}
 
 int pia_tcp_issynack (pia_tcphdr_t * tcp_hdr) {
     return pia_tcp_isctlflg(

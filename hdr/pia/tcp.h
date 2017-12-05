@@ -89,6 +89,7 @@ uint16_t pia_tcp_geturgptr (pia_tcphdr_t *);
 int pia_tcp_getopt (pia_tcphdr_t *, pia_tcpopt_t *, int);
 /* classifier */
 int pia_tcp_issyn (pia_tcphdr_t *);
+int pia_tcp_isack (pia_tcphdr_t *);
 int pia_tcp_issynack (pia_tcphdr_t *);
 int pia_tcp_isfin (pia_tcphdr_t *);
 int pia_tcp_isctlflg (pia_tcphdr_t *, uint8_t);

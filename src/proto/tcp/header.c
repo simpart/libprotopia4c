@@ -39,7 +39,7 @@ uint32_t pia_tcp_getchkack (pia_tcphdr_t * tcp_hdr) {
     return pia_byteodr32(tcp_hdr->chkack);
 }
 
-uint8_t pia_tcp_getoffset(pia_tcphdr_t * tcp_hdr) {
+uint8_t pia_tcp_getoffset (pia_tcphdr_t * tcp_hdr) {
     if (NULL == tcp_hdr) {
         return PIA_NG;
     }

@@ -108,6 +108,7 @@ int pia_ip_isudp (pia_ipv4hdr_t *);
 int pia_ip_isprot (pia_ipv4hdr_t *, uint8_t);
 int pia_ip_issrc (pia_ipv4hdr_t *, uint8_t *);
 int pia_ip_isdst (pia_ipv4hdr_t *, uint8_t *);
+int pia_ip_is3way (pia_ipv4hdr_t *);
 /* util */
 #endif
 /* end of file */
