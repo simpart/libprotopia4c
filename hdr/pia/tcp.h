@@ -90,8 +90,9 @@ int pia_tcp_getopt (pia_tcphdr_t *, pia_tcpopt_t *, int);
 /* classifier */
 int pia_tcp_issyn (pia_tcphdr_t *);
 int pia_tcp_isack (pia_tcphdr_t *);
+int pia_tcp_isrst (pia_tcphdr_t *);
 int pia_tcp_issynack (pia_tcphdr_t *);
-int pia_tcp_isfin (pia_tcphdr_t *);
+int pia_tcp_isfinack (pia_tcphdr_t *);
 int pia_tcp_isctlflg (pia_tcphdr_t *, uint8_t);
 int pia_tcp_isurg (pia_tcphdr_t *);
 int pia_tcp_existsopt(pia_tcphdr_t *);

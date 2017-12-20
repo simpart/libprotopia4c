@@ -29,10 +29,17 @@ int pia_tcp_issynack (pia_tcphdr_t * tcp_hdr) {
            );
 }
 
-int pia_tcp_isfin (pia_tcphdr_t * tcp_hdr) {
+int pia_tcp_isfinack (pia_tcphdr_t * tcp_hdr) {
     return pia_tcp_isctlflg(
                tcp_hdr,
-               PIA_TCP_FINFLG
+               PIA_TCP_FINFLG | PIA_TCP_ACKFLG
+           );
+}
+
+int pia_tcp_isrst (pia_tcphdr_t *tcp_hdr) {
+    return pia_tcp_isctlflg(
+               tcp_hdr,
+               PIA_TCP_RSTFLG
            );
 }
 
@@ -55,7 +62,7 @@ int pia_tcp_isctlflg (pia_tcphdr_t * tcp_hdr, uint8_t flg) {
         return PIA_TRUE;
     }
     
-    return PIA_TRUE;
+    return PIA_FALSE;
 }
 
 int pia_tcp_existsopt(pia_tcphdr_t * tcp_hdr) {
