@@ -8,6 +8,7 @@
 #include <string.h>
 #include "pia/eth.h"
 #include "pia/ip.h"
+#include "pia/tcp.h"
 /*** function ***/
 /**
  * check parameter header whether it is version 4 header
@@ -192,6 +193,33 @@ int pia_ip_isdst (pia_ipv4hdr_t *ip_hdr, uint8_t *dip) {
         return PIA_NG;
     }
     if(0 == memcmp(&(ip_hdr->dip[0]), dip, PIA_IP_IPSIZE)) {
+        return PIA_TRUE;
+    }
+    return PIA_FALSE;
+}
+
+
+int pia_ip_is3way (pia_ipv4hdr_t *ip_hdr) {
+    uint8_t *seek    = NULL;
+    int      tcp_siz = 0;
+    
+    if (NULL == ip_hdr) {
+        return PIA_NG;
+    }
+    /* check protocol */
+    if (PIA_TRUE != pia_ip_istcp(ip_hdr)) {
+        return PIA_FALSE;
+    }
+    /* check payload size */
+    seek    = pia_ip_seekpld(ip_hdr);
+    tcp_siz = pia_tcp_getoffset((pia_tcphdr_t *) seek);
+    if (0 != (pia_ip_getpldsize(ip_hdr) - tcp_siz)) {
+        return PIA_FALSE;
+    }
+    /* check cflag */
+    if ( (PIA_TRUE == pia_tcp_issyn((pia_tcphdr_t *)    seek)) ||
+         (PIA_TRUE == pia_tcp_isack((pia_tcphdr_t *)    seek)) ||
+         (PIA_TRUE == pia_tcp_issynack((pia_tcphdr_t *) seek))  ) {
         return PIA_TRUE;
     }
     return PIA_FALSE;

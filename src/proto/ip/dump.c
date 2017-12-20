@@ -7,6 +7,10 @@
 #include <stdio.h>
 #include <string.h>
 #include "pia/ip.h"
+
+/*** global ***/
+extern pia_ipv4hdr_t g_pia_ipv4hdr;
+
 /*** function ***/
 /**
  * dump ip header by a line
@@ -17,6 +21,8 @@
  * @note not supported
  */
 int pia_ip_dump (pia_ipv4hdr_t * ip_hdr) {
+    uint8_t null_ip[] = {0, 0, 0, 0};
+    
     /* check parameter */
     if (NULL == ip_hdr) {
         return PIA_NG;
@@ -24,24 +30,40 @@ int pia_ip_dump (pia_ipv4hdr_t * ip_hdr) {
     
     printf("ip ");
     
-    printf(
-        "%u.%u.%u.%u",
-        ip_hdr->sip[0],
-        ip_hdr->sip[1],
-        ip_hdr->sip[2],
-        ip_hdr->sip[3]
-    );
-     
-    printf(" >> ");
-    
-    printf(
-        "%u.%u.%u.%u",
-        ip_hdr->dip[0],
-        ip_hdr->dip[1],
-        ip_hdr->dip[2],
-        ip_hdr->dip[3]
-    );
-    
+    if ( (0 != memcmp(&(g_pia_ipv4hdr.sip[0]), &null_ip[0],       PIA_IP_IPSIZE)) &&
+         (0 == memcmp(&(g_pia_ipv4hdr.sip[0]), &(ip_hdr->dip[0]), PIA_IP_IPSIZE)) ) {
+        printf(
+            "%u.%u.%u.%u",
+            ip_hdr->dip[0],
+            ip_hdr->dip[1],
+            ip_hdr->dip[2],
+            ip_hdr->dip[3]
+        );
+        printf(" << ");
+        printf(
+            "%u.%u.%u.%u",
+            ip_hdr->sip[0],
+            ip_hdr->sip[1],
+            ip_hdr->sip[2],
+            ip_hdr->sip[3]
+        );
+    } else {
+        printf(
+            "%u.%u.%u.%u",
+            ip_hdr->sip[0],
+            ip_hdr->sip[1],
+            ip_hdr->sip[2],
+            ip_hdr->sip[3]
+        );
+        printf(" >> ");
+        printf(
+            "%u.%u.%u.%u",
+            ip_hdr->dip[0],
+            ip_hdr->dip[1],
+            ip_hdr->dip[2],
+            ip_hdr->dip[3]
+        );
+    }
     printf("\n");
     
     return 0;

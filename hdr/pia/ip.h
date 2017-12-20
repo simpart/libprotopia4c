@@ -29,12 +29,12 @@
 
 /*** struct ***/
 typedef struct pia_ipv4hdr {
-#if PIA_BYTEORDER__ == PIA_BYOR_LITED
-    uint8_t ver:4;
+#if __PIA_BYTEORDER__ == PIA_BYOR_LITED
     uint8_t hlen:4;
+    uint8_t ver:4;
 #else
-    uint8_t hlen:4;
     uint8_t ver:4;
+    uint8_t hlen:4;
 #endif
     uint8_t  tos;
     uint16_t total;
@@ -108,6 +108,7 @@ int pia_ip_isudp (pia_ipv4hdr_t *);
 int pia_ip_isprot (pia_ipv4hdr_t *, uint8_t);
 int pia_ip_issrc (pia_ipv4hdr_t *, uint8_t *);
 int pia_ip_isdst (pia_ipv4hdr_t *, uint8_t *);
+int pia_ip_is3way (pia_ipv4hdr_t *);
 /* util */
 #endif
 /* end of file */

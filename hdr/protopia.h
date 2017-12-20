@@ -11,6 +11,7 @@
 #include "pia/ip.h"
 #include "pia/icmp.h"
 #include "pia/arp.h"
+#include "pia/tcp.h"
 
 #endif
 /* end of file */
