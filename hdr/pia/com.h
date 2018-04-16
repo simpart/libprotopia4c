@@ -33,6 +33,7 @@
 #define PIA_BYOR_BIGED  0x101
 #define __PIA_BYTEORDER__ PIA_BYOR_LITED
 
+
 /*** struct ***/
 typedef struct pia_errinf {
     char file[32];
