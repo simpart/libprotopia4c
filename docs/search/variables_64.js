@@ -22,5 +22,6 @@ var searchData=
   ['dp_5fxid',['dp_xid',['../d2/dec/structdhcpmsg.html#a4fe04fb2194f2e98e1c246414f3bca97',1,'dhcpmsg']]],
   ['dp_5fyiaddr',['dp_yiaddr',['../d2/dec/structdhcpmsg.html#ae120270cdc6e21afce8a6aff43ef57f1',1,'dhcpmsg']]],
   ['dpaddr',['dpaddr',['../d6/d35/structpia__arphdr.html#aaf4e849d27f458a750ebb34be7ae9a49',1,'pia_arphdr']]],
+  ['dport',['dport',['../d7/d5a/structpia__tcphdr.html#a18e54b8fb8dde262e7b898e6d7e51240',1,'pia_tcphdr']]],
   ['dummy',['dummy',['../d7/d9e/structdummy__udphdr.html#ad3d8b466a57d05f4d398ad8cfc5b6115',1,'dummy_udphdr']]]
 ];

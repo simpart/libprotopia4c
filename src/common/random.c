@@ -1,5 +1,5 @@
 /**
- * @file util.c
+ * @file random.c
  * @author simpart
  */
 /*** include ***/

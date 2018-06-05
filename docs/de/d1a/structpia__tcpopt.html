@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>Protopia: proto/eth/dump.c File Reference</title>
+<title>libprotopia: pia_tcpopt Struct Reference</title>
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../jquery.js"></script>
 <script type="text/javascript" src="../../dynsections.js"></script>
@@ -22,10 +22,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Protopia
+   <div id="projectname">libprotopia
    &#160;<span id="projectnumber">0.1</span>
    </div>
-   <div id="projectbrief">commonClibraryforpacketanalyzingorgenerating.</div>
+   <div id="projectbrief">common&nbsp;c&nbsp;library&nbsp;for&nbsp;packet&nbsp;analyzing&nbsp;and&nbsp;generating.</div>
   </td>
  </tr>
  </tbody>
@@ -39,8 +39,8 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="../../index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="../../annotated.html"><span>Classes</span></a></li>
-      <li class="current"><a href="../../files.html"><span>Files</span></a></li>
+      <li class="current"><a href="../../annotated.html"><span>Classes</span></a></li>
+      <li><a href="../../files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -61,8 +61,9 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="../../files.html"><span>File&#160;List</span></a></li>
-      <li><a href="../../globals.html"><span>File&#160;Members</span></a></li>
+      <li><a href="../../annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="../../classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="../../functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -79,87 +80,67 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="../../dir_51b8ddc8ad9e5a56f13bccf85e770ab4.html">proto</a></li><li class="navelem"><a class="el" href="../../dir_fd10ed9b0db286864790269067b526fb.html">eth</a></li>  </ul>
-</div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="../../d3/d91/structpia__tcpopt-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">dump.c File Reference</div>  </div>
+<div class="title">pia_tcpopt Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br/>
-<code>#include &lt;string.h&gt;</code><br/>
-<code>#include &quot;<a class="el" href="../../df/db4/com_8h_source.html">pia/com.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="../../d1/dd9/eth_8h_source.html">pia/eth.h</a>&quot;</code><br/>
-</div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:ad42428af01d40093250d2e8e776131ea"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d1e/eth_2dump_8c.html#ad42428af01d40093250d2e8e776131ea">pia_eth_dump</a> (<a class="el" href="../../d1/dd9/eth_8h.html#af2a5615657ddd3c33965a86e84de538c">pia_ethhdr_t</a> *eth_hdr)</td></tr>
-<tr class="memdesc:ad42428af01d40093250d2e8e776131ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">dump ether frame by a line  <a href="#ad42428af01d40093250d2e8e776131ea">More...</a><br/></td></tr>
-<tr class="separator:ad42428af01d40093250d2e8e776131ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63989b0adb96432812476d700c22dd64"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d1e/eth_2dump_8c.html#a63989b0adb96432812476d700c22dd64">pia_eth_dump_detail</a> (<a class="el" href="../../d1/dd9/eth_8h.html#af2a5615657ddd3c33965a86e84de538c">pia_ethhdr_t</a> *eth_hdr)</td></tr>
-<tr class="memdesc:a63989b0adb96432812476d700c22dd64"><td class="mdescLeft">&#160;</td><td class="mdescRight">detail dump ether frame  <a href="#a63989b0adb96432812476d700c22dd64">More...</a><br/></td></tr>
-<tr class="separator:a63989b0adb96432812476d700c22dd64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+
+<p><code>#include &lt;<a class="el" href="../../d8/da5/tcp_8h_source.html">tcp.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:ac0d8ff6425c6a703158b269e7a03dbf8"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d1a/structpia__tcpopt.html#ac0d8ff6425c6a703158b269e7a03dbf8">type</a></td></tr>
+<tr class="separator:ac0d8ff6425c6a703158b269e7a03dbf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a131be80ce7f1af3077a4b110408b4402"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d1a/structpia__tcpopt.html#a131be80ce7f1af3077a4b110408b4402">len</a></td></tr>
+<tr class="separator:a131be80ce7f1af3077a4b110408b4402"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2b213433cb246c618845350030c06ac"><td class="memItemLeft" align="right" valign="top">uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d1a/structpia__tcpopt.html#ae2b213433cb246c618845350030c06ac">val</a></td></tr>
+<tr class="separator:ae2b213433cb246c618845350030c06ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="ad42428af01d40093250d2e8e776131ea"></a>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a131be80ce7f1af3077a4b110408b4402"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int pia_eth_dump </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="../../d1/dd9/eth_8h.html#af2a5615657ddd3c33965a86e84de538c">pia_ethhdr_t</a> *&#160;</td>
-          <td class="paramname"><em>eth_hdr</em></td><td>)</td>
-          <td></td>
+          <td class="memname">uint8_t pia_tcpopt::len</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>dump ether frame by a line </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">eth_hdr</td><td>: head pointer to frame </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>PIA_NG : dumping failed </dd>
-<dd>
-PIA_OK : dumping success </dd></dl>
-
 </div>
 </div>
-<a class="anchor" id="a63989b0adb96432812476d700c22dd64"></a>
+<a class="anchor" id="ac0d8ff6425c6a703158b269e7a03dbf8"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int pia_eth_dump_detail </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="../../d1/dd9/eth_8h.html#af2a5615657ddd3c33965a86e84de538c">pia_ethhdr_t</a> *&#160;</td>
-          <td class="paramname"><em>eth_hdr</em></td><td>)</td>
-          <td></td>
+          <td class="memname">uint8_t pia_tcpopt::type</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>detail dump ether frame </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">eth_hdr</td><td>: head pointer to frame </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>PIA_NG : dumping failed </dd>
-<dd>
-PIA_OK : dumping success </dd></dl>
+</div>
+</div>
+<a class="anchor" id="ae2b213433cb246c618845350030c06ac"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t* pia_tcpopt::val</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>/var/www/html/libprotopia4c/hdr/pia/<a class="el" href="../../d8/da5/tcp_8h_source.html">tcp.h</a></li>
+</ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -1,5 +1,5 @@
 /**
- * @file ether/header.c
+ * @file eth/header.c
  * @brief header function for ether header
  * @author simpart
  */
@@ -82,6 +82,7 @@ int pia_eth_setdeftype (uint16_t type) {
  * set ether type,set to parameter header
  * 
  * @param[in] eth_hdr : head pointer to ether frame
+ * @param[in] type : ether type value
  * @return PIA_NG : proccessing failed
  * @return PIA_OK : proccessing success
  */

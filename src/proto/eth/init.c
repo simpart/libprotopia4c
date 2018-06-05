@@ -1,5 +1,5 @@
 /**
- * @file init.c
+ * @file eth/init.c
  * @brief initialize function for ether header
  * @author simpart
  */

@@ -1,6 +1,6 @@
 /**
- * @file ether.h
- * @brief defined ethernet proto
+ * @file icmp.h
+ * @brief defined icmp protocol
  * @author simpart
  */
 #include "pia/com.h"

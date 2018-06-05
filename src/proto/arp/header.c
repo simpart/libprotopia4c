@@ -16,7 +16,7 @@ extern pia_arphdr_t g_arphdr;
 /**
  * set default request address,set to global area
  * 
- * @param[in] uint8_t rip : head pointer to request ipv4 address
+ * @param[in] rip : head pointer to request ipv4 address
  * @return PIA_OK : proccessing success
  * @return PIA_NG : proccessing failed
  * @note not supported yet

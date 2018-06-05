@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>Protopia: /home/protopia4c/hdr/pia/ip.h File Reference</title>
+<title>libprotopia: /var/www/html/libprotopia4c/hdr/pia/ip.h File Reference</title>
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../jquery.js"></script>
 <script type="text/javascript" src="../../dynsections.js"></script>
@@ -22,10 +22,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Protopia
+   <div id="projectname">libprotopia
    &#160;<span id="projectnumber">0.1</span>
    </div>
-   <div id="projectbrief">commonClibraryforpacketanalyzingorgenerating.</div>
+   <div id="projectbrief">common&nbsp;c&nbsp;library&nbsp;for&nbsp;packet&nbsp;analyzing&nbsp;and&nbsp;generating.</div>
   </td>
  </tr>
  </tbody>
@@ -266,7 +266,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:a93042a56158a06346c4a6c6e7a60396b"><td class="mdescLeft">&#160;</td><td class="mdescRight">check parameter header whether next protocol is udp  <a href="#a93042a56158a06346c4a6c6e7a60396b">More...</a><br/></td></tr>
 <tr class="separator:a93042a56158a06346c4a6c6e7a60396b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9097b5f878fef32b82912deb343a008f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/da8/hdr_2pia_2ip_8h.html#a9097b5f878fef32b82912deb343a008f">pia_ip_isprot</a> (<a class="el" href="../../d2/da8/hdr_2pia_2ip_8h.html#a3c13439b9e1a12cd351359adf280b012">pia_ipv4hdr_t</a> *, uint8_t)</td></tr>
-<tr class="memdesc:a9097b5f878fef32b82912deb343a008f"><td class="mdescLeft">&#160;</td><td class="mdescRight">check parameter header whether prot is same  <a href="#a9097b5f878fef32b82912deb343a008f">More...</a><br/></td></tr>
+<tr class="memdesc:a9097b5f878fef32b82912deb343a008f"><td class="mdescLeft">&#160;</td><td class="mdescRight">check parameter header whether prot is same value  <a href="#a9097b5f878fef32b82912deb343a008f">More...</a><br/></td></tr>
 <tr class="separator:a9097b5f878fef32b82912deb343a008f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2734e40ac7031c414975463e15ad307b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/da8/hdr_2pia_2ip_8h.html#a2734e40ac7031c414975463e15ad307b">pia_ip_issrc</a> (<a class="el" href="../../d2/da8/hdr_2pia_2ip_8h.html#a3c13439b9e1a12cd351359adf280b012">pia_ipv4hdr_t</a> *, uint8_t *)</td></tr>
 <tr class="memdesc:a2734e40ac7031c414975463e15ad307b"><td class="mdescLeft">&#160;</td><td class="mdescRight">check parameter header whether sip is same  <a href="#a2734e40ac7031c414975463e15ad307b">More...</a><br/></td></tr>
@@ -274,6 +274,8 @@ Functions</h2></td></tr>
 <tr class="memitem:ad17383ea1ea141a3f2deb2a64ce1e019"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/da8/hdr_2pia_2ip_8h.html#ad17383ea1ea141a3f2deb2a64ce1e019">pia_ip_isdst</a> (<a class="el" href="../../d2/da8/hdr_2pia_2ip_8h.html#a3c13439b9e1a12cd351359adf280b012">pia_ipv4hdr_t</a> *, uint8_t *)</td></tr>
 <tr class="memdesc:ad17383ea1ea141a3f2deb2a64ce1e019"><td class="mdescLeft">&#160;</td><td class="mdescRight">check parameter header whether dip is same  <a href="#ad17383ea1ea141a3f2deb2a64ce1e019">More...</a><br/></td></tr>
 <tr class="separator:ad17383ea1ea141a3f2deb2a64ce1e019"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a499fed737af21604fc62b1b414a41eba"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/da8/hdr_2pia_2ip_8h.html#a499fed737af21604fc62b1b414a41eba">pia_ip_is3way</a> (<a class="el" href="../../d2/da8/hdr_2pia_2ip_8h.html#a3c13439b9e1a12cd351359adf280b012">pia_ipv4hdr_t</a> *)</td></tr>
+<tr class="separator:a499fed737af21604fc62b1b414a41eba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -1203,6 +1205,22 @@ PIA_NG proccessing failed </dd></dl>
 
 </div>
 </div>
+<a class="anchor" id="a499fed737af21604fc62b1b414a41eba"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int pia_ip_is3way </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d2/da8/hdr_2pia_2ip_8h.html#a3c13439b9e1a12cd351359adf280b012">pia_ipv4hdr_t</a> *&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="ae308eb83fff2c7bec46fc97d98ac7a0c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1260,6 +1278,7 @@ PIA_FALSE : this is dead packet </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">ip_hdr</td><td>: head pointer to ip header </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dip</td><td>: destination ip address </td></tr>
   </table>
   </dd>
 </dl>
@@ -1354,10 +1373,11 @@ PIA_FALSE : next protocol is not icmp </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>check parameter header whether prot is same </p>
+<p>check parameter header whether prot is same value </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">ip_hdr</td><td>: head pointer to ip header </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">prot</td><td>: protocol value </td></tr>
   </table>
   </dd>
 </dl>
@@ -1397,6 +1417,7 @@ PIA_FALSE : prot is defferent </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">ip_hdr</td><td>: head pointer to ip header </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sip</td><td>: pointer of source ip address </td></tr>
   </table>
   </dd>
 </dl>
@@ -1465,7 +1486,7 @@ PIA_FALSE : next protocol is not tcp </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">ip_hdr</td><td>: head pointer to ip header </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">tos_val</td><td>: value of type of servie </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">tos</td><td>: value of type of servie </td></tr>
   </table>
   </dd>
 </dl>

@@ -1,5 +1,5 @@
 /**
- * @file ether/dump.c
+ * @file eth/dump.c
  * @brief dump fuction for ether header
  * @author simpart
  */

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>Protopia: /home/protopia4c/hdr/pia/com.h Source File</title>
+<title>libprotopia: /var/www/html/libprotopia4c/hdr/pia/com.h Source File</title>
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../jquery.js"></script>
 <script type="text/javascript" src="../../dynsections.js"></script>
@@ -22,10 +22,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Protopia
+   <div id="projectname">libprotopia
    &#160;<span id="projectnumber">0.1</span>
    </div>
-   <div id="projectbrief">commonClibraryforpacketanalyzingorgenerating.</div>
+   <div id="projectbrief">common&nbsp;c&nbsp;library&nbsp;for&nbsp;packet&nbsp;analyzing&nbsp;and&nbsp;generating.</div>
   </td>
  </tr>
  </tbody>
@@ -111,42 +111,43 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="../../df/db4/com_8h.html#ad3c8d15b60cea1ef34f82a597eac41d3">   32</a></span>&#160;<span class="preprocessor">#define PIA_BYOR_LITED  0x100</span></div>
 <div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="../../df/db4/com_8h.html#a8741017170af146052fd99b778f65ef6">   33</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define PIA_BYOR_BIGED  0x101</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="../../df/db4/com_8h.html#ab56980e231b3db6072c11a1886d8acfc">   34</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define PIA_BYTEORDER__ PIA_BYOR_BIGED //PIA_BYOR_LITED</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="../../df/db4/com_8h.html#a89b98dba27057b2246263fb9f33ca5f4">   34</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define __PIA_BYTEORDER__ PIA_BYOR_LITED</span></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">/*** struct ***/</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="../../de/d92/structpia__errinf.html">   37</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../de/d92/structpia__errinf.html">pia_errinf</a> {</div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="../../de/d92/structpia__errinf.html#a5ee48ede1856a7e039002a6564c40427">   38</a></span>&#160;    <span class="keywordtype">char</span> <a class="code" href="../../de/d92/structpia__errinf.html#a5ee48ede1856a7e039002a6564c40427">file</a>[32];</div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="../../de/d92/structpia__errinf.html#a55de566645778b6e3aa98d5f16efe9e6">   39</a></span>&#160;    <span class="keywordtype">int</span>  <a class="code" href="../../de/d92/structpia__errinf.html#a55de566645778b6e3aa98d5f16efe9e6">line</a>;</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="../../de/d92/structpia__errinf.html#a26509635f082f621c9a468960e261074">   40</a></span>&#160;    <span class="keywordtype">char</span> <a class="code" href="../../de/d92/structpia__errinf.html#a26509635f082f621c9a468960e261074">detail</a>[128];</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;} <a class="code" href="../../df/db4/com_8h.html#ad88ff05c6d76d71e61d6f399dfacbddd">pia_errinf_t</a>;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">/*** prototype ***/</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keywordtype">int</span> <a class="code" href="../../df/db4/com_8h.html#a55007d70b8e6bcd438651c21dac69429">pia_init</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keywordtype">int</span> <a class="code" href="../../df/db4/com_8h.html#a9060fe4716ab74e112dc604650748040">pia_err_init</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keywordtype">void</span> <a class="code" href="../../df/db4/com_8h.html#aab35abad08ec29ba6c54f87928984511">pia_error</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *, <span class="keywordtype">int</span>, <span class="keyword">const</span> <span class="keywordtype">char</span> *);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keywordtype">void</span> <a class="code" href="../../df/db4/com_8h.html#a31de0745951970269d8ee43720caa882">pia_dump_err</a> (<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;uint16_t <a class="code" href="../../df/db4/com_8h.html#a9c7bc56eab2ded61ebc570b63ecd9745">pia_htons</a> (uint16_t);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;uint16_t <a class="code" href="../../df/db4/com_8h.html#ae2679b3c7152e7456ea60b4051212616">pia_ntohs</a> (uint16_t);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;uint16_t <a class="code" href="../../df/db4/com_8h.html#af475806d778d3dad2d72e287eec35381">pia_checksum</a> (uint16_t *, <span class="keywordtype">size_t</span>);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;uint32_t <a class="code" href="../../df/db4/com_8h.html#a189dc1ad5e1b24bbb194d9966c9a253a">pia_random</a> (uint32_t);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">/*** macro ***/</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="../../df/db4/com_8h.html#a756d0756fc8c82d226f996eea245c770">   54</a></span>&#160;<span class="preprocessor">#define PIA_ERROR(d) pia_error(__FILE__, __LINE__, d);</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor"></span><span class="comment">/* end of file */</span></div>
-<div class="ttc" id="com_8h_html_a9c7bc56eab2ded61ebc570b63ecd9745"><div class="ttname"><a href="../../df/db4/com_8h.html#a9c7bc56eab2ded61ebc570b63ecd9745">pia_htons</a></div><div class="ttdeci">uint16_t pia_htons(uint16_t)</div><div class="ttdef"><b>Definition:</b> byteorder.c:10</div></div>
-<div class="ttc" id="structpia__errinf_html"><div class="ttname"><a href="../../de/d92/structpia__errinf.html">pia_errinf</a></div><div class="ttdef"><b>Definition:</b> com.h:37</div></div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="../../df/db4/com_8h.html#a624f5a48e8e21c1e661f4afa31b4151b">   39</a></span>&#160;<span class="preprocessor">#define PIA_M_BYTORD16(val) ( ((val &amp; 0xFF) &lt;&lt; 8) | (val &gt;&gt; 8) )</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="../../df/db4/com_8h.html#a94f3359ef7ed2e31c9d64d43b1b5b33d">   43</a></span>&#160;<span class="preprocessor">#define PIA_M_BYTORD32(val) ( (PIA_M_BYTORD16((val &amp; 0xFFFF0000) &gt;&gt; 16)) | ((PIA_M_BYTORD16(val &amp; 0x0000FFFF) &lt;&lt; 16)) )</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">/*** struct ***/</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="../../de/d92/structpia__errinf.html">   46</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../de/d92/structpia__errinf.html">pia_errinf</a> {</div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="../../de/d92/structpia__errinf.html#a5ee48ede1856a7e039002a6564c40427">   47</a></span>&#160;    <span class="keywordtype">char</span> <a class="code" href="../../de/d92/structpia__errinf.html#a5ee48ede1856a7e039002a6564c40427">file</a>[32];</div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="../../de/d92/structpia__errinf.html#a55de566645778b6e3aa98d5f16efe9e6">   48</a></span>&#160;    <span class="keywordtype">int</span>  <a class="code" href="../../de/d92/structpia__errinf.html#a55de566645778b6e3aa98d5f16efe9e6">line</a>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="../../de/d92/structpia__errinf.html#a26509635f082f621c9a468960e261074">   49</a></span>&#160;    <span class="keywordtype">char</span> <a class="code" href="../../de/d92/structpia__errinf.html#a26509635f082f621c9a468960e261074">detail</a>[128];</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;} <a class="code" href="../../df/db4/com_8h.html#ad88ff05c6d76d71e61d6f399dfacbddd">pia_errinf_t</a>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">/*** prototype ***/</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keywordtype">int</span> <a class="code" href="../../df/db4/com_8h.html#a55007d70b8e6bcd438651c21dac69429">pia_init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keywordtype">int</span> <a class="code" href="../../df/db4/com_8h.html#a9060fe4716ab74e112dc604650748040">pia_err_init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keywordtype">void</span> <a class="code" href="../../df/db4/com_8h.html#aab35abad08ec29ba6c54f87928984511">pia_error</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *, <span class="keywordtype">int</span>, <span class="keyword">const</span> <span class="keywordtype">char</span> *);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keywordtype">void</span> <a class="code" href="../../df/db4/com_8h.html#a31de0745951970269d8ee43720caa882">pia_dump_err</a> (<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;uint16_t <a class="code" href="../../df/db4/com_8h.html#af475806d778d3dad2d72e287eec35381">pia_checksum</a> (uint16_t *, <span class="keywordtype">size_t</span>);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;uint32_t <a class="code" href="../../df/db4/com_8h.html#a189dc1ad5e1b24bbb194d9966c9a253a">pia_random</a> (uint32_t);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keywordtype">int</span> <a class="code" href="../../df/db4/com_8h.html#a4d5e4f46e58bf924a95e25e1865c1b5b">pia_dump_opt</a> (uint8_t *, <span class="keywordtype">size_t</span>, <span class="keywordtype">int</span>);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">/*** macro ***/</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="../../df/db4/com_8h.html#a756d0756fc8c82d226f996eea245c770">   61</a></span>&#160;<span class="preprocessor">#define PIA_ERROR(d) pia_error(__FILE__, __LINE__, d);</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor"></span><span class="comment">/* end of file */</span></div>
+<div class="ttc" id="structpia__errinf_html"><div class="ttname"><a href="../../de/d92/structpia__errinf.html">pia_errinf</a></div><div class="ttdef"><b>Definition:</b> com.h:46</div></div>
 <div class="ttc" id="com_8h_html_a9060fe4716ab74e112dc604650748040"><div class="ttname"><a href="../../df/db4/com_8h.html#a9060fe4716ab74e112dc604650748040">pia_err_init</a></div><div class="ttdeci">int pia_err_init(void)</div><div class="ttdef"><b>Definition:</b> error.c:16</div></div>
-<div class="ttc" id="com_8h_html_aab35abad08ec29ba6c54f87928984511"><div class="ttname"><a href="../../df/db4/com_8h.html#aab35abad08ec29ba6c54f87928984511">pia_error</a></div><div class="ttdeci">void pia_error(const char *, int, const char *)</div><div class="ttdoc">set error </div><div class="ttdef"><b>Definition:</b> error.c:27</div></div>
-<div class="ttc" id="com_8h_html_a31de0745951970269d8ee43720caa882"><div class="ttname"><a href="../../df/db4/com_8h.html#a31de0745951970269d8ee43720caa882">pia_dump_err</a></div><div class="ttdeci">void pia_dump_err(void)</div><div class="ttdef"><b>Definition:</b> error.c:36</div></div>
-<div class="ttc" id="structpia__errinf_html_a55de566645778b6e3aa98d5f16efe9e6"><div class="ttname"><a href="../../de/d92/structpia__errinf.html#a55de566645778b6e3aa98d5f16efe9e6">pia_errinf::line</a></div><div class="ttdeci">int line</div><div class="ttdef"><b>Definition:</b> com.h:39</div></div>
-<div class="ttc" id="structpia__errinf_html_a5ee48ede1856a7e039002a6564c40427"><div class="ttname"><a href="../../de/d92/structpia__errinf.html#a5ee48ede1856a7e039002a6564c40427">pia_errinf::file</a></div><div class="ttdeci">char file[32]</div><div class="ttdef"><b>Definition:</b> com.h:38</div></div>
+<div class="ttc" id="com_8h_html_aab35abad08ec29ba6c54f87928984511"><div class="ttname"><a href="../../df/db4/com_8h.html#aab35abad08ec29ba6c54f87928984511">pia_error</a></div><div class="ttdeci">void pia_error(const char *, int, const char *)</div><div class="ttdoc">set error information </div><div class="ttdef"><b>Definition:</b> error.c:28</div></div>
+<div class="ttc" id="com_8h_html_a31de0745951970269d8ee43720caa882"><div class="ttname"><a href="../../df/db4/com_8h.html#a31de0745951970269d8ee43720caa882">pia_dump_err</a></div><div class="ttdeci">void pia_dump_err(void)</div><div class="ttdef"><b>Definition:</b> error.c:37</div></div>
+<div class="ttc" id="structpia__errinf_html_a55de566645778b6e3aa98d5f16efe9e6"><div class="ttname"><a href="../../de/d92/structpia__errinf.html#a55de566645778b6e3aa98d5f16efe9e6">pia_errinf::line</a></div><div class="ttdeci">int line</div><div class="ttdef"><b>Definition:</b> com.h:48</div></div>
+<div class="ttc" id="structpia__errinf_html_a5ee48ede1856a7e039002a6564c40427"><div class="ttname"><a href="../../de/d92/structpia__errinf.html#a5ee48ede1856a7e039002a6564c40427">pia_errinf::file</a></div><div class="ttdeci">char file[32]</div><div class="ttdef"><b>Definition:</b> com.h:47</div></div>
 <div class="ttc" id="com_8h_html_a189dc1ad5e1b24bbb194d9966c9a253a"><div class="ttname"><a href="../../df/db4/com_8h.html#a189dc1ad5e1b24bbb194d9966c9a253a">pia_random</a></div><div class="ttdeci">uint32_t pia_random(uint32_t)</div><div class="ttdoc">get random value </div><div class="ttdef"><b>Definition:</b> random.c:15</div></div>
-<div class="ttc" id="com_8h_html_af475806d778d3dad2d72e287eec35381"><div class="ttname"><a href="../../df/db4/com_8h.html#af475806d778d3dad2d72e287eec35381">pia_checksum</a></div><div class="ttdeci">uint16_t pia_checksum(uint16_t *, size_t)</div><div class="ttdef"><b>Definition:</b> checksum.c:7</div></div>
+<div class="ttc" id="com_8h_html_af475806d778d3dad2d72e287eec35381"><div class="ttname"><a href="../../df/db4/com_8h.html#af475806d778d3dad2d72e287eec35381">pia_checksum</a></div><div class="ttdeci">uint16_t pia_checksum(uint16_t *, size_t)</div><div class="ttdoc">generate checksum value </div><div class="ttdef"><b>Definition:</b> checksum.c:16</div></div>
+<div class="ttc" id="com_8h_html_a4d5e4f46e58bf924a95e25e1865c1b5b"><div class="ttname"><a href="../../df/db4/com_8h.html#a4d5e4f46e58bf924a95e25e1865c1b5b">pia_dump_opt</a></div><div class="ttdeci">int pia_dump_opt(uint8_t *, size_t, int)</div><div class="ttdoc">dump option area </div><div class="ttdef"><b>Definition:</b> dump.c:18</div></div>
 <div class="ttc" id="com_8h_html_a55007d70b8e6bcd438651c21dac69429"><div class="ttname"><a href="../../df/db4/com_8h.html#a55007d70b8e6bcd438651c21dac69429">pia_init</a></div><div class="ttdeci">int pia_init(void)</div><div class="ttdef"><b>Definition:</b> init.c:11</div></div>
-<div class="ttc" id="com_8h_html_ae2679b3c7152e7456ea60b4051212616"><div class="ttname"><a href="../../df/db4/com_8h.html#ae2679b3c7152e7456ea60b4051212616">pia_ntohs</a></div><div class="ttdeci">uint16_t pia_ntohs(uint16_t)</div><div class="ttdef"><b>Definition:</b> byteorder.c:14</div></div>
-<div class="ttc" id="structpia__errinf_html_a26509635f082f621c9a468960e261074"><div class="ttname"><a href="../../de/d92/structpia__errinf.html#a26509635f082f621c9a468960e261074">pia_errinf::detail</a></div><div class="ttdeci">char detail[128]</div><div class="ttdef"><b>Definition:</b> com.h:40</div></div>
+<div class="ttc" id="structpia__errinf_html_a26509635f082f621c9a468960e261074"><div class="ttname"><a href="../../de/d92/structpia__errinf.html#a26509635f082f621c9a468960e261074">pia_errinf::detail</a></div><div class="ttdeci">char detail[128]</div><div class="ttdef"><b>Definition:</b> com.h:49</div></div>
 <div class="ttc" id="com_8h_html_ad88ff05c6d76d71e61d6f399dfacbddd"><div class="ttname"><a href="../../df/db4/com_8h.html#ad88ff05c6d76d71e61d6f399dfacbddd">pia_errinf_t</a></div><div class="ttdeci">struct pia_errinf pia_errinf_t</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

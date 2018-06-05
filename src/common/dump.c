@@ -3,14 +3,23 @@
  * @brief common dump function
  * @author simpart
  */
+/*** include ***/
 #include <stdio.h>
 #include "pia/com.h"
 
-int pia_dump_opt (uint8_t *buf, size_t size, int off) {
+/*** function ***/
+/**
+ * dump option area
+ *
+ * @param[in] ptgt : pointer of target
+ * @param[in] size : dump size
+ * @param[in] off  : offset
+ */
+int pia_dump_opt (uint8_t *ptgt, size_t size, int off) {
     int loop  = 0;
     int oloop = 0;
     
-    if (NULL == buf) {
+    if (NULL == ptgt) {
         return PIA_NG;
     }
     
@@ -20,7 +29,7 @@ int pia_dump_opt (uint8_t *buf, size_t size, int off) {
                  printf(" ");
              }
          }
-         printf("%02x ", (uint8_t) *(buf+loop));
+         printf("%02x ", (uint8_t) *(ptgt+loop));
          if ( (0 != loop) && (0 == ((loop+1) % 4)) ) {
              printf("\n");
          }
@@ -28,4 +37,4 @@ int pia_dump_opt (uint8_t *buf, size_t size, int off) {
     
     return PIA_OK;
 }
-
+/* end of file */

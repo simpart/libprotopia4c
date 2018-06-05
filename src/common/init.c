@@ -1,5 +1,5 @@
 /**
- * @file init.c
+ * @file common/init.c
  * @author simpart
  */
 #include "pia/com.h"

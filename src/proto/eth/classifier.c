@@ -1,5 +1,5 @@
 /**
- * @file ether/classifier.c
+ * @file eth/classifier.c
  * @brief classifier function for ip header
  * @author simpart
  */

@@ -19,8 +19,9 @@ int pia_err_init(void) {
 }
 
 /**
- * set error
+ * set error information
  *
+ * @param[in] file : file name
  * @param[in] line : line number
  * @param[in] dtl : error detail
  */

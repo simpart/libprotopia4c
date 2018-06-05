@@ -6,5 +6,7 @@ var searchData=
   ['pia_5ficmpdat',['pia_icmpdat',['../da/d50/structpia__icmpdat.html',1,'']]],
   ['pia_5ficmpecho',['pia_icmpecho',['../d8/df7/structpia__icmpecho.html',1,'']]],
   ['pia_5ficmphdr',['pia_icmphdr',['../dd/dc5/structpia__icmphdr.html',1,'']]],
-  ['pia_5fipv4hdr',['pia_ipv4hdr',['../d2/dd7/structpia__ipv4hdr.html',1,'']]]
+  ['pia_5fipv4hdr',['pia_ipv4hdr',['../d2/dd7/structpia__ipv4hdr.html',1,'']]],
+  ['pia_5ftcphdr',['pia_tcphdr',['../d7/d5a/structpia__tcphdr.html',1,'']]],
+  ['pia_5ftcpopt',['pia_tcpopt',['../de/d1a/structpia__tcpopt.html',1,'']]]
 ];

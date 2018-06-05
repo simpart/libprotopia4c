@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>Protopia: proto/eth/header.c File Reference</title>
+<title>libprotopia: proto/eth/header.c File Reference</title>
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../jquery.js"></script>
 <script type="text/javascript" src="../../dynsections.js"></script>
@@ -22,10 +22,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Protopia
+   <div id="projectname">libprotopia
    &#160;<span id="projectnumber">0.1</span>
    </div>
-   <div id="projectbrief">commonClibraryforpacketanalyzingorgenerating.</div>
+   <div id="projectbrief">common&nbsp;c&nbsp;library&nbsp;for&nbsp;packet&nbsp;analyzing&nbsp;and&nbsp;generating.</div>
   </td>
  </tr>
  </tbody>
@@ -92,6 +92,9 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 <div class="title">header.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>header function for ether header  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stddef.h&gt;</code><br/>
 <code>#include &lt;string.h&gt;</code><br/>
 <code>#include &quot;<a class="el" href="../../df/db4/com_8h_source.html">pia/com.h</a>&quot;</code><br/>
@@ -135,7 +138,10 @@ Variables</h2></td></tr>
 <tr class="memitem:a563d93c027ee28c641a4b1539e660f5e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d45/eth_2header_8c.html#a563d93c027ee28c641a4b1539e660f5e">g_pia_eth_setaddr</a></td></tr>
 <tr class="separator:a563d93c027ee28c641a4b1539e660f5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>header function for ether header </p>
+<dl class="section author"><dt>Author</dt><dd>simpart </dd></dl>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a03a712eef0951d4f6191e68ffd5651e0"></a>
 <div class="memitem">
 <div class="memproto">
@@ -413,6 +419,7 @@ PIA_OK : proccessing success </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">eth_hdr</td><td>: head pointer to ether frame </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">type</td><td>: ether type value </td></tr>
   </table>
   </dd>
 </dl>

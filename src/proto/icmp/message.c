@@ -1,5 +1,5 @@
 /**
- * @file icmp/header.c
+ * @file icmp/message.c
  * @brief header function for icmp
  * @author simpart
  */

@@ -52,7 +52,7 @@ int pia_ip_isv6 (pia_ipv4hdr_t *ip_hdr) {
  * check parameter header whether tos is same
  *
  * @param [in] ip_hdr : head pointer to ip header
- * @param[in] tos_val : value of type of servie
+ * @param[in] tos : value of type of servie
  * @return PIA_NG : proccessing failed
  * @return PIA_TRUE : tos is same
  * @return PIA_FALSE : tos is different
@@ -144,9 +144,10 @@ int pia_ip_isudp (pia_ipv4hdr_t *ip_hdr) {
     return pia_ip_isprot(ip_hdr, PIA_IP_UDP);
 }
 /**
- * check parameter header whether prot is same
+ * check parameter header whether prot is same value
  * 
- * @param [in] ip_hdr : head pointer to ip header
+ * @param[in] ip_hdr : head pointer to ip header
+ * @param[in] prot : protocol value
  * @return PIA_NG : proccessing failed
  * @return PIA_TRUE : prot is same
  * @return PIA_FALSE : prot is defferent
@@ -163,7 +164,8 @@ int pia_ip_isprot (pia_ipv4hdr_t *ip_hdr, uint8_t prot) {
 /**
  * check parameter header whether sip is same
  * 
- * @param [in] ip_hdr : head pointer to ip header
+ * @param[in] ip_hdr : head pointer to ip header
+ * @param[in] sip : pointer of source ip address
  * @return PIA_NG : proccessing failed
  * @return PIA_TRUE : sip is same
  * @return PIA_FALSE : sip is defferent
@@ -181,6 +183,7 @@ int pia_ip_issrc (pia_ipv4hdr_t *ip_hdr, uint8_t *sip) {
  * check parameter header whether dip is same
  * 
  * @param [in] ip_hdr : head pointer to ip header
+ * @param[in] dip : destination ip address
  * @return PIA_NG : proccessing failed
  * @return PIA_TRUE : dip is same
  * @return PIA_FALSE : dip is defferent

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>Protopia: /home/protopia4c/hdr/pia/eth.h File Reference</title>
+<title>libprotopia: /var/www/html/libprotopia4c/hdr/pia/eth.h File Reference</title>
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../jquery.js"></script>
 <script type="text/javascript" src="../../dynsections.js"></script>
@@ -22,10 +22,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Protopia
+   <div id="projectname">libprotopia
    &#160;<span id="projectnumber">0.1</span>
    </div>
-   <div id="projectbrief">commonClibraryforpacketanalyzingorgenerating.</div>
+   <div id="projectbrief">common&nbsp;c&nbsp;library&nbsp;for&nbsp;packet&nbsp;analyzing&nbsp;and&nbsp;generating.</div>
   </td>
  </tr>
  </tbody>
@@ -114,6 +114,8 @@ Macros</h2></td></tr>
 <tr class="separator:afa0f078ba0db04cf7c9407052b03d239"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a969f41fee8c6c4eff20fd4367dd715f1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dd9/eth_8h.html#a969f41fee8c6c4eff20fd4367dd715f1">PIA_ETH_MACSIZE</a>&#160;&#160;&#160;6</td></tr>
 <tr class="separator:a969f41fee8c6c4eff20fd4367dd715f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16f6e07cd217a4cb93c1395b4176911e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dd9/eth_8h.html#a16f6e07cd217a4cb93c1395b4176911e">PIA_ETH_MAXFRM_SIZ</a>&#160;&#160;&#160;1518</td></tr>
+<tr class="separator:a16f6e07cd217a4cb93c1395b4176911e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -208,6 +210,18 @@ Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">#define PIA_ETH_MACSIZE&#160;&#160;&#160;6</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a16f6e07cd217a4cb93c1395b4176911e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PIA_ETH_MAXFRM_SIZ&#160;&#160;&#160;1518</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -785,6 +799,7 @@ PIA_OK : proccessing success </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">eth_hdr</td><td>: head pointer to ether frame </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">type</td><td>: ether type value </td></tr>
   </table>
   </dd>
 </dl>

@@ -6,5 +6,7 @@ var searchData=
   ['pia_5ficmpdat_5ft',['pia_icmpdat_t',['../d0/d49/icmp_8h.html#a010becaf05a6c011e2e3de7cd1885193',1,'icmp.h']]],
   ['pia_5ficmpecho_5ft',['pia_icmpecho_t',['../d0/d49/icmp_8h.html#aeb448bf0c7ce2dd960ae1e3b35dc404d',1,'icmp.h']]],
   ['pia_5ficmphdr_5ft',['pia_icmphdr_t',['../d0/d49/icmp_8h.html#af38cde8c428df2998414837f99e03150',1,'icmp.h']]],
-  ['pia_5fipv4hdr_5ft',['pia_ipv4hdr_t',['../d2/da8/hdr_2pia_2ip_8h.html#a3c13439b9e1a12cd351359adf280b012',1,'ip.h']]]
+  ['pia_5fipv4hdr_5ft',['pia_ipv4hdr_t',['../d2/da8/hdr_2pia_2ip_8h.html#a3c13439b9e1a12cd351359adf280b012',1,'ip.h']]],
+  ['pia_5ftcphdr_5ft',['pia_tcphdr_t',['../d8/da5/tcp_8h.html#ad0fbb23fa6cc15dafb08e603b280728f',1,'tcp.h']]],
+  ['pia_5ftcpopt_5ft',['pia_tcpopt_t',['../d8/da5/tcp_8h.html#a3ff43cdc39509ac5ce1940b661130e7d',1,'tcp.h']]]
 ];
