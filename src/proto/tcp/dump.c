@@ -191,8 +191,8 @@ int pia_tcp_dump_opttmsp(pia_tcpopt_t * tcp_opt) {
     memcpy(&ts,  tcp_opt->val, sizeof(uint32_t));
     memcpy(&rep, (tcp_opt->val+sizeof(uint32_t)), sizeof(uint32_t));
     
-    printf("ts(%u),",      pia_byteodr32(ts));
-    printf("echo rep(%u)", pia_byteodr32(rep));
+    printf("ts(%u),",      PIA_M_BYTORD32(ts));
+    printf("echo rep(%u)", PIA_M_BYTORD32(rep));
     
     return PIA_OK;
 }

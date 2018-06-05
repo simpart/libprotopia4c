@@ -78,7 +78,7 @@ int pia_eth_dump_detail (pia_ethhdr_t *eth_hdr) {
           );
     
     memcpy(&type, &(eth_hdr->type), sizeof(uint16_t));
-    type = pia_ntohs(type);
+    type = PIA_M_BYTORD16(type);
     printf("ether type : %u(0x%x)\n", type, type);
     printf("\n");
     

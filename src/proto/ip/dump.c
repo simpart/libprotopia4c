@@ -116,9 +116,9 @@ int pia_ip_dumpv4(pia_ipv4hdr_t *ip_hdr) {
     /* type of service */
     pia_ip_dump_tos(ip_hdr, PIA_IP_TOSDMP);
     /* total length */
-    printf("total length  : %u byte\n", pia_ntohs(ip_hdr->total));
+    printf("total length  : %u byte\n", PIA_M_BYTORD16(ip_hdr->total));
     /* identification */
-    printf("id            : %u\n", pia_ntohs(ip_hdr->id));
+    printf("id            : %u\n", PIA_M_BYTORD16(ip_hdr->id));
     /* flag offset */
     pia_ip_dump_fragoff(ip_hdr);
     /* time to live */

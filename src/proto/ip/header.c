@@ -106,7 +106,7 @@ int pia_ip_sethdrlen (pia_ipv4hdr_t * ip_hdr, size_t byte) {
     
     diff = byte - pia_ip_gethdrlen(ip_hdr);
     ip_hdr->hlen  =  (byte/4);
-    ip_hdr->total = pia_htons(pia_ntohs(ip_hdr->total) + diff);
+    ip_hdr->total = PIA_M_BYTORD16(PIA_M_BYTORD16(((ip_hdr->total) + diff)));
     pia_ip_updchksum(ip_hdr);
     return PIA_OK;
 }
@@ -129,14 +129,14 @@ uint16_t pia_ip_gettotal (pia_ipv4hdr_t * ip_hdr) {
     if (NULL == ip_hdr) {
         return PIA_NG;
     }
-    return pia_ntohs(ip_hdr->total);
+    return PIA_M_BYTORD16(ip_hdr->total);
 }
 
 int pia_ip_settotal (pia_ipv4hdr_t * ip_hdr, uint16_t size) {
     if (NULL == ip_hdr) {
         return PIA_NG;
     }
-    ip_hdr->total = pia_htons(size);
+    ip_hdr->total = PIA_M_BYTORD16(size);
     pia_ip_updchksum(ip_hdr);
     
     return PIA_OK;
@@ -146,14 +146,14 @@ uint16_t pia_ip_getid (pia_ipv4hdr_t * ip_hdr) {
     if (NULL == ip_hdr) {
         return PIA_NG;
     }
-    return pia_ntohs(ip_hdr->id);
+    return PIA_M_BYTORD16(ip_hdr->id);
 }
 
 int pia_ip_updid (pia_ipv4hdr_t * ip_hdr) {
     if (NULL == ip_hdr) {
         return PIA_NG;
     }
-    ip_hdr->id = pia_htons(pia_random(PIA_RANDOM_16));
+    ip_hdr->id = PIA_M_BYTORD16(pia_random(PIA_RANDOM_16));
     pia_ip_updchksum(ip_hdr);
     return PIA_OK;
 }
@@ -233,7 +233,7 @@ int pia_ip_getpldsize (pia_ipv4hdr_t * ip_hdr) {
     if (NULL == ip_hdr) {
         return PIA_NG;
     }
-    total = pia_ntohs(ip_hdr->total);
+    total = PIA_M_BYTORD16(ip_hdr->total);
     return total - (ip_hdr->hlen*4);
 }
 
@@ -242,7 +242,7 @@ int pia_ip_setpldsize (pia_ipv4hdr_t * ip_hdr, size_t size) {
     if (NULL == ip_hdr) {
         return PIA_NG;
     }
-    ip_hdr->total = pia_htons((ip_hdr->hlen*4) + size);
+    ip_hdr->total = PIA_M_BYTORD16(((ip_hdr->hlen*4) + size));
     pia_ip_updchksum(ip_hdr);
     return PIA_OK;
 }
@@ -417,9 +417,9 @@ int pia_ip_incid (pia_ipv4hdr_t * ip_hdr) {
     if (NULL == ip_hdr) {
         return PIA_NG;
     }
-    id = pia_ntohs(ip_hdr->id);
+    id = PIA_M_BYTORD16(ip_hdr->id);
     id++;
-    ip_hdr->id = pia_htons(id);
+    ip_hdr->id = PIA_M_BYTORD16(id);
     return PIA_OK;
 }
 

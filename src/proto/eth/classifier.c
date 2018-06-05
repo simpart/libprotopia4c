@@ -78,7 +78,7 @@ int pia_eth_isip (pia_ethhdr_t *eth_hdr) {
         return PIA_NG;
     }
     /* check ether type */
-    if (PIA_ETH_IP == pia_ntohs(eth_hdr->type)) {
+    if (PIA_ETH_IP == PIA_M_BYTORD16(eth_hdr->type)) {
         return PIA_TRUE;
     }
     return PIA_FALSE;
@@ -98,7 +98,7 @@ int pia_eth_isarp (pia_ethhdr_t *eth_hdr) {
         return PIA_NG;
     }
     /* check ether type */
-    if (PIA_ETH_ARP == pia_ntohs(eth_hdr->type)) {
+    if (PIA_ETH_ARP == PIA_M_BYTORD16(eth_hdr->type)) {
         return PIA_TRUE;
     }
     return PIA_FALSE;
@@ -119,7 +119,7 @@ int pia_eth_isprot (pia_ethhdr_t *eth_hdr, uint16_t prot) {
         return PIA_NG;
     }
     /* compares ether type */
-    if (prot == pia_ntohs(eth_hdr->type)) {
+    if (prot == PIA_M_BYTORD16(eth_hdr->type)) {
         return PIA_TRUE;
     }
     return PIA_FALSE;

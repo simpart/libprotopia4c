@@ -144,7 +144,7 @@ int pia_arp_dump_htype(pia_arphdr_t *arp_hdr) {
     if (NULL == arp_hdr) {
         return PIA_NG;
     }
-    type = pia_htons(arp_hdr->htype);
+    type = PIA_M_BYTORD16(arp_hdr->htype);
     printf("hardware type : ");
     
     if ((0 < type) && (38 > type)) {
@@ -180,7 +180,7 @@ int pia_arp_dump_ptype(pia_arphdr_t *arp_hdr) {
         return PIA_NG;
     }
     printf("protocol type : ");
-    printf(" (0x04%x)\n", pia_htons(arp_hdr->htype));
+    printf(" (0x04%x)\n", PIA_M_BYTORD16(arp_hdr->htype));
     return PIA_OK;
 }
 /* end of file */

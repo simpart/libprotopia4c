@@ -33,6 +33,14 @@
 #define PIA_BYOR_BIGED  0x101
 #define __PIA_BYTEORDER__ PIA_BYOR_LITED
 
+/**
+ * convert byteorder for 16bit
+ */
+#define PIA_M_BYTORD16(val) ( ((val & 0xFF) << 8) | (val >> 8) )
+/**
+ * convert byteorder for 32bit
+ */
+#define PIA_M_BYTORD32(val) ( (PIA_M_BYTORD16((val & 0xFFFF0000) >> 16)) | ((PIA_M_BYTORD16(val & 0x0000FFFF) << 16)) )
 
 /*** struct ***/
 typedef struct pia_errinf {
@@ -46,10 +54,8 @@ int pia_init(void);
 int pia_err_init(void);
 void pia_error(const char *, int, const char *);
 void pia_dump_err (void);
-uint16_t pia_htons (uint16_t);
-uint16_t pia_ntohs (uint16_t);
-uint16_t pia_byteodr16 (uint16_t);
-uint32_t pia_byteodr32 (uint32_t);
+uint16_t pia_bytodr16 (uint16_t);
+uint32_t pia_bytodr32 (uint32_t);
 uint16_t pia_checksum (uint16_t *, size_t);
 uint32_t pia_random (uint32_t);
 int pia_dump_opt (uint8_t *, size_t, int);

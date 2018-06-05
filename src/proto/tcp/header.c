@@ -16,9 +16,9 @@ uint16_t pia_tcp_getport (pia_tcphdr_t * tcp_hdr, int type) {
     }
     
     if (PIA_TCP_SPORT == type) {
-        return pia_ntohs(tcp_hdr->sport);
+        return PIA_M_BYTORD16(tcp_hdr->sport);
     } else if (PIA_TCP_DPORT == type) {
-        return pia_ntohs(tcp_hdr->dport);
+        return PIA_M_BYTORD16(tcp_hdr->dport);
     }
     return PIA_NG;
 }
@@ -28,7 +28,7 @@ uint32_t pia_tcp_getseq (pia_tcphdr_t * tcp_hdr) {
         return PIA_NG;
     }
 
-    return pia_byteodr32(tcp_hdr->seq);
+    return PIA_M_BYTORD32(tcp_hdr->seq);
 }
 
 uint32_t pia_tcp_getchkack (pia_tcphdr_t * tcp_hdr) {
@@ -36,7 +36,7 @@ uint32_t pia_tcp_getchkack (pia_tcphdr_t * tcp_hdr) {
         return PIA_NG;
     }
 
-    return pia_byteodr32(tcp_hdr->chkack);
+    return PIA_M_BYTORD32(tcp_hdr->chkack);
 }
 
 uint8_t pia_tcp_getoffset (pia_tcphdr_t * tcp_hdr) {
@@ -50,14 +50,14 @@ uint16_t pia_tcp_getwinsiz (pia_tcphdr_t * tcp_hdr) {
     if (NULL == tcp_hdr) {
         return PIA_NG;
     }
-    return pia_byteodr16(tcp_hdr->winsiz);
+    return PIA_M_BYTORD16(tcp_hdr->winsiz);
 }
 
 uint16_t pia_tcp_geturgptr (pia_tcphdr_t * tcp_hdr) {
     if (NULL == tcp_hdr) {
         return PIA_NG;
     }
-    return pia_byteodr16(tcp_hdr->urgptr);
+    return PIA_M_BYTORD16(tcp_hdr->urgptr);
 }
 
 int pia_tcp_getopt (pia_tcphdr_t * tcp_hdr, pia_tcpopt_t *opt , int idx) {

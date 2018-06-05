@@ -42,7 +42,7 @@ int pia_icmp_setdef_code (uint8_t code) {
 void pia_icmp_incdef_seq (void) {
     uint16_t seq = pia_icmp_getseq(&g_pia_icmpecho);
     seq++;
-    g_pia_icmpecho.seq = pia_htons(seq);
+    g_pia_icmpecho.seq = PIA_M_BYTORD16(seq);
 }
 
 int pia_icmp_getfrm (uint8_t *buf, size_t max) {
@@ -161,14 +161,14 @@ uint16_t pia_icmp_getseq (pia_icmpecho_t * ech) {
     if (NULL == ech) {
         return PIA_NG;
     }
-    return pia_ntohs(ech->seq);
+    return PIA_M_BYTORD16(ech->seq);
 }
 
 uint16_t pia_icmp_getid (pia_icmpecho_t * ech) {
     if (NULL == ech) {
         return PIA_NG;
     }
-    return pia_ntohs(ech->id);
+    return PIA_M_BYTORD16(ech->id);
 }
 
 

@@ -21,7 +21,7 @@ int pia_arp_isrequest (pia_arphdr_t * arp_hdr) {
     if (NULL == arp_hdr) {
         return PIA_NG;
     }
-    if (PIA_ARP_OP_REQ == pia_htons(arp_hdr->op)) {
+    if (PIA_ARP_OP_REQ == PIA_M_BYTORD16(arp_hdr->op)) {
         return PIA_TRUE;
     }
     return PIA_FALSE;
@@ -39,7 +39,7 @@ int pia_arp_isreply (pia_arphdr_t * arp_hdr) {
     if (NULL == arp_hdr) {
         return PIA_NG;
     }
-    if (PIA_ARP_OP_REP == pia_htons(arp_hdr->op)) {
+    if (PIA_ARP_OP_REP == PIA_M_BYTORD16(arp_hdr->op)) {
         return PIA_TRUE;
     }
     return PIA_FALSE;

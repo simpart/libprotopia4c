@@ -74,7 +74,7 @@ int pia_eth_setmac (pia_ethhdr_t *eth_hdr, uint8_t *dmac, uint8_t *smac) {
  * @return PIA_OK : proccessing success
  */
 int pia_eth_setdeftype (uint16_t type) {
-    g_pia_ethhdr.type = pia_ntohs(type);
+    g_pia_ethhdr.type = PIA_M_BYTORD16(type);
     return PIA_OK;
 }
 
@@ -91,7 +91,7 @@ int pia_eth_settype (pia_ethhdr_t *eth_hdr, uint16_t type) {
         return PIA_NG;
     }
     /* set ether type */
-    eth_hdr->type = pia_ntohs(type);
+    eth_hdr->type = PIA_M_BYTORD16(type);
     return PIA_OK;
 }
 
