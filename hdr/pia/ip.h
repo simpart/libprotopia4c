@@ -5,36 +5,36 @@
  */
 #include "pia/com.h"
 
-#ifndef __PIA_IP_H__
-#define __PIA_IP_H__
+#ifndef __PIAIP_H__
+#define __PIAIP_H__
 
 /*** define ***/
-#define PIA_IP_IPSIZE 4  //! address size (version4)
+#define PIAIP_IPSIZ 4  //! address size (version4)
 /**
  * @brief data area protocol type
  */
-#define PIA_IP_ICMP 0x01
-#define PIA_IP_TCP  0x06
-#define PIA_IP_UDP  0x17
+#define PIAIP_TYPE_ICMP 0x01
+#define PIAIP_TYPE_TCP  0x06
+#define PIAIP_TYPE_UDP  0x17
 /**
  * @brief tos dump type
  */
-#define PIA_IP_TOSDMP PIA_IP_PREC 
-#define PIA_IP_PREC  0x10   //! ip precedence
-#define PIA_IP_DSCP  0x11   //! dscp
+#define PIAIP_TOSDMP PIAIP_PREC 
+#define PIAIP_PREC  0x10   //! ip precedence
+#define PIAIP_DSCP  0x11   //! dscp
 
-#define PIA_IP_CHKSUM_MANU 0x100
-#define PIA_IP_CHKSUM_AUTO 0x101
-#define PIA_IP_CHKSUM_MODE PIA_IP_CHKSUM_AUTO
+#define PIAIP_CSUMMODE_MANU 0x100 //! manual mode
+#define PIAIP_CSUMMODE_AUTO 0x101 //! auto mode
+#define PIAIP_CSUMMODE PIAIP_CSUMMODE_AUTO
 
 /*** struct ***/
-typedef struct pia_ipv4hdr {
+typedef struct piaip_v4hdr {
 #if __PIA_BYTEORDER__ == PIA_BYOR_LITED
-    uint8_t hlen:4;
-    uint8_t ver:4;
+    uint8_t  hlen:4;
+    uint8_t  ver:4;
 #else
-    uint8_t ver:4;
-    uint8_t hlen:4;
+    uint8_t  ver:4;
+    uint8_t  hlen:4;
 #endif
     uint8_t  tos;
     uint16_t total;
@@ -43,72 +43,74 @@ typedef struct pia_ipv4hdr {
     uint8_t  ttl;
     uint8_t  prot;
     uint16_t chksum;
-    uint8_t  sip[PIA_IP_IPSIZE];
-    uint8_t  dip[PIA_IP_IPSIZE];
-} pia_ipv4hdr_t;
+    uint8_t  sip[PIAIP_IPSIZ];
+    uint8_t  dip[PIAIP_IPSIZ];
+} piaip_v4hdr_t;
 
 /*** global ***/
-extern pia_ipv4hdr_t g_pia_ipv4hdr;
-extern uint8_t  g_icmp_data[32];
+extern piaip_v4hdr_t g_piaip_v4hdr;
 extern uint32_t g_seq;
 
 /*** prototype ***/
 /* init */
-int pia_ip_init (void);
+int piaip_init (void);
+
 /* dump */
-int pia_ip_dump(pia_ipv4hdr_t *);
-int pia_ip_dump_detail (pia_ipv4hdr_t *);
-int pia_ip_dumpv4(pia_ipv4hdr_t *);
-int pia_ip_dumpv6(pia_ipv4hdr_t *);
-int pia_ip_dump_ver (pia_ipv4hdr_t *);
-int pia_ip_dump_hlen (pia_ipv4hdr_t *);
-int pia_ip_dumptos (pia_ipv4hdr_t *, int);
-int pia_ip_dump_fragoff (pia_ipv4hdr_t *);
-const char * pia_ip_dump_protstr (pia_ipv4hdr_t *);
-int pia_ip_dump_prot (pia_ipv4hdr_t *);
-int pia_ip_dump_ipv4 (pia_ipv4hdr_t *);
-int pia_ip_dump_tos (pia_ipv4hdr_t *, int);
-int pia_ip_dump_tosprec (pia_ipv4hdr_t *);
-int pia_ip_dump_tosdscp (pia_ipv4hdr_t *);
+int          piaip_dump         (piaip_v4hdr_t *);
+int          piaip_dumpdtl      (piaip_v4hdr_t *);
+int          piaip_dumpv4       (piaip_v4hdr_t *);
+int          piaip_dumpv6       (piaip_v4hdr_t *);
+int          piaip_dump_ver     (piaip_v4hdr_t *);
+int          piaip_dump_hlen    (piaip_v4hdr_t *);
+int          piaip_dumptos      (piaip_v4hdr_t *, int);
+int          piaip_dump_fragoff (piaip_v4hdr_t *);
+const char * piaip_dump_protstr (piaip_v4hdr_t *);
+int          piaip_dump_prot    (piaip_v4hdr_t *);
+int          piaip_dump_ipv4    (piaip_v4hdr_t *);
+int          piaip_dump_tos     (piaip_v4hdr_t *, int);
+int          piaip_dump_tosprec (piaip_v4hdr_t *);
+int          piaip_dump_tosdscp (piaip_v4hdr_t *);
+
 /* header */
-int  pia_ip_setdefipv4 (uint8_t *, uint8_t *);
-int  pia_ip_setipv4 (pia_ipv4hdr_t *, uint8_t *, uint8_t *);
-int  pia_ip_getfrm (uint8_t *, size_t, int);
-void pia_ip_setdefip (uint8_t *, uint8_t *);
-void pia_ip_setip (pia_ipv4hdr_t *, uint8_t *, uint8_t *);
-int  pia_ip_sethdrlen (pia_ipv4hdr_t *, size_t);
-int  pia_ip_gethdrlen (pia_ipv4hdr_t *);
-uint16_t pia_ip_gettotal (pia_ipv4hdr_t *);
-int  pia_ip_settotal (pia_ipv4hdr_t *, uint16_t);
-uint16_t pia_ip_getid (pia_ipv4hdr_t *);
-int  pia_ip_updid (pia_ipv4hdr_t *);
-int  pia_ip_setprot (pia_ipv4hdr_t *, int8_t);
-uint8_t pia_ip_getprot (pia_ipv4hdr_t *);
-int  pia_ip_addopt (pia_ipv4hdr_t *, uint8_t *, size_t);
-int  pia_ip_getpldsize (pia_ipv4hdr_t *);
-int  pia_ip_setpldsize (pia_ipv4hdr_t *, size_t);
-int  pia_ip_updchksum (pia_ipv4hdr_t *);
-int  pia_ip_capsule (pia_ipv4hdr_t *, uint8_t *, size_t);
-int  pia_ip_getv4hdr (pia_ipv4hdr_t *, size_t);
-int  pia_ip_getv4hdr_tcp (pia_ipv4hdr_t *, size_t);
-int  pia_ip_getv4hdr_udp (pia_ipv4hdr_t *, size_t);
-int  pia_ip_getv4hdr_icmp (pia_ipv4hdr_t *, size_t);
-int  pia_ip_incid (pia_ipv4hdr_t *);
-uint8_t * pia_ip_seekpld (pia_ipv4hdr_t *);
+int       piaip_setdefipv4    (uint8_t *      , uint8_t *);
+int       piaip_setipv4       (piaip_v4hdr_t *, uint8_t *, uint8_t *);
+int       piaip_getfrm        (uint8_t *      , size_t   , int);
+void      piaip_setdefip      (uint8_t *      , uint8_t *);
+void      piaip_setip         (piaip_v4hdr_t *, uint8_t *, uint8_t *);
+int       piaip_sethdrlen     (piaip_v4hdr_t *, size_t);
+int       piaip_gethdrlen     (piaip_v4hdr_t *);
+uint16_t  piaip_gettotal      (piaip_v4hdr_t *);
+int       piaip_settotal      (piaip_v4hdr_t *, uint16_t);
+uint16_t  piaip_getid         (piaip_v4hdr_t *);
+int       piaip_updid         (piaip_v4hdr_t *);
+int       piaip_setprot       (piaip_v4hdr_t *, int8_t);
+uint8_t   piaip_getprot       (piaip_v4hdr_t *);
+int       piaip_addopt        (piaip_v4hdr_t *, uint8_t *, size_t);
+int       piaip_getpldsize    (piaip_v4hdr_t *);
+int       piaip_setpldsize    (piaip_v4hdr_t *, size_t);
+int       piaip_updchksum     (piaip_v4hdr_t *);
+int       piaip_capsule       (piaip_v4hdr_t *, uint8_t *, size_t);
+int       piaip_getv4hdr      (piaip_v4hdr_t *, size_t);
+int       piaip_getv4hdr_tcp  (piaip_v4hdr_t *, size_t);
+int       piaip_getv4hdr_udp  (piaip_v4hdr_t *, size_t);
+int       piaip_getv4hdr_icmp (piaip_v4hdr_t *, size_t);
+int       piaip_incid         (piaip_v4hdr_t *);
+uint8_t * piaip_seekpld       (piaip_v4hdr_t *);
+
 /* classifier */
-int pia_ip_isv4 (pia_ipv4hdr_t *);
-int pia_ip_isv6 (pia_ipv4hdr_t *);
-int pia_ip_istos (pia_ipv4hdr_t *, uint8_t);
-int pis_ip_issetopt (pia_ipv4hdr_t *);
-int pia_ip_isfragment (pia_ipv4hdr_t *);
-int pia_ip_isalived (pia_ipv4hdr_t *);
-int pia_ip_isicmp (pia_ipv4hdr_t *);
-int pia_ip_istcp (pia_ipv4hdr_t *);
-int pia_ip_isudp (pia_ipv4hdr_t *);
-int pia_ip_isprot (pia_ipv4hdr_t *, uint8_t);
-int pia_ip_issrc (pia_ipv4hdr_t *, uint8_t *);
-int pia_ip_isdst (pia_ipv4hdr_t *, uint8_t *);
-int pia_ip_is3way (pia_ipv4hdr_t *);
+int piaip_isv4     (piaip_v4hdr_t *);
+int piaip_isv6     (piaip_v4hdr_t *);
+int piaip_istos    (piaip_v4hdr_t *, uint8_t);
+int pisip_issetopt (piaip_v4hdr_t *);
+int piaip_isfgmt   (piaip_v4hdr_t *);
+int piaip_isalived (piaip_v4hdr_t *);
+int piaip_isicmp   (piaip_v4hdr_t *);
+int piaip_istcp    (piaip_v4hdr_t *);
+int piaip_isudp    (piaip_v4hdr_t *);
+int piaip_isprot   (piaip_v4hdr_t *, uint8_t);
+int piaip_issrc    (piaip_v4hdr_t *, uint8_t *);
+int piaip_isdst    (piaip_v4hdr_t *, uint8_t *);
+int piaip_is3way   (piaip_v4hdr_t *);
 /* util */
 #endif
 /* end of file */

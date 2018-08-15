@@ -8,7 +8,7 @@
 #include "pia/arp.h"
 
 /*** global ***/
-pia_arphdr_t g_arphdr;
+piaarp_hdr_t g_arphdr;
 
 /*** function ***/
 /**
@@ -16,20 +16,20 @@ pia_arphdr_t g_arphdr;
  * 
  * @return PIA_OK : proccessing success
  */
-int pia_arp_init (void) {
+int piaarp_init (void) {
     
     /* initialize global value */
-    memset(&g_arphdr, 0x00, sizeof(pia_arphdr_t));
+    memset(&g_arphdr, 0x00, sizeof(piaarp_hdr_t));
     
     /* set default value */
-#if __PIA_ARP_STYLE__ == MAC_IPV4
-    g_arphdr.htype = PIA_ARP_HTYPE_ETH;
-    g_arphdr.ptype = PIA_ETH_IP;
-    g_arphdr.hlen  = PIA_ETH_MACSIZE;
-    g_arphdr.plen  = PIA_IP_IPSIZE;
+#if __PIAARP_STYLE__ == MAC_IPV4
+    g_arphdr.htype = PIAARP_HTYPE_ETH;
+    g_arphdr.ptype = PIAETH_TYPE_IP;
+    g_arphdr.hlen  = PIAETH_MACSIZ;
+    g_arphdr.plen  = PIAIP_IPSIZ;
 #endif
     
-    memset(&g_arphdr.dhaddr[0], 0xFF, PIA_ETH_MACSIZE);
+    memset(&g_arphdr.dhaddr[0], 0xFF, PIAETH_MACSIZ);
     
     return PIA_OK;
 }

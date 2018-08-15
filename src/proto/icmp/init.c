@@ -8,29 +8,29 @@
 #include "pia/icmp.h"
 
 /*** global ***/
-pia_icmphdr_t  g_pia_icmphdr;
-pia_icmpecho_t g_pia_icmpecho;
-pia_icmpdat_t  g_pia_icmpdat;
-pia_icmpdat_t  g_pia_icmp_rcvdat;
+piaicm_hdr_t  g_piaicm_hdr;
+piaicm_echo_t g_piaicm_echo;
+piaicm_dat_t  g_piaicm_dat;
+piaicm_dat_t  g_piaicm_rcvdat;
 
-int pia_icmp_init(void) {
+int piaicm_init(void) {
     int loop = 0;
     
-    memset(&g_pia_icmphdr,     0x00, sizeof(pia_icmphdr_t));
-    memset(&g_pia_icmpdat,     0x00, sizeof(pia_icmpdat_t));
-    memset(&g_pia_icmp_rcvdat, 0x00, sizeof(pia_icmpdat_t));
+    memset(&g_piaicm_hdr   , 0x00, sizeof(piaicm_hdr_t));
+    memset(&g_piaicm_dat   , 0x00, sizeof(piaicm_dat_t));
+    memset(&g_piaicm_rcvdat, 0x00, sizeof(piaicm_dat_t));
     
     /* set default message type */
-    pia_icmp_setdef_type(PIA_ICMP_ECHOREQ);
+    piaicm_setdef_type(PIAICM_TYPE_ECHOREQ);
     
     /* init echo data */
-    g_pia_icmpecho.id  = PIA_M_BYTORD16((uint16_t) getpid());
-    g_pia_icmpecho.seq = PIA_M_BYTORD16(1);
+    g_piaicm_echo.id  = PIA_M_BYTORD16((uint16_t) getpid());
+    g_piaicm_echo.seq = PIA_M_BYTORD16(1);
     
     /* set default data area */
-    g_pia_icmpdat.size = PIA_ICMP_DATDEFSIZ;
-    for (loop=0;loop < g_pia_icmpdat.size;loop++) {
-        g_pia_icmpdat.data[loop] = loop;
+    g_piaicm_dat.size = PIAICM_DATDEFSIZ;
+    for (loop=0;loop < g_piaicm_dat.size;loop++) {
+        g_piaicm_dat.data[loop] = loop;
     }
     
     return PIA_OK;

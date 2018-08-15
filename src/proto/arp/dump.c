@@ -17,7 +17,7 @@
  * @return PIA_OK : dumping success
  * @note not supported
  */
-int pia_arp_dump (pia_arphdr_t * arp_hdr) {
+int piaarp_dump (piaarp_hdr_t * arp_hdr) {
    arp_hdr = arp_hdr;
    return 0;
 }
@@ -28,22 +28,22 @@ int pia_arp_dump (pia_arphdr_t * arp_hdr) {
  * @return PIA_NG : dumping failed
  * @return PIA_OK : dumping success
  */
-int pia_arp_dump_detail (pia_arphdr_t * arp_hdr) {
+int piaarp_dumpdtl (piaarp_hdr_t * arp_hdr) {
     /* check parameter */
     if (NULL == arp_hdr) {
         return PIA_NG;
     }
     printf("ARP Header\n");
     printf("===========================\n");
-    pia_arp_dump_htype(arp_hdr);
-    pia_arp_dump_ptype(arp_hdr);
+    piaarp_dump_htype(arp_hdr);
+    piaarp_dump_ptype(arp_hdr);
     
     printf("hardware address length : %02dbyte\n", arp_hdr->hlen);
     printf("protocol address length : %02dbyte\n", arp_hdr->plen);
     printf("operation code : ");
-    if (PIA_TRUE == pia_arp_isrequest(arp_hdr)) {
+    if (PIA_TRUE == piaarp_isrequest(arp_hdr)) {
         printf("Request\n");
-    } else if (PIA_TRUE == pia_arp_isreply(arp_hdr)) {
+    } else if (PIA_TRUE == piaarp_isreply(arp_hdr)) {
         printf("Reply\n");
     } else {
         printf("Unknown\n");
@@ -98,7 +98,7 @@ int pia_arp_dump_detail (pia_arphdr_t * arp_hdr) {
  * @return PIA_NG : dumping failed
  * @return PIA_OK : dumping success
  */
-int pia_arp_dump_htype(pia_arphdr_t *arp_hdr) {
+int piaarp_dump_htype(piaarp_hdr_t *arp_hdr) {
     char * type_lst[] = {
                   "Reserved"                  ,
                   "Ethernet"                  ,
@@ -175,7 +175,7 @@ int pia_arp_dump_htype(pia_arphdr_t *arp_hdr) {
  * @return PIA_NG : dumping failed
  * @return PIA_OK : dumping success
  */
-int pia_arp_dump_ptype(pia_arphdr_t *arp_hdr) {
+int piaarp_dump_ptype(piaarp_hdr_t *arp_hdr) {
     if (NULL == arp_hdr) {
         return PIA_NG;
     }

@@ -10,9 +10,9 @@
 #include "pia/icmp.h"
 
 /*** function ***/
-uint8_t pia_icmp_dump (pia_icmphdr_t * msg) {
+uint8_t piaicm_dump (piaicm_hdr_t * msg) {
     const char * str_buf = NULL;
-    pia_icmpecho_t * chk_echo = NULL;
+    piaicm_echo_t * chk_echo = NULL;
     
     /* check parameter */
     if (NULL == msg) {
@@ -21,21 +21,21 @@ uint8_t pia_icmp_dump (pia_icmphdr_t * msg) {
     }
     
     /* dump type */
-    str_buf = pia_icmp_gettype_str(msg);
+    str_buf = piaicm_gettype_str(msg);
     printf("icmp %s ", str_buf);
     
     /* check type */
-    if (PIA_TRUE == pia_icmp_isecho(msg)) {
+    if (PIA_TRUE == piaicm_isecho(msg)) {
         /* this is echo message */
-        chk_echo = (pia_icmpecho_t *) pia_icmp_seekecho(msg);
+        chk_echo = (piaicm_echo_t *) piaicm_seekecho(msg);
         if (NULL == chk_echo) {
             PIA_ERROR("return is NULL");
             return PIA_NG;
         }
-        printf("id=%u seq=%u", pia_icmp_getid(chk_echo), pia_icmp_getseq(chk_echo));
+        printf("id=%u seq=%u", piaicm_getid(chk_echo), piaicm_getseq(chk_echo));
     } else {
         /* dumo code */
-        str_buf = pia_icmp_getcode_str(msg);
+        str_buf = piaicm_getcode_str(msg);
         if (NULL == str_buf) {
             PIA_ERROR("return is NULL");
             return PIA_NG;
@@ -47,39 +47,39 @@ uint8_t pia_icmp_dump (pia_icmphdr_t * msg) {
     return PIA_OK;
 }
 
-uint8_t pia_icmp_dump_detail (pia_ipv4hdr_t * ip_hdr) {
+uint8_t piaicm_dumpdtl (piaip_v4hdr_t * ip_hdr) {
     const char * str_buf = NULL;
     int msg_siz = 0;
-    pia_icmphdr_t * msg = NULL;
+    piaicm_hdr_t * msg = NULL;
     
     if (NULL == ip_hdr) {
         PIA_ERROR("paramter is NULL");
         return PIA_NG;
     }
-    msg = (pia_icmphdr_t *) pia_ip_seekpld(ip_hdr);
+    msg = (piaicm_hdr_t *) piaip_seekpld(ip_hdr);
     
     printf("ICMP message\n");
     printf("==========================\n");
-    pia_icmp_dump_type(msg);
+    piaicm_dump_type(msg);
     
-    if (PIA_TRUE == pia_icmp_isecho(msg)) {
+    if (PIA_TRUE == piaicm_isecho(msg)) {
         /* this is echo message */
         printf("code     : 0x%02x\n", msg->code);
         printf("checksum : 0x%04x\n", msg->chksum);
-        pia_icmp_dump_id(msg);
-        pia_icmp_dump_seq(msg);
+        piaicm_dump_id(msg);
+        piaicm_dump_seq(msg);
         
-        msg_siz = pia_ip_getpldsize(ip_hdr);
+        msg_siz = piaip_getpldsize(ip_hdr);
         if (PIA_NG == msg_siz) {
             return PIA_NG;
         }
-        pia_icmp_dump_dat(
+        piaicm_dump_dat(
             msg,
-            msg_siz - (sizeof(pia_icmphdr_t) + sizeof(pia_icmpecho_t))
+            msg_siz - (sizeof(piaicm_hdr_t) + sizeof(piaicm_echo_t))
         );
     } else {
         /* dumo code */
-        str_buf = pia_icmp_getcode_str(msg);
+        str_buf = piaicm_getcode_str(msg);
         if (NULL == str_buf) {
             PIA_ERROR("return is NULL");
             return PIA_NG;
@@ -92,7 +92,7 @@ uint8_t pia_icmp_dump_detail (pia_ipv4hdr_t * ip_hdr) {
 }
 
 
-const char * pia_icmp_gettype_str (pia_icmphdr_t * msg) {
+const char * piaicm_gettype_str (piaicm_hdr_t * msg) {
     const char * tp_lst[] = {
         "echo reply"   ,             // 0x00
         "unknown"      ,             // 0x01
@@ -111,13 +111,13 @@ const char * pia_icmp_gettype_str (pia_icmphdr_t * msg) {
         PIA_ERROR("paramter is NULL");
         return NULL;
     }
-    if (PIA_ICMP_TMEXCD  >= msg->type) {
+    if (PIAICM_TYPE_TMEXCD  >= msg->type) {
         return tp_lst[msg->type];
     }
     return NULL;
 }
 
-const char * pia_icmp_getcode_str (pia_icmphdr_t * msg) {
+const char * piaicm_getcode_str (piaicm_hdr_t * msg) {
     uint8_t code     = 0;
     const char *  unrch_lst[] = {
         "net unreachable"                ,
@@ -152,24 +152,24 @@ const char * pia_icmp_getcode_str (pia_icmphdr_t * msg) {
         return NULL;
     }
     
-    if (PIA_TRUE == pia_icmp_isecho(msg)) {
+    if (PIA_TRUE == piaicm_isecho(msg)) {
         return NULL;
     }
     
     code = msg->code;
     switch (code) {
-        case PIA_ICMP_DSTUNRCH:
-            if (PIA_ICMP_DUNR_PRCDCF >= code) {
+        case PIAICM_TYPE_DSTUNRCH:
+            if (PIAICM_DUNR_PRCDCF >= code) {
                 return unrch_lst[code];
             }
             break;
-        case PIA_ICMP_REDIRECT:
-            if (PIA_ICMP_RDCT_DGTH >= code) {
+        case PIAICM_TYPE_REDIRECT:
+            if (PIAICM_RDCT_DGTH >= code) {
                 return rdct_lst[code];
             }
             break;
-        case PIA_ICMP_TMEXCD:
-            if ( (PIA_ICMP_TMEX_TTL == code) || (PIA_ICMP_TMEX_FGR == code) ) {
+        case PIAICM_TYPE_TMEXCD:
+            if ( (PIAICM_TMEX_TTL == code) || (PIAICM_TMEX_FGR == code) ) {
                 return tmex_lst[code];
             }
             break;
@@ -177,8 +177,8 @@ const char * pia_icmp_getcode_str (pia_icmphdr_t * msg) {
     return NULL;
 }
 
-uint8_t pia_icmp_dump_type (pia_icmphdr_t * msg) {
-    const char * type_str = pia_icmp_gettype_str(msg);
+uint8_t piaicm_dump_type (piaicm_hdr_t * msg) {
+    const char * type_str = piaicm_gettype_str(msg);
     if (NULL == type_str) {
         return PIA_NG;
     }
@@ -187,40 +187,40 @@ uint8_t pia_icmp_dump_type (pia_icmphdr_t * msg) {
     return PIA_OK;
 }
 
-uint8_t pia_icmp_dump_id(pia_icmphdr_t * msg) {
+uint8_t piaicm_dump_id(piaicm_hdr_t * msg) {
     uint8_t * seek = NULL;
     
-    seek = pia_icmp_seekecho(msg);
+    seek = piaicm_seekecho(msg);
     if (NULL == seek) {
         PIA_ERROR("return is NULL");
         return PIA_NG;
     }
-    printf("id       : %u\n", pia_icmp_getid((pia_icmpecho_t *)seek));
+    printf("id       : %u\n", piaicm_getid((piaicm_echo_t *)seek));
     return PIA_OK;
 }
 
-uint8_t pia_icmp_dump_seq(pia_icmphdr_t * msg) {
+uint8_t piaicm_dump_seq(piaicm_hdr_t * msg) {
     uint8_t * seek = NULL;
 
-    seek = pia_icmp_seekecho(msg);
+    seek = piaicm_seekecho(msg);
     if (NULL == seek) {
         PIA_ERROR("return is NULL");
         return PIA_NG;
     }
-    printf("sequence : %u\n", pia_icmp_getseq((pia_icmpecho_t *)seek));
+    printf("sequence : %u\n", piaicm_getseq((piaicm_echo_t *)seek));
     return PIA_OK;
 }
 
-uint8_t pia_icmp_dump_dat(pia_icmphdr_t * msg, size_t siz) {
+uint8_t piaicm_dump_dat(piaicm_hdr_t * msg, size_t siz) {
     uint8_t * seek = NULL;
     int       loop = 0;
     
-    seek = pia_icmp_seekecho(msg);
+    seek = piaicm_seekecho(msg);
     if (NULL == seek) {
         PIA_ERROR("return is NULL");
         return PIA_NG;
     }
-    seek = pia_icmp_seekecho_dat((pia_icmpecho_t *) seek);
+    seek = piaicm_seekecho_dat((piaicm_echo_t *) seek);
     if (NULL == seek) {
         PIA_ERROR("return is NULL");
         return PIA_NG;

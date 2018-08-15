@@ -8,52 +8,52 @@
 #include "pia/tcp.h"
 
 /*** function ***/
-int pia_tcp_issyn (pia_tcphdr_t * tcp_hdr) {
-    return pia_tcp_isctlflg(
+int piatcp_issyn (piatcp_hdr_t * tcp_hdr) {
+    return piatcp_isctlflg(
                tcp_hdr,
-               PIA_TCP_SYNFLG
+               PIATCP_CFLG_SYN
            );
 }
 
-int pia_tcp_isack (pia_tcphdr_t * tcp_hdr) {
-    return pia_tcp_isctlflg(
+int piatcp_isack (piatcp_hdr_t * tcp_hdr) {
+    return piatcp_isctlflg(
                tcp_hdr,
-               PIA_TCP_ACKFLG
+               PIATCP_CFLG_ACK
            );
 }
 
-int pia_tcp_issynack (pia_tcphdr_t * tcp_hdr) {
-    return pia_tcp_isctlflg(
+int piatcp_issynack (piatcp_hdr_t * tcp_hdr) {
+    return piatcp_isctlflg(
                tcp_hdr,
-               PIA_TCP_SYNFLG | PIA_TCP_ACKFLG
+               PIATCP_CFLG_SYN | PIATCP_CFLG_ACK
            );
 }
 
-int pia_tcp_isfinack (pia_tcphdr_t * tcp_hdr) {
-    return pia_tcp_isctlflg(
+int piatcp_isfinack (piatcp_hdr_t * tcp_hdr) {
+    return piatcp_isctlflg(
                tcp_hdr,
-               PIA_TCP_FINFLG | PIA_TCP_ACKFLG
+               PIATCP_CFLG_FIN | PIATCP_CFLG_ACK
            );
 }
 
-int pia_tcp_isrst (pia_tcphdr_t *tcp_hdr) {
-    return pia_tcp_isctlflg(
+int piatcp_isrst (piatcp_hdr_t *tcp_hdr) {
+    return piatcp_isctlflg(
                tcp_hdr,
-               PIA_TCP_RSTFLG
+               PIATCP_CFLG_RST
            );
 }
 
-int pia_tcp_isurg (pia_tcphdr_t * tcp_hdr) {
+int piatcp_isurg (piatcp_hdr_t * tcp_hdr) {
     if (NULL == tcp_hdr) {
         return PIA_NG;
     }
-    if (0 != (PIA_TCP_URGFLG & tcp_hdr->urgptr)) {
+    if (0 != (PIATCP_CFLG_URG & tcp_hdr->urgptr)) {
         return PIA_TRUE;
     }
     return PIA_FALSE;
 }
 
-int pia_tcp_isctlflg (pia_tcphdr_t * tcp_hdr, uint8_t flg) {
+int piatcp_isctlflg (piatcp_hdr_t * tcp_hdr, uint8_t flg) {
     if (NULL == tcp_hdr) {
         return PIA_NG;
     }
@@ -65,21 +65,21 @@ int pia_tcp_isctlflg (pia_tcphdr_t * tcp_hdr, uint8_t flg) {
     return PIA_FALSE;
 }
 
-int pia_tcp_existsopt(pia_tcphdr_t * tcp_hdr) {
+int piatcp_existsopt(piatcp_hdr_t * tcp_hdr) {
     if (NULL == tcp_hdr) {
         return PIA_NG;
     }
-    if (PIA_TCP_NOPTSIZ < pia_tcp_getoffset(tcp_hdr)) {
+    if (PIATCP_NOPTSIZ < piatcp_getoffset(tcp_hdr)) {
         return PIA_TRUE;
     }
     return PIA_FALSE;
 }
 
-int pia_tcp_isvalidopt (pia_tcpopt_t *opt) {
+int piatcp_isvalidopt (piatcp_opt_t *opt) {
     if (NULL == opt) {
         return PIA_NG;
     }
-    if (PIA_TCP_OPTTMSP < opt->type) {
+    if (PIATCP_OPT_TMSP < opt->type) {
         return PIA_FALSE;
     } else if ((0x06 == opt->type) || (opt->type == 0x07)) {
         return PIA_FALSE;

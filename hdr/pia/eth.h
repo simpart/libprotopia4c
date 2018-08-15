@@ -5,42 +5,45 @@
  */
 #include "pia/com.h"
 
-#ifndef __PIA_ETH_H__
-#define __PIA_ETH_H__
+#ifndef __PIAETH_H__
+#define __PIAETH_H__
 
 /*** define ***/
-#define PIA_ETH_IP  0x800
-#define PIA_ETH_ARP 0x806
-#define PIA_ETH_MACSIZE 6
-#define PIA_ETH_MAXFRM_SIZ 1518  // ethernet frame max size (byte)
+#define PIAETH_TYPE_IP  0x800
+#define PIAETH_TYPE_ARP 0x806
+#define PIAETH_MACSIZ   6
+#define PIAETH_MAXSIZ   1518  // ethernet frame max size (byte)
 
 /*** struct ***/
-typedef struct pia_ethhdr {
-    uint8_t  dmac[PIA_ETH_MACSIZE];
-    uint8_t  smac[PIA_ETH_MACSIZE];
+typedef struct piaeth_hdr {
+    uint8_t  dmac[PIAETH_MACSIZ];
+    uint8_t  smac[PIAETH_MACSIZ];
     uint16_t type;
-} pia_ethhdr_t;
+} piaeth_hdr_t;
 
 /*** prototype ***/
 /* init */
-int  pia_eth_init   (void);
+int piaeth_init   (void);
+
 /* classifier */
-int pia_eth_issrc  (pia_ethhdr_t *, uint8_t *);
-int pia_eth_isdst  (pia_ethhdr_t *, uint8_t *);
-int pia_eth_isbroadcast (pia_ethhdr_t *);
-int pia_eth_isip (pia_ethhdr_t *);
-int pia_eth_isarp (pia_ethhdr_t *);
-int pia_eth_isprot (pia_ethhdr_t *, uint16_t);
+int piaeth_issrc   (piaeth_hdr_t *, uint8_t *);
+int piaeth_isdst   (piaeth_hdr_t *, uint8_t *);
+int piaeth_isbcast (piaeth_hdr_t *);
+int piaeth_isip    (piaeth_hdr_t *);
+int piaeth_isarp   (piaeth_hdr_t *);
+int piaeth_isprot  (piaeth_hdr_t *, uint16_t);
+
 /* dump */
-int pia_eth_dump (pia_ethhdr_t *);
-int pia_eth_dump_detail (pia_ethhdr_t *);
+int piaeth_dump    (piaeth_hdr_t *);
+int piaeth_dumpdtl (piaeth_hdr_t *);
+
 /* header */
-int  pia_eth_setdefmac (uint8_t *, uint8_t *);
-int  pia_eth_setdeftype (uint16_t);
-int  pia_eth_setmac (pia_ethhdr_t *, uint8_t *, uint8_t *);
-int  pia_eth_settype (pia_ethhdr_t *, uint16_t);
-int  pia_eth_gethdr (pia_ethhdr_t *, size_t);
-int  pia_eth_gethdr_ip (pia_ethhdr_t *, size_t);
-int  pia_eth_gethdr_arp (pia_ethhdr_t *, size_t);
-uint8_t * pia_eth_seekpld (pia_ethhdr_t *);
+int       piaeth_setdefmac  (uint8_t *, uint8_t *);
+int       piaeth_setdeftype (uint16_t);
+int       piaeth_setmac     (piaeth_hdr_t *, uint8_t *, uint8_t *);
+int       piaeth_settype    (piaeth_hdr_t *, uint16_t);
+int       piaeth_gethdr     (piaeth_hdr_t *, size_t);
+int       piaeth_gethdr_ip  (piaeth_hdr_t *, size_t);
+int       piaeth_gethdr_arp (piaeth_hdr_t *, size_t);
+uint8_t * piaeth_seekpld    (piaeth_hdr_t *);
 #endif

@@ -10,7 +10,7 @@
 #include "pia/arp.h"
 
 /*** global ***/
-extern pia_arphdr_t g_arphdr;
+extern piaarp_hdr_t g_arphdr;
 
 /*** function ***/
 /**
@@ -21,7 +21,7 @@ extern pia_arphdr_t g_arphdr;
  * @return PIA_NG : proccessing failed
  * @note not supported yet
  */
-int pia_arp_setreq (uint8_t * rip) {
+int piaarp_setreq (uint8_t * rip) {
     rip = rip;
     return 0;
 }
@@ -31,35 +31,35 @@ int pia_arp_setreq (uint8_t * rip) {
  *
  * @param[in] buf : frame buffer
  * @param[in] max : buffer size
- * @param[in] type : arp type (PIA_ARP_OP_REQ/PIA_ARP_OP_REP)
+ * @param[in] type : arp type (PIAARP_OP_REQ/PIAARP_OP_REP)
  * @return PIA_OK : proccessing success
  * @return PIA_NG : proccessing failed
  * @note not supported yet
  */
-int pia_arp_getfrm (uint8_t *buf, size_t max, uint8_t type) {
+int piaarp_getfrm (uint8_t *buf, size_t max, uint8_t type) {
     int ret = 0;
-    pia_ethhdr_t * eth_hdr = NULL;
+    piaeth_hdr_t * eth_hdr = NULL;
     
     if (NULL == buf) {
         return PIA_NG;
     }
     
     /* get ether header */
-    ret = pia_eth_gethdr_arp((pia_ethhdr_t *)buf, max);
+    ret = piaeth_gethdr_arp((piaeth_hdr_t *)buf, max);
     if (PIA_NG == ret) {
         return ret;
     }
-    if (PIA_ARP_OP_REQ == type) {
+    if (PIAARP_OP_REQ == type) {
         /* this is request */
-        eth_hdr = (pia_ethhdr_t *) buf;
-        memset(&(eth_hdr->dmac[0]), 0xFF, PIA_ETH_MACSIZE);
+        eth_hdr = (piaeth_hdr_t *) buf;
+        memset(&(eth_hdr->dmac[0]), 0xFF, PIAETH_MACSIZ);
     }
     
     /* get arp header */
-    buf += sizeof(pia_ethhdr_t);  // seek to head of arp header
-    pia_arp_gethdr(
-        (pia_arphdr_t *) buf,
-        max - sizeof(pia_ethhdr_t),
+    buf += sizeof(piaeth_hdr_t);  // seek to head of arp header
+    piaarp_gethdr(
+        (piaarp_hdr_t *) buf,
+        max - sizeof(piaeth_hdr_t),
         type
     );
     
@@ -71,12 +71,12 @@ int pia_arp_getfrm (uint8_t *buf, size_t max, uint8_t type) {
  * 
  * @param[out] buf : header buffer
  * @param[in] max : buffer size
- * @param[in] type : arp type (PIA_ARP_OP_REQ/PIA_ARP_OP_REP)
+ * @param[in] type : arp type (PIAARP_OP_REQ/PIAARP_OP_REP)
  * @return PIA_OK : proccessing success
  * @return PIA_NG : proccessing failed
  * @note not supported yet
  */
-int pia_arp_gethdr (pia_arphdr_t *buf, size_t max, uint8_t type) {
+int piaarp_gethdr (piaarp_hdr_t *buf, size_t max, uint8_t type) {
 //    if ((NULL == buf) || (sizeof(pia_arphdr_t) > max)) {
 ///        return PIA_NG;
  //   }

@@ -38,7 +38,7 @@ int main (void) {
         memset(&buf[0], 0x00, sizeof(buf));
         
         /* get frame */
-        ret = pia_icmp_getfrm(&buf[0], sizeof(buf));
+        ret = piaicm_getfrm(&buf[0], sizeof(buf));
         if (PIA_NG == ret) {
             printf("get frame is failed\n");
             return -1;
@@ -73,14 +73,14 @@ int init_network (void) {
     pia_init();
     
     /* init ether member */
-    pia_eth_setdefmac(&dmac[0], &smac[0]);
-    pia_eth_setdeftype(PIA_ETH_IP);
+    piaeth_setdefmac(&dmac[0], &smac[0]);
+    piaeth_setdeftype(PIAETH_TYPE_IP);
     
     /* init ip member */
-    pia_ip_setdefipv4(&sip[0], &dip[0]);
+    piaip_setdefipv4(&sip[0], &dip[0]);
     
     /* init icmp member */
-    pia_icmp_setdef_type(PIA_ICMP_ECHOREQ);
+    piaicm_setdef_type(PIAICM_TYPE_ECHOREQ);
     
     return sock;
 }

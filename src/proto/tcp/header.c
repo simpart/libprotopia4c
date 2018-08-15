@@ -10,20 +10,20 @@
 #include "pia/tcp.h"
 
 /*** function ***/
-uint16_t pia_tcp_getport (pia_tcphdr_t * tcp_hdr, int type) {
+uint16_t piatcp_getport (piatcp_hdr_t * tcp_hdr, int type) {
     if (NULL == tcp_hdr) {
         return PIA_NG;
     }
     
-    if (PIA_TCP_SPORT == type) {
+    if (PIATCP_PORT_SRC == type) {
         return PIA_M_BYTORD16(tcp_hdr->sport);
-    } else if (PIA_TCP_DPORT == type) {
+    } else if (PIATCP_PORT_DST == type) {
         return PIA_M_BYTORD16(tcp_hdr->dport);
     }
     return PIA_NG;
 }
 
-uint32_t pia_tcp_getseq (pia_tcphdr_t * tcp_hdr) {
+uint32_t piatcp_getseq (piatcp_hdr_t * tcp_hdr) {
     if (NULL == tcp_hdr) {
         return PIA_NG;
     }
@@ -31,7 +31,7 @@ uint32_t pia_tcp_getseq (pia_tcphdr_t * tcp_hdr) {
     return PIA_M_BYTORD32(tcp_hdr->seq);
 }
 
-uint32_t pia_tcp_getchkack (pia_tcphdr_t * tcp_hdr) {
+uint32_t piatcp_getchkack (piatcp_hdr_t * tcp_hdr) {
     if (NULL == tcp_hdr) {
         return PIA_NG;
     }
@@ -39,28 +39,28 @@ uint32_t pia_tcp_getchkack (pia_tcphdr_t * tcp_hdr) {
     return PIA_M_BYTORD32(tcp_hdr->chkack);
 }
 
-uint8_t pia_tcp_getoffset (pia_tcphdr_t * tcp_hdr) {
+uint8_t piatcp_getoffset (piatcp_hdr_t * tcp_hdr) {
     if (NULL == tcp_hdr) {
         return PIA_NG;
     }
     return tcp_hdr->offset * 4;
 }
 
-uint16_t pia_tcp_getwinsiz (pia_tcphdr_t * tcp_hdr) {
+uint16_t piatcp_getwinsiz (piatcp_hdr_t * tcp_hdr) {
     if (NULL == tcp_hdr) {
         return PIA_NG;
     }
     return PIA_M_BYTORD16(tcp_hdr->winsiz);
 }
 
-uint16_t pia_tcp_geturgptr (pia_tcphdr_t * tcp_hdr) {
+uint16_t piatcp_geturgptr (piatcp_hdr_t * tcp_hdr) {
     if (NULL == tcp_hdr) {
         return PIA_NG;
     }
     return PIA_M_BYTORD16(tcp_hdr->urgptr);
 }
 
-int pia_tcp_getopt (pia_tcphdr_t * tcp_hdr, pia_tcpopt_t *opt , int idx) {
+int piatcp_getopt (piatcp_hdr_t * tcp_hdr, piatcp_opt_t *opt , int idx) {
     int loop    = 0;
     int vloop   = 0;
     int opt_siz = 0;
@@ -73,15 +73,15 @@ int pia_tcp_getopt (pia_tcphdr_t * tcp_hdr, pia_tcpopt_t *opt , int idx) {
     }
     
     /* get option size */
-    opt_siz = pia_tcp_getoffset(tcp_hdr) - PIA_TCP_NOPTSIZ;
+    opt_siz = piatcp_getoffset(tcp_hdr) - PIATCP_NOPTSIZ;
     
     do {
         /* init option */
-        memset(opt, 0x00, sizeof(pia_tcpopt_t));
+        memset(opt, 0x00, sizeof(piatcp_opt_t));
         
         /* check over run */
         if ( opt_siz <= (p_opt - p_fst) ) {
-            return PIA_TCP_OPTOVR;
+            return PIATCP_RET_OPTOVR;
         }
         
         /* get option type */
@@ -89,9 +89,9 @@ int pia_tcp_getopt (pia_tcphdr_t * tcp_hdr, pia_tcpopt_t *opt , int idx) {
         p_opt += sizeof(uint8_t);
         
         /* get option length */
-        if ( (PIA_TCP_OPTEND == opt->type) ||
-             (PIA_TCP_OPTNOO == opt->type) ||
-             (PIA_TRUE != pia_tcp_isvalidopt(opt)) ) {
+        if ( (PIATCP_OPT_END == opt->type) ||
+             (PIATCP_OPT_NO  == opt->type) ||
+             (PIA_TRUE != piatcp_isvalidopt(opt)) ) {
             /* skip length */
             loop++;
             continue;
@@ -100,7 +100,7 @@ int pia_tcp_getopt (pia_tcphdr_t * tcp_hdr, pia_tcpopt_t *opt , int idx) {
         p_opt += sizeof(uint8_t);
         
         /* get option value */
-        if (PIA_TCP_OPTSAPM == opt->type) {
+        if (PIATCP_OPT_SAPM == opt->type) {
             /* this is no value */
             loop++;
             continue;

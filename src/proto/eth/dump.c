@@ -3,11 +3,13 @@
  * @brief dump fuction for ether header
  * @author simpart
  */
+
 /*** include ***/
 #include <stdio.h>
 #include <string.h>
 #include "pia/com.h"
 #include "pia/eth.h"
+
 /*** functoin ***/
 /**
  * dump ether frame by a line
@@ -16,7 +18,7 @@
  * @return PIA_NG : dumping failed
  * @return PIA_OK : dumping success
  */
-int pia_eth_dump (pia_ethhdr_t * eth_hdr) {
+int piaeth_dump (piaeth_hdr_t * eth_hdr) {
     
     if (NULL == eth_hdr) {
         return PIA_NG;
@@ -51,7 +53,7 @@ int pia_eth_dump (pia_ethhdr_t * eth_hdr) {
  * @return PIA_NG : dumping failed
  * @return PIA_OK : dumping success
  */
-int pia_eth_dump_detail (pia_ethhdr_t *eth_hdr) {
+int piaeth_dumpdtl (piaeth_hdr_t *eth_hdr) {
     uint16_t     type = 0;
     
     if (NULL == eth_hdr) {

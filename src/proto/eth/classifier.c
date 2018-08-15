@@ -3,6 +3,7 @@
  * @brief classifier function for ip header
  * @author simpart
  */
+
 /*** include ***/
 #include <string.h>
 #include "pia/com.h"
@@ -18,13 +19,13 @@
  * @return PIA_TRUE : mac of paramter is same to src mac of header
  * @return PIA_FALSE : mac of paramter is different to src mac of header
  */
-int pia_eth_issrc (pia_ethhdr_t *eth_hdr, uint8_t *mac) {
+int piaeth_issrc (piaeth_hdr_t *eth_hdr, uint8_t *mac) {
     /* check parameter */
     if ((NULL == eth_hdr) || (NULL == mac)) {
         return PIA_NG;
     }
     /* compares mac */
-    if (0 == memcmp(&(eth_hdr->smac[0]), mac, PIA_ETH_MACSIZE)) {
+    if (0 == memcmp(&(eth_hdr->smac[0]), mac, PIAETH_MACSIZ)) {
         return PIA_TRUE;
     }
     return PIA_FALSE;
@@ -39,13 +40,13 @@ int pia_eth_issrc (pia_ethhdr_t *eth_hdr, uint8_t *mac) {
  * @return PIA_TRUE : mac of paramter is same to dest mac of header
  * @return PIA_FALSE : mac of paramter is different to dest mac of header
  */
-int pia_eth_isdst (pia_ethhdr_t *eth_hdr, uint8_t *mac) {
+int piaeth_isdst (piaeth_hdr_t *eth_hdr, uint8_t *mac) {
     /* check paramter */
     if ( (NULL == eth_hdr) || (NULL == mac)) {
         return PIA_NG;
     }
     /* compares mac */
-    if (0 == memcmp(&(eth_hdr->dmac[0]), mac, PIA_ETH_MACSIZE)) {
+    if (0 == memcmp(&(eth_hdr->dmac[0]), mac, PIAETH_MACSIZ)) {
         return PIA_TRUE;
     }
     return PIA_FALSE;
@@ -59,9 +60,9 @@ int pia_eth_isdst (pia_ethhdr_t *eth_hdr, uint8_t *mac) {
  * @return PIA_TRUE : dest mac is broadcast
  * @return PIA_FALSE : dest mac is not broadcast
  */
-int pia_eth_isbroadcast (pia_ethhdr_t *eth_hdr) {
+int piaeth_isbcast (piaeth_hdr_t *eth_hdr) {
     uint8_t chk_dst[] = {0xFF,0xFF,0xFF,0xFF,0xFF,0xFF};
-    return pia_eth_isdst(eth_hdr, chk_dst);
+    return piaeth_isdst(eth_hdr, chk_dst);
 }
 
 /**
@@ -72,13 +73,13 @@ int pia_eth_isbroadcast (pia_ethhdr_t *eth_hdr) {
  * @return PIA_TRUE :  paramter is ip packet
  * @return PIA_FALSE : paramter is not ip packet
  */
-int pia_eth_isip (pia_ethhdr_t *eth_hdr) {
+int piaeth_isip (piaeth_hdr_t *eth_hdr) {
     /* check parameter */
     if (NULL == eth_hdr) {
         return PIA_NG;
     }
     /* check ether type */
-    if (PIA_ETH_IP == PIA_M_BYTORD16(eth_hdr->type)) {
+    if (PIAETH_TYPE_IP == PIA_M_BYTORD16(eth_hdr->type)) {
         return PIA_TRUE;
     }
     return PIA_FALSE;
@@ -92,13 +93,13 @@ int pia_eth_isip (pia_ethhdr_t *eth_hdr) {
  * @return PIA_TRUE : paramter is arp packet
  * @return PIA_FALSE : paramter is not arp packet
  */
-int pia_eth_isarp (pia_ethhdr_t *eth_hdr) {
+int piaeth_isarp (piaeth_hdr_t *eth_hdr) {
     /* check paramter */
     if (NULL == eth_hdr) {
         return PIA_NG;
     }
     /* check ether type */
-    if (PIA_ETH_ARP == PIA_M_BYTORD16(eth_hdr->type)) {
+    if (PIAETH_TYPE_ARP == PIA_M_BYTORD16(eth_hdr->type)) {
         return PIA_TRUE;
     }
     return PIA_FALSE;
@@ -113,7 +114,7 @@ int pia_eth_isarp (pia_ethhdr_t *eth_hdr) {
  * @return PIA_TRUE : prot is same to protocol type of header
  * @return PIA_FALSE : prot is different to protocol type of header
  */
-int pia_eth_isprot (pia_ethhdr_t *eth_hdr, uint16_t prot) {
+int piaeth_isprot (piaeth_hdr_t *eth_hdr, uint16_t prot) {
     /* check paramter */
     if (NULL == eth_hdr) {
         return PIA_NG;

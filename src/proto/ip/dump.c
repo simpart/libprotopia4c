@@ -9,7 +9,7 @@
 #include "pia/ip.h"
 
 /*** global ***/
-extern pia_ipv4hdr_t g_pia_ipv4hdr;
+extern piaip_v4hdr_t g_piaip_v4hdr;
 
 /*** function ***/
 /**
@@ -20,7 +20,7 @@ extern pia_ipv4hdr_t g_pia_ipv4hdr;
  * @return PIA_OK : dumping success
  * @note not supported
  */
-int pia_ip_dump (pia_ipv4hdr_t * ip_hdr) {
+int piaip_dump (piaip_v4hdr_t * ip_hdr) {
     uint8_t null_ip[] = {0, 0, 0, 0};
     
     /* check parameter */
@@ -30,8 +30,8 @@ int pia_ip_dump (pia_ipv4hdr_t * ip_hdr) {
     
     printf("ip ");
     
-    if ( (0 != memcmp(&(g_pia_ipv4hdr.sip[0]), &null_ip[0],       PIA_IP_IPSIZE)) &&
-         (0 == memcmp(&(g_pia_ipv4hdr.sip[0]), &(ip_hdr->dip[0]), PIA_IP_IPSIZE)) ) {
+    if ( (0 != memcmp(&(g_piaip_v4hdr.sip[0]), &null_ip[0],       PIAIP_IPSIZ)) &&
+         (0 == memcmp(&(g_piaip_v4hdr.sip[0]), &(ip_hdr->dip[0]), PIAIP_IPSIZ)) ) {
         printf(
             "%u.%u.%u.%u",
             ip_hdr->dip[0],
@@ -75,25 +75,25 @@ int pia_ip_dump (pia_ipv4hdr_t * ip_hdr) {
  * @return PIA_NG : dumping failed
  * @return PIA_OK : dumping success
  */
-int pia_ip_dump_detail (pia_ipv4hdr_t * ip_hdr) {
+int piaip_dumpdtl (piaip_v4hdr_t * ip_hdr) {
     /* check parameter */
     if (NULL == ip_hdr) {
         return PIA_NG;
     }
     /* check version */
     printf("IP Header");
-    if (PIA_TRUE == pia_ip_isv4(ip_hdr)) {
+    if (PIA_TRUE == piaip_isv4(ip_hdr)) {
         printf("(v4)\n");
         printf("===========================\n");
-        pia_ip_dumpv4(ip_hdr);
-    } else if (PIA_TRUE == pia_ip_isv6(ip_hdr)) {
+        piaip_dumpv4(ip_hdr);
+    } else if (PIA_TRUE == piaip_isv6(ip_hdr)) {
         printf("(v6)\n");
         printf("===========================\n");
-        pia_ip_dumpv6(ip_hdr);
+        piaip_dumpv6(ip_hdr);
     } else {
         printf("(unknown version)\n");
         printf("===========================\n");
-        pia_ip_dumpv4(ip_hdr);
+        piaip_dumpv4(ip_hdr);
     }
     return PIA_OK;
 }
@@ -104,31 +104,31 @@ int pia_ip_dump_detail (pia_ipv4hdr_t * ip_hdr) {
  * @return PIA_NG : dumping failed
  * @return PIA_OK : dumping success
  */
-int pia_ip_dumpv4(pia_ipv4hdr_t *ip_hdr) {
+int piaip_dumpv4(piaip_v4hdr_t *ip_hdr) {
     /* check parameter */
     if (NULL == ip_hdr) {
         return PIA_NG;
     }
     /* version */
-    pia_ip_dump_ver(ip_hdr);
+    piaip_dump_ver(ip_hdr);
     /* header length */
-    pia_ip_dump_hlen(ip_hdr);
+    piaip_dump_hlen(ip_hdr);
     /* type of service */
-    pia_ip_dump_tos(ip_hdr, PIA_IP_TOSDMP);
+    piaip_dump_tos(ip_hdr, PIAIP_TOSDMP);
     /* total length */
     printf("total length  : %u byte\n", PIA_M_BYTORD16(ip_hdr->total));
     /* identification */
     printf("id            : %u\n", PIA_M_BYTORD16(ip_hdr->id));
     /* flag offset */
-    pia_ip_dump_fragoff(ip_hdr);
+    piaip_dump_fragoff(ip_hdr);
     /* time to live */
     printf("time to live  : %u\n" , ip_hdr->ttl );
     /* protocol */
-    pia_ip_dump_prot(ip_hdr);
+    piaip_dump_prot(ip_hdr);
     /* check sum */
     printf("check sum     : 0x%x\n", ip_hdr->chksum);
     /* ip address */
-    pia_ip_dump_ipv4(ip_hdr);
+    piaip_dump_ipv4(ip_hdr);
     return PIA_OK;
 }
 /**
@@ -139,7 +139,7 @@ int pia_ip_dumpv4(pia_ipv4hdr_t *ip_hdr) {
  * @return PIA_OK : dumping success
  * @note not supported
  */
-int pia_ip_dumpv6(pia_ipv4hdr_t *ip_hdr) {
+int piaip_dumpv6(piaip_v4hdr_t *ip_hdr) {
     if (NULL == ip_hdr) {
         return PIA_NG;
     }
@@ -154,7 +154,7 @@ int pia_ip_dumpv6(pia_ipv4hdr_t *ip_hdr) {
  * @return PIA_NG : dumping failed
  * @return PIA_OK : dumping success
  */
-int pia_ip_dump_ver (pia_ipv4hdr_t *ip_hdr) {
+int piaip_dump_ver (piaip_v4hdr_t *ip_hdr) {
     if (NULL == ip_hdr) {
         return PIA_NG;
     }
@@ -168,7 +168,7 @@ int pia_ip_dump_ver (pia_ipv4hdr_t *ip_hdr) {
  * @return PIA_NG : dumping failed
  * @return PIA_OK : dumping success
  */
-int pia_ip_dump_hlen (pia_ipv4hdr_t *ip_hdr) {
+int piaip_dump_hlen (piaip_v4hdr_t *ip_hdr) {
     if (NULL == ip_hdr) {
         return PIA_NG;
     }
@@ -179,18 +179,18 @@ int pia_ip_dump_hlen (pia_ipv4hdr_t *ip_hdr) {
  * dump type of servie
  *
  * @param[in] ip_hdr : head pointer to ip header
- * @param[in] dmp_tp : dump type (PIA_IP_PREC/PIA_IP_DSCP)
+ * @param[in] dmp_tp : dump type (PIAIP_PREC/PIA_IP_DSCP)
  * @return PIA_NG : dumping failed
  * @return PIA_OK : dumping success
  */
-int pia_ip_dump_tos (pia_ipv4hdr_t *ip_hdr, int dmp_tp) {
+int piaip_dump_tos (piaip_v4hdr_t *ip_hdr, int dmp_tp) {
     if (NULL == ip_hdr) {
         return PIA_NG;
     }
-    if (PIA_IP_PREC == dmp_tp) {
-        pia_ip_dump_tosprec(ip_hdr);
-    } else if (PIA_IP_DSCP == dmp_tp) {
-        pia_ip_dump_tosdscp(ip_hdr);
+    if (PIAIP_PREC == dmp_tp) {
+        piaip_dump_tosprec(ip_hdr);
+    } else if (PIAIP_DSCP == dmp_tp) {
+        piaip_dump_tosdscp(ip_hdr);
     } else {
         printf("not supported\n");
     }
@@ -203,7 +203,7 @@ int pia_ip_dump_tos (pia_ipv4hdr_t *ip_hdr, int dmp_tp) {
  * @return PIA_NG : dumping failed
  * @return PIA_OK : dumping success
  */
-int pia_ip_dump_tosprec (pia_ipv4hdr_t *ip_hdr) {
+int piaip_dump_tosprec (piaip_v4hdr_t *ip_hdr) {
     if (NULL == ip_hdr) {
         return PIA_NG;
     }
@@ -247,7 +247,7 @@ int pia_ip_dump_tosprec (pia_ipv4hdr_t *ip_hdr) {
  * @return PIA_NG : dumping failed
  * @return PIA_OK : dumping success
  */
-int pia_ip_dump_tosdscp (pia_ipv4hdr_t *ip_hdr) {
+int piaip_dump_tosdscp (piaip_v4hdr_t *ip_hdr) {
 ip_hdr = ip_hdr;
 //    int dscp = IPTOS_DSCP(ip_hdr->tos);
 //    /* check parameter */
@@ -312,7 +312,7 @@ ip_hdr = ip_hdr;
  * @return PIA_NG : dumping failed
  * @return PIA_OK : dumping success
  */
-int pia_ip_dump_fragoff (pia_ipv4hdr_t *ip_hdr) {
+int piaip_dump_fragoff (piaip_v4hdr_t *ip_hdr) {
     /* check parameter */
     if (NULL == ip_hdr) {
         return PIA_NG;
@@ -335,7 +335,7 @@ int pia_ip_dump_fragoff (pia_ipv4hdr_t *ip_hdr) {
  * @return protocol string
  * @return NULL : getting string is failed
  */
-const char * pia_ip_dump_protstr (pia_ipv4hdr_t *ip_hdr) {
+const char * piaip_dump_protstr (piaip_v4hdr_t *ip_hdr) {
     const char * prt_str[] = {
         "hopopt"       ,  // 0
         "icmp"         ,  // 1
@@ -492,14 +492,14 @@ const char * pia_ip_dump_protstr (pia_ipv4hdr_t *ip_hdr) {
 }
 
 
-int pia_ip_dump_prot (pia_ipv4hdr_t *ip_hdr) {
+int piaip_dump_prot (piaip_v4hdr_t *ip_hdr) {
     const char * prt_str = NULL;
     
     if (NULL == ip_hdr) {
         return PIA_NG;
     }
     
-    prt_str = pia_ip_dump_protstr(ip_hdr);
+    prt_str = piaip_dump_protstr(ip_hdr);
     printf("protocol      : %s", prt_str);
     printf(" (0x%x)\n", ip_hdr->prot);
     
@@ -512,7 +512,7 @@ int pia_ip_dump_prot (pia_ipv4hdr_t *ip_hdr) {
  * @return PIA_NG : dumping failed
  * @return PIA_OK : dumping success
  */
-int pia_ip_dump_ipv4 (pia_ipv4hdr_t *ip_hdr) {
+int piaip_dump_ipv4 (piaip_v4hdr_t *ip_hdr) {
     /* check parameter */
     if (NULL == ip_hdr) {
         return PIA_NG;

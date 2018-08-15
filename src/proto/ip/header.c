@@ -12,11 +12,11 @@
 #include "pia/eth.h"
 
 /*** global ***/
-extern pia_ipv4hdr_t g_pia_ipv4hdr;
-extern pia_ipv4hdr_t g_pia_ipv4hdr_tcp;
-extern pia_ipv4hdr_t g_pia_ipv4hdr_udp;
-extern pia_ipv4hdr_t g_pia_ipv4hdr_icmp;
-extern int g_pia_ip_setaddr;
+extern piaip_v4hdr_t g_piaip_v4hdr;
+extern piaip_v4hdr_t g_piaip_v4hdr_tcp;
+extern piaip_v4hdr_t g_piaip_v4hdr_udp;
+extern piaip_v4hdr_t g_piaip_v4hdr_icmp;
+extern int g_piaip_setaddr;
 
 /*** function ***/
 /**
@@ -26,35 +26,35 @@ extern int g_pia_ip_setaddr;
  * @param dip : dest ip address
  * @return PIA_OK proccessing success
  */
-int pia_ip_setdefipv4 (uint8_t *sip, uint8_t *dip) {
-    uint8_t cmp_ip[PIA_IP_IPSIZE] = {0};
+int piaip_setdefipv4 (uint8_t *sip, uint8_t *dip) {
+    uint8_t cmp_ip[PIAIP_IPSIZ] = {0};
     
     /* set src ip */
     if (NULL != sip) {
-        memcpy(g_pia_ipv4hdr.sip,      sip, PIA_IP_IPSIZE);
-        memcpy(g_pia_ipv4hdr_tcp.sip,  sip, PIA_IP_IPSIZE);
-        memcpy(g_pia_ipv4hdr_udp.sip,  sip, PIA_IP_IPSIZE);
-        memcpy(g_pia_ipv4hdr_icmp.sip, sip, PIA_IP_IPSIZE);
+        memcpy(g_piaip_v4hdr.sip,      sip, PIAIP_IPSIZ);
+        memcpy(g_piaip_v4hdr_tcp.sip,  sip, PIAIP_IPSIZ);
+        memcpy(g_piaip_v4hdr_udp.sip,  sip, PIAIP_IPSIZ);
+        memcpy(g_piaip_v4hdr_icmp.sip, sip, PIAIP_IPSIZ);
     }
     /* set dest ip */
     if (NULL != dip) {
-        memcpy(g_pia_ipv4hdr.dip,      dip, PIA_IP_IPSIZE);
-        memcpy(g_pia_ipv4hdr_tcp.dip,  dip, PIA_IP_IPSIZE);
-        memcpy(g_pia_ipv4hdr_udp.dip,  dip, PIA_IP_IPSIZE);
-        memcpy(g_pia_ipv4hdr_icmp.dip, dip, PIA_IP_IPSIZE);
+        memcpy(g_piaip_v4hdr.dip,      dip, PIAIP_IPSIZ);
+        memcpy(g_piaip_v4hdr_tcp.dip,  dip, PIAIP_IPSIZ);
+        memcpy(g_piaip_v4hdr_udp.dip,  dip, PIAIP_IPSIZ);
+        memcpy(g_piaip_v4hdr_icmp.dip, dip, PIAIP_IPSIZ);
     }
     /* update init flag */
     if ((NULL != sip) && (NULL != dip)) {
-        g_pia_ip_setaddr = PIA_TRUE;
-    } else if ( (0 != memcmp(&(g_pia_ipv4hdr.sip[0]), &cmp_ip[0], PIA_IP_IPSIZE)) &&
-                (0 != memcmp(&(g_pia_ipv4hdr.dip[0]), &cmp_ip[0], PIA_IP_IPSIZE))) {
-        g_pia_ip_setaddr = PIA_TRUE;
+        g_piaip_setaddr = PIA_TRUE;
+    } else if ( (0 != memcmp(&(g_piaip_v4hdr.sip[0]), &cmp_ip[0], PIAIP_IPSIZ)) &&
+                (0 != memcmp(&(g_piaip_v4hdr.dip[0]), &cmp_ip[0], PIAIP_IPSIZ))) {
+        g_piaip_setaddr = PIA_TRUE;
     }
     
-    pia_ip_updchksum(&g_pia_ipv4hdr);
-    pia_ip_updchksum(&g_pia_ipv4hdr_tcp);
-    pia_ip_updchksum(&g_pia_ipv4hdr_udp);
-    pia_ip_updchksum(&g_pia_ipv4hdr_icmp);
+    piaip_updchksum(&g_piaip_v4hdr);
+    piaip_updchksum(&g_piaip_v4hdr_tcp);
+    piaip_updchksum(&g_piaip_v4hdr_udp);
+    piaip_updchksum(&g_piaip_v4hdr_icmp);
     
     return PIA_OK;
 }
@@ -68,21 +68,21 @@ int pia_ip_setdefipv4 (uint8_t *sip, uint8_t *dip) {
  * @return PIA_OK : set ipaddress is success
  * @return PIA_NG : set ipaddress failed
  */
-int pia_ip_setipv4 (pia_ipv4hdr_t *ip_hdr, uint8_t *sip, uint8_t *dip) {
+int piaip_setipv4 (piaip_v4hdr_t *ip_hdr, uint8_t *sip, uint8_t *dip) {
     /* check parameter */
     if (NULL == ip_hdr) {
         return PIA_NG;
     }
     /* set src ip */
     if (NULL != sip) {
-        memcpy(ip_hdr->sip, sip, PIA_IP_IPSIZE);
+        memcpy(ip_hdr->sip, sip, PIAIP_IPSIZ);
     }
     /* set dest ip */
     if (NULL != dip) {
-        memcpy(ip_hdr->dip, dip, PIA_IP_IPSIZE);
+        memcpy(ip_hdr->dip, dip, PIAIP_IPSIZ);
     }
     
-    pia_ip_updchksum(ip_hdr);
+    piaip_updchksum(ip_hdr);
     
     return PIA_OK;
 }
@@ -96,7 +96,7 @@ int pia_ip_setipv4 (pia_ipv4hdr_t *ip_hdr, uint8_t *sip, uint8_t *dip) {
  * @return PIA_NG : failed
  * @note total length and checksum is recalculated
  */
-int pia_ip_sethdrlen (pia_ipv4hdr_t * ip_hdr, size_t byte) {
+int piaip_sethdrlen (piaip_v4hdr_t * ip_hdr, size_t byte) {
     int diff = 0;
     
     /* check parameter */
@@ -104,10 +104,10 @@ int pia_ip_sethdrlen (pia_ipv4hdr_t * ip_hdr, size_t byte) {
         return PIA_NG;
     }
     
-    diff = byte - pia_ip_gethdrlen(ip_hdr);
+    diff = byte - piaip_gethdrlen(ip_hdr);
     ip_hdr->hlen  =  (byte/4);
     ip_hdr->total = PIA_M_BYTORD16(PIA_M_BYTORD16(((ip_hdr->total) + diff)));
-    pia_ip_updchksum(ip_hdr);
+    piaip_updchksum(ip_hdr);
     return PIA_OK;
 }
 
@@ -118,63 +118,63 @@ int pia_ip_sethdrlen (pia_ipv4hdr_t * ip_hdr, size_t byte) {
  * @return header length (byte)
  * @return PIA_NG : failed
  */
-int pia_ip_gethdrlen (pia_ipv4hdr_t * ip_hdr) {
+int piaip_gethdrlen (piaip_v4hdr_t * ip_hdr) {
     if (NULL == ip_hdr) {
         return PIA_NG;
     }
     return ip_hdr->hlen * 4;
 }
 
-uint16_t pia_ip_gettotal (pia_ipv4hdr_t * ip_hdr) {
+uint16_t piaip_gettotal (piaip_v4hdr_t * ip_hdr) {
     if (NULL == ip_hdr) {
         return PIA_NG;
     }
     return PIA_M_BYTORD16(ip_hdr->total);
 }
 
-int pia_ip_settotal (pia_ipv4hdr_t * ip_hdr, uint16_t size) {
+int piaip_settotal (piaip_v4hdr_t * ip_hdr, uint16_t size) {
     if (NULL == ip_hdr) {
         return PIA_NG;
     }
     ip_hdr->total = PIA_M_BYTORD16(size);
-    pia_ip_updchksum(ip_hdr);
+    piaip_updchksum(ip_hdr);
     
     return PIA_OK;
 }
 
-uint16_t pia_ip_getid (pia_ipv4hdr_t * ip_hdr) {
+uint16_t piaip_getid (piaip_v4hdr_t * ip_hdr) {
     if (NULL == ip_hdr) {
         return PIA_NG;
     }
     return PIA_M_BYTORD16(ip_hdr->id);
 }
 
-int pia_ip_updid (pia_ipv4hdr_t * ip_hdr) {
+int piaip_updid (piaip_v4hdr_t * ip_hdr) {
     if (NULL == ip_hdr) {
         return PIA_NG;
     }
     ip_hdr->id = PIA_M_BYTORD16(pia_random(PIA_RANDOM_16));
-    pia_ip_updchksum(ip_hdr);
+    piaip_updchksum(ip_hdr);
     return PIA_OK;
 }
 
-int pia_ip_setprot (pia_ipv4hdr_t * ip_hdr, int8_t prot) {
+int piaip_setprot (piaip_v4hdr_t * ip_hdr, int8_t prot) {
     if (NULL == ip_hdr) {
         return PIA_NG;
     }
     ip_hdr->prot = prot;
-    pia_ip_updchksum(ip_hdr);
+    piaip_updchksum(ip_hdr);
     return PIA_OK;
 }
 
-uint8_t pia_ip_getprot (pia_ipv4hdr_t * ip_hdr) {
+uint8_t piaip_getprot (piaip_v4hdr_t * ip_hdr) {
     if (NULL == ip_hdr) {
         return PIA_NG;
     }
     return ip_hdr->prot;
 }
 
-int pia_ip_addopt (pia_ipv4hdr_t * ip_hdr, uint8_t *opt, size_t opt_siz) {
+int piaip_addopt (piaip_v4hdr_t * ip_hdr, uint8_t *opt, size_t opt_siz) {
     int      pld_siz = 0;
     uint8_t *pld_buf = NULL;
     uint8_t *seek    = NULL;
@@ -184,13 +184,13 @@ int pia_ip_addopt (pia_ipv4hdr_t * ip_hdr, uint8_t *opt, size_t opt_siz) {
     }
     
     /* get payload size */
-    pld_siz = pia_ip_getpldsize(ip_hdr);
+    pld_siz = piaip_getpldsize(ip_hdr);
     if (PIA_NG == pld_siz) {
         return PIA_NG;
     }
     
     /* buffering payload */
-    seek = pia_ip_seekpld(ip_hdr);
+    seek = piaip_seekpld(ip_hdr);
     if (NULL == seek) {
         return PIA_NG;
     }
@@ -205,12 +205,12 @@ int pia_ip_addopt (pia_ipv4hdr_t * ip_hdr, uint8_t *opt, size_t opt_siz) {
     memcpy(seek, opt, opt_siz);
 
     /* update header value */
-    pia_ip_sethdrlen (
+    piaip_sethdrlen (
         ip_hdr,
-        pia_ip_gethdrlen(ip_hdr) + opt_siz
+        piaip_gethdrlen(ip_hdr) + opt_siz
     );
 
-    seek = pia_ip_seekpld(ip_hdr);
+    seek = piaip_seekpld(ip_hdr);
     
     /* link payload */
     memcpy(seek, pld_buf, pld_siz);
@@ -226,7 +226,7 @@ int pia_ip_addopt (pia_ipv4hdr_t * ip_hdr, uint8_t *opt, size_t opt_siz) {
  * @return total length (byte)
  * @return PIA_NG : failed
  */
-int pia_ip_getpldsize (pia_ipv4hdr_t * ip_hdr) {
+int piaip_getpldsize (piaip_v4hdr_t * ip_hdr) {
     uint16_t total = 0;
     
     /* check parameter */
@@ -237,17 +237,17 @@ int pia_ip_getpldsize (pia_ipv4hdr_t * ip_hdr) {
     return total - (ip_hdr->hlen*4);
 }
 
-int pia_ip_setpldsize (pia_ipv4hdr_t * ip_hdr, size_t size) {
+int piaip_setpldsize (piaip_v4hdr_t * ip_hdr, size_t size) {
     /* check parameter */
     if (NULL == ip_hdr) {
         return PIA_NG;
     }
     ip_hdr->total = PIA_M_BYTORD16(((ip_hdr->hlen*4) + size));
-    pia_ip_updchksum(ip_hdr);
+    piaip_updchksum(ip_hdr);
     return PIA_OK;
 }
 
-int pia_ip_updchksum (pia_ipv4hdr_t * ip_hdr) {
+int piaip_updchksum (piaip_v4hdr_t * ip_hdr) {
     /* check parameter */
     if (NULL == ip_hdr) {
         return PIA_NG;
@@ -257,21 +257,21 @@ int pia_ip_updchksum (pia_ipv4hdr_t * ip_hdr) {
     return PIA_OK;
 }
 
-int pia_ip_capsule (pia_ipv4hdr_t * ip_hdr, uint8_t *pld, size_t siz) {
+int piaip_capsule (piaip_v4hdr_t * ip_hdr, uint8_t *pld, size_t siz) {
     uint8_t *seek = NULL;
     
     if ((NULL == ip_hdr) || (NULL == pld)) {
         return PIA_NG;
     }
-    seek = pia_ip_seekpld(ip_hdr);
+    seek = piaip_seekpld(ip_hdr);
     if (NULL == seek) {
         return PIA_NG;
     }
     /* add payload */
     memcpy(seek, pld, siz);
-    pia_ip_settotal(
+    piaip_settotal(
         ip_hdr,
-        pia_ip_gethdrlen(ip_hdr) + siz
+        piaip_gethdrlen(ip_hdr) + siz
     );
     
     return PIA_OK;
@@ -286,41 +286,41 @@ int pia_ip_capsule (pia_ipv4hdr_t * ip_hdr, uint8_t *pld, size_t siz) {
  * @return PIA_OK proccessing success
  * @return PIA_NG proccessing failed
  */
-int pia_ip_getfrm (uint8_t *buf, size_t max, int prot) {
-    pia_ipv4hdr_t *ip_hdr = NULL;
+int piaip_getfrm (uint8_t *buf, size_t max, int prot) {
+    piaip_v4hdr_t *ip_hdr = NULL;
     /* check parameter */
-    if ((NULL == buf) || (sizeof(pia_ethhdr_t)+sizeof(pia_ipv4hdr_t) > max)) {
+    if ((NULL == buf) || (sizeof(piaeth_hdr_t)+sizeof(piaip_v4hdr_t) > max)) {
         return PIA_NG;
     }
     /* get ether header */
-    pia_eth_gethdr_ip((pia_ethhdr_t *)buf, max);
-    buf += (sizeof(pia_ethhdr_t));  // seek to head pointer to ip header
+    piaeth_gethdr_ip((piaeth_hdr_t *)buf, max);
+    buf += (sizeof(piaeth_hdr_t));  // seek to head pointer to ip header
 
     /* get ip header */
-    if (PIA_IP_ICMP == prot) {
+    if (PIAIP_TYPE_ICMP == prot) {
         /* get icmp protocol ip header */
-        pia_ip_getv4hdr_icmp(
-            (pia_ipv4hdr_t *)buf,
-            max-(sizeof(pia_ethhdr_t))
+        piaip_getv4hdr_icmp(
+            (piaip_v4hdr_t *)buf,
+            max-(sizeof(piaeth_hdr_t))
         );
-    } else if (PIA_IP_TCP == prot) {
+    } else if (PIAIP_TYPE_TCP == prot) {
         /* get tcp protocol ip header */
-        pia_ip_getv4hdr_tcp(
-            (pia_ipv4hdr_t *)buf,
-            max-(sizeof(pia_ethhdr_t))
+        piaip_getv4hdr_tcp(
+            (piaip_v4hdr_t *)buf,
+            max-(sizeof(piaeth_hdr_t))
         );
-    } else if (PIA_IP_UDP == prot) {
+    } else if (PIAIP_TYPE_UDP == prot) {
         /* get udp protocol ip header */
-        pia_ip_getv4hdr_udp(
-            (pia_ipv4hdr_t *)buf,
-            max-(sizeof(pia_ethhdr_t))
+        piaip_getv4hdr_udp(
+            (piaip_v4hdr_t *)buf,
+            max-(sizeof(piaeth_hdr_t))
         );
     } else {
-        pia_ip_getv4hdr(
-            (pia_ipv4hdr_t *)buf,
-            max-(sizeof(pia_ethhdr_t))
+        piaip_getv4hdr(
+            (piaip_v4hdr_t *)buf,
+            max-(sizeof(piaeth_hdr_t))
         );
-        ip_hdr = (pia_ipv4hdr_t *) buf;
+        ip_hdr = (piaip_v4hdr_t *) buf;
         ip_hdr->prot = prot;
     }
     
@@ -335,19 +335,19 @@ int pia_ip_getfrm (uint8_t *buf, size_t max, int prot) {
  * @return PIA_OK proccessing success
  * @return PIA_NG proccessing failed
  */
-int pia_ip_getv4hdr (pia_ipv4hdr_t *buf, size_t max) {
+int piaip_getv4hdr (piaip_v4hdr_t *buf, size_t max) {
     if ( (NULL == buf) ||
-         (sizeof(pia_ipv4hdr_t) > max) ||
-         (PIA_FALSE == g_pia_ip_setaddr) ) {
+         (sizeof(piaip_v4hdr_t) > max) ||
+         (PIA_FALSE == g_piaip_setaddr) ) {
         return PIA_NG;
     }
     
-    g_pia_ipv4hdr.chksum = pia_checksum(
-                           (uint16_t *) &g_pia_ipv4hdr,
-                           sizeof(pia_ipv4hdr_t)
+    g_piaip_v4hdr.chksum = pia_checksum(
+                           (uint16_t *) &g_piaip_v4hdr,
+                           sizeof(piaip_v4hdr_t)
                        );
-    memcpy(buf, &g_pia_ipv4hdr, sizeof(pia_ipv4hdr_t));
-    pia_ip_incid(&g_pia_ipv4hdr);
+    memcpy(buf, &g_piaip_v4hdr, sizeof(piaip_v4hdr_t));
+    piaip_incid(&g_piaip_v4hdr);
     return PIA_OK;
 }
 
@@ -360,14 +360,14 @@ int pia_ip_getv4hdr (pia_ipv4hdr_t *buf, size_t max) {
  * @return PIA_OK proccessing success
  * @return PIA_NG proccessing failed
  */
-int pia_ip_getv4hdr_tcp (pia_ipv4hdr_t *buf, size_t max) {
+int piaip_getv4hdr_tcp (piaip_v4hdr_t *buf, size_t max) {
     if ( (NULL == buf) ||
-         (sizeof(pia_ipv4hdr_t) > max) ||
-         (PIA_FALSE == g_pia_ip_setaddr) ) {
+         (sizeof(piaip_v4hdr_t) > max) ||
+         (PIA_FALSE == g_piaip_setaddr) ) {
         return PIA_NG;
     }
-    memcpy(buf, &g_pia_ipv4hdr_tcp, sizeof(pia_ipv4hdr_t));
-    pia_ip_incid(&g_pia_ipv4hdr_tcp);
+    memcpy(buf, &g_piaip_v4hdr_tcp, sizeof(piaip_v4hdr_t));
+    piaip_incid(&g_piaip_v4hdr_tcp);
     return PIA_OK;
 }
 
@@ -380,14 +380,14 @@ int pia_ip_getv4hdr_tcp (pia_ipv4hdr_t *buf, size_t max) {
  * @return PIA_OK proccessing success
  * @return PIA_NG proccessing failed
  */
-int pia_ip_getv4hdr_udp (pia_ipv4hdr_t *buf, size_t max) {
+int piaip_getv4hdr_udp (piaip_v4hdr_t *buf, size_t max) {
     if ( (NULL == buf) ||
-         (sizeof(pia_ipv4hdr_t) > max) ||
-         (PIA_FALSE == g_pia_ip_setaddr) ) {
+         (sizeof(piaip_v4hdr_t) > max) ||
+         (PIA_FALSE == g_piaip_setaddr) ) {
         return PIA_NG;
     }
-    memcpy(buf, &g_pia_ipv4hdr_udp, sizeof(pia_ipv4hdr_t));
-    pia_ip_incid(&g_pia_ipv4hdr_udp);
+    memcpy(buf, &g_piaip_v4hdr_udp, sizeof(piaip_v4hdr_t));
+    piaip_incid(&g_piaip_v4hdr_udp);
     return PIA_OK;
 }
 
@@ -400,18 +400,18 @@ int pia_ip_getv4hdr_udp (pia_ipv4hdr_t *buf, size_t max) {
  * @return PIA_OK proccessing success
  * @return PIA_NG proccessing failed
  */
-int pia_ip_getv4hdr_icmp (pia_ipv4hdr_t *buf, size_t max) {
+int piaip_getv4hdr_icmp (piaip_v4hdr_t *buf, size_t max) {
     if ( (NULL == buf) ||
-         (sizeof(pia_ipv4hdr_t) > max) ||
-         (PIA_FALSE == g_pia_ip_setaddr) ) {
+         (sizeof(piaip_v4hdr_t) > max) ||
+         (PIA_FALSE == g_piaip_setaddr) ) {
         return PIA_NG;
     }
-    memcpy(buf, &g_pia_ipv4hdr_icmp, sizeof(pia_ipv4hdr_t));
-    pia_ip_incid(&g_pia_ipv4hdr_icmp);
+    memcpy(buf, &g_piaip_v4hdr_icmp, sizeof(piaip_v4hdr_t));
+    piaip_incid(&g_piaip_v4hdr_icmp);
     return PIA_OK;
 }
 
-int pia_ip_incid (pia_ipv4hdr_t * ip_hdr) {
+int piaip_incid (piaip_v4hdr_t * ip_hdr) {
     uint16_t id = 0;
     
     if (NULL == ip_hdr) {
@@ -428,7 +428,7 @@ int pia_ip_incid (pia_ipv4hdr_t * ip_hdr) {
  * 
  * @param[in] ip_hdr : head pointer to ip header
  */
-uint8_t * pia_ip_seekpld (pia_ipv4hdr_t * ip_hdr) {
+uint8_t * piaip_seekpld (piaip_v4hdr_t * ip_hdr) {
     if (NULL == ip_hdr) {
         return NULL;
     }

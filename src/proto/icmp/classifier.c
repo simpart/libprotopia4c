@@ -5,24 +5,24 @@
 #include "pia/com.h"
 #include "pia/icmp.h"
 
-uint8_t pia_icmp_isecho (pia_icmphdr_t *msg) {
-    if ( (PIA_TRUE == pia_icmp_isrequest(msg)) ||
-         (PIA_TRUE == pia_icmp_isreply(msg)) ) {
+uint8_t piaicm_isecho (piaicm_hdr_t *msg) {
+    if ( (PIA_TRUE == piaicm_isrequest(msg)) ||
+         (PIA_TRUE == piaicm_isreply(msg)) ) {
         return PIA_TRUE;
     } else {
         return PIA_FALSE;
     }
 }
 
-uint8_t pia_icmp_isrequest (pia_icmphdr_t *msg) {
-    return pia_icmp_istype(msg, PIA_ICMP_ECHOREQ);
+uint8_t piaicm_isrequest (piaicm_hdr_t *msg) {
+    return piaicm_istype(msg, PIAICM_TYPE_ECHOREQ);
 }
 
-uint8_t pia_icmp_isreply (pia_icmphdr_t *msg) {
-    return pia_icmp_istype(msg, PIA_ICMP_ECHOREP);
+uint8_t piaicm_isreply (piaicm_hdr_t *msg) {
+    return piaicm_istype(msg, PIAICM_TYPE_ECHOREP);
 }
 
-uint8_t pia_icmp_istype (pia_icmphdr_t *msg, uint8_t tp) {
+uint8_t piaicm_istype (piaicm_hdr_t *msg, uint8_t tp) {
     if (NULL == msg) {
         return PIA_NG;
     }
